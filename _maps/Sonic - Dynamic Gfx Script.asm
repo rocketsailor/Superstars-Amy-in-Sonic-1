@@ -1,179 +1,287 @@
-; ---------------------------------------------------------------------------
-; Uncompressed graphics	loading	array for Sonic
-; ---------------------------------------------------------------------------
-SonicDynPLC_internal:
-		dc.w SonPLC_Null-SonicDynPLC_internal
-		dc.w SonPLC_Stand-SonicDynPLC_internal
-		dc.w SonPLC_Wait1-SonicDynPLC_internal
-		dc.w SonPLC_Wait2-SonicDynPLC_internal
-		dc.w SonPLC_Wait3-SonicDynPLC_internal
-		dc.w SonPLC_LookUp-SonicDynPLC_internal
-		dc.w SonPLC_Walk11-SonicDynPLC_internal
-		dc.w SonPLC_Walk12-SonicDynPLC_internal
-		dc.w SonPLC_Walk13-SonicDynPLC_internal
-		dc.w SonPLC_Walk14-SonicDynPLC_internal
-		dc.w SonPLC_Walk15-SonicDynPLC_internal
-		dc.w SonPLC_Walk16-SonicDynPLC_internal
-		dc.w SonPLC_Walk21-SonicDynPLC_internal
-		dc.w SonPLC_Walk22-SonicDynPLC_internal
-		dc.w SonPLC_Walk23-SonicDynPLC_internal
-		dc.w SonPLC_Walk24-SonicDynPLC_internal
-		dc.w SonPLC_Walk25-SonicDynPLC_internal
-		dc.w SonPLC_Walk26-SonicDynPLC_internal
-		dc.w SonPLC_Walk31-SonicDynPLC_internal
-		dc.w SonPLC_Walk32-SonicDynPLC_internal
-		dc.w SonPLC_Walk33-SonicDynPLC_internal
-		dc.w SonPLC_Walk34-SonicDynPLC_internal
-		dc.w SonPLC_Walk35-SonicDynPLC_internal
-		dc.w SonPLC_Walk36-SonicDynPLC_internal
-		dc.w SonPLC_Walk41-SonicDynPLC_internal
-		dc.w SonPLC_Walk42-SonicDynPLC_internal
-		dc.w SonPLC_Walk43-SonicDynPLC_internal
-		dc.w SonPLC_Walk44-SonicDynPLC_internal
-		dc.w SonPLC_Walk45-SonicDynPLC_internal
-		dc.w SonPLC_Walk46-SonicDynPLC_internal
-		dc.w SonPLC_Run11-SonicDynPLC_internal
-		dc.w SonPLC_Run12-SonicDynPLC_internal
-		dc.w SonPLC_Run13-SonicDynPLC_internal
-		dc.w SonPLC_Run14-SonicDynPLC_internal
-		dc.w SonPLC_Run21-SonicDynPLC_internal
-		dc.w SonPLC_Run22-SonicDynPLC_internal
-		dc.w SonPLC_Run23-SonicDynPLC_internal
-		dc.w SonPLC_Run24-SonicDynPLC_internal
-		dc.w SonPLC_Run31-SonicDynPLC_internal
-		dc.w SonPLC_Run32-SonicDynPLC_internal
-		dc.w SonPLC_Run33-SonicDynPLC_internal
-		dc.w SonPLC_Run34-SonicDynPLC_internal
-		dc.w SonPLC_Run41-SonicDynPLC_internal
-		dc.w SonPLC_Run42-SonicDynPLC_internal
-		dc.w SonPLC_Run43-SonicDynPLC_internal
-		dc.w SonPLC_Run44-SonicDynPLC_internal
-		dc.w SonPLC_Roll1-SonicDynPLC_internal
-		dc.w SonPLC_Roll2-SonicDynPLC_internal
-		dc.w SonPLC_Roll3-SonicDynPLC_internal
-		dc.w SonPLC_Roll4-SonicDynPLC_internal
-		dc.w SonPLC_Roll5-SonicDynPLC_internal
-		dc.w SonPLC_Warp1-SonicDynPLC_internal
-		dc.w SonPLC_Warp2-SonicDynPLC_internal
-		dc.w SonPLC_Warp3-SonicDynPLC_internal
-		dc.w SonPLC_Warp4-SonicDynPLC_internal
-		dc.w SonPLC_Stop1-SonicDynPLC_internal
-		dc.w SonPLC_Stop2-SonicDynPLC_internal
-		dc.w SonPLC_Duck-SonicDynPLC_internal
-		dc.w SonPLC_Balance1-SonicDynPLC_internal
-		dc.w SonPLC_Balance2-SonicDynPLC_internal
-		dc.w SonPLC_Float1-SonicDynPLC_internal
-		dc.w SonPLC_Float2-SonicDynPLC_internal
-		dc.w SonPLC_Float3-SonicDynPLC_internal
-		dc.w SonPLC_Float4-SonicDynPLC_internal
-		dc.w SonPLC_Spring-SonicDynPLC_internal
-		dc.w SonPLC_Hang1-SonicDynPLC_internal
-		dc.w SonPLC_Hang2-SonicDynPLC_internal
-		dc.w SonPLC_Leap1-SonicDynPLC_internal
-		dc.w SonPLC_Leap2-SonicDynPLC_internal
-		dc.w SonPLC_Push1-SonicDynPLC_internal
-		dc.w SonPLC_Push2-SonicDynPLC_internal
-		dc.w SonPLC_Push3-SonicDynPLC_internal
-		dc.w SonPLC_Push4-SonicDynPLC_internal
-		dc.w SonPLC_Surf-SonicDynPLC_internal
-		dc.w SonPLC_BubStand-SonicDynPLC_internal
-		dc.w SonPLC_Death-SonicDynPLC_internal
-		dc.w SonPLC_Drown-SonicDynPLC_internal
-		dc.w SonPLC_Burnt-SonicDynPLC_internal
-		dc.w SonPLC_Shrink1-SonicDynPLC_internal
-		dc.w SonPLC_Shrink2-SonicDynPLC_internal
-		dc.w SonPLC_Shrink3-SonicDynPLC_internal
-		dc.w SonPLC_Shrink4-SonicDynPLC_internal
-		dc.w SonPLC_Shrink5-SonicDynPLC_internal
-		dc.w SonPLC_Float1-SonicDynPLC_internal
-		dc.w SonPLC_Float3-SonicDynPLC_internal
-		dc.w SonPLC_Injury-SonicDynPLC_internal
-		dc.w SonPLC_GetAir-SonicDynPLC_internal
-		dc.w SonPLC_WaterSlide-SonicDynPLC_internal
-SonPLC_Null:	dc.b 0
-SonPLC_Stand:	dc.b 4,	$20, 0,	$70, 3,	$20, $B, $20, $E
-SonPLC_Wait1:	dc.b 3,	$50, $11, $50, $17, $20, $1D
-SonPLC_Wait2:	dc.b 3,	$50, $20, $50, $17, $20, $1D
-SonPLC_Wait3:	dc.b 3,	$50, $20, $50, $17, $20, $26
-SonPLC_LookUp:	dc.b 3,	$80, $29, $20, $B, $20,	$E
-SonPLC_Walk11:	dc.b 4,	$70, $32, $50, $3A, $50, $40, $10, $46
-SonPLC_Walk12:	dc.b 2,	$70, $32, $B0, $48
-SonPLC_Walk13:	dc.b 2,	$50, $54, $80, $5A
-SonPLC_Walk14:	dc.b 4,	$50, $54, $50, $63, $50, $69, $10, $6F
-SonPLC_Walk15:	dc.b 2,	$50, $54, $B0, $71
-SonPLC_Walk16:	dc.b 3,	$70, $32, $30, $7D, $50, $81
-SonPLC_Walk21:	dc.b 5,	$50, $87, $50, $8D, $20, $93, $50, $96,	0, $9C
-SonPLC_Walk22:	dc.b 6,	$50, $87, $10, $9D, $30, $9F, $50, $A3,	$30, $A9, 0, $AD
-SonPLC_Walk23:	dc.b 4,	$50, $AE, $10, $B4, $70, $B6, $20, $BE
-SonPLC_Walk24:	dc.b 5,	$50, $C1, $30, $C7, $70, $CB, $20, $D3,	$10, $D6
-SonPLC_Walk25:	dc.b 4,	$50, $C1, $10, $D8, $70, $DA, $20, $E2
-SonPLC_Walk26:	dc.b 5,	$50, $87, $10, $9D, 0, $93, $70, $E5, $20, $ED
-SonPLC_Walk31:	dc.b 4,	$70, $F0, $50, $F8, $10, $FE, $51, 0
-SonPLC_Walk32:	dc.b 2,	$70, $F0, $B1, 6
-SonPLC_Walk33:	dc.b 2,	$51, $12, $81, $18
-SonPLC_Walk34:	dc.b 4,	$51, $12, $51, $21, $11, $27, $51, $29
-SonPLC_Walk35:	dc.b 2,	$51, $12, $B1, $2F
-SonPLC_Walk36:	dc.b 3,	$70, $F0, 1, 6,	$81, $3B
-SonPLC_Walk41:	dc.b 6,	$51, $44, $11, $4A, $11, $4C, $81, $4E,	1, $57,	1, $58
-SonPLC_Walk42:	dc.b 6,	$51, $44, $21, $59, $11, $5C, $11, $5E,	$81, $60, 1, $57
-SonPLC_Walk43:	dc.b 4,	$51, $69, $11, $6F, $81, $71, $11, $7A
-SonPLC_Walk44:	dc.b 5,	$51, $7C, $21, $82, $11, $85, $71, $87,	$21, $8F
-SonPLC_Walk45:	dc.b 4,	$51, $7C, $11, $92, $81, $94, $11, $9D
-SonPLC_Walk46:	dc.b 5,	$51, $44, $81, $9F, $11, $5E, $11, $A8,	1, $57
-SonPLC_Run11:	dc.b 2,	$51, $AA, $B1, $B0
-SonPLC_Run12:	dc.b 2,	$50, $54, $B1, $BC
-SonPLC_Run13:	dc.b 2,	$51, $AA, $B1, $C8
-SonPLC_Run14:	dc.b 2,	$50, $54, $B1, $D4
-SonPLC_Run21:	dc.b 4,	$51, $E0, $11, $E6, $B1, $E8, 1, $F4
-SonPLC_Run22:	dc.b 3,	$51, $F5, $11, $FB, $B1, $FD
-SonPLC_Run23:	dc.b 4,	$51, $E0, $12, 9, $B2, $B, 1, $F4
-SonPLC_Run24:	dc.b 3,	$51, $F5, $11, $FB, $B2, $17
-SonPLC_Run31:	dc.b 2,	$52, $23, $B2, $29
-SonPLC_Run32:	dc.b 2,	$51, $12, $B2, $35
-SonPLC_Run33:	dc.b 2,	$52, $23, $B2, $41
-SonPLC_Run34:	dc.b 2,	$51, $12, $B2, $4D
-SonPLC_Run41:	dc.b 4,	$52, $59, $12, $5F, $B2, $61, 2, $6D
-SonPLC_Run42:	dc.b 2,	$72, $6E, $B2, $76
-SonPLC_Run43:	dc.b 4,	$52, $59, $12, $82, $B2, $84, 2, $6D
-SonPLC_Run44:	dc.b 2,	$72, $6E, $B2, $90
-SonPLC_Roll1:	dc.b 1,	$F2, $9C
-SonPLC_Roll2:	dc.b 1,	$F2, $AC
-SonPLC_Roll3:	dc.b 1,	$F2, $BC
-SonPLC_Roll4:	dc.b 1,	$F2, $CC
-SonPLC_Roll5:	dc.b 1,	$F2, $DC
-SonPLC_Warp1:	dc.b 2,	$B2, $EC, $22, $F8
-SonPLC_Warp2:	dc.b 1,	$F2, $FB
-SonPLC_Warp3:	dc.b 2,	$B3, $B, $23, $17
-SonPLC_Warp4:	dc.b 1,	$F3, $1A
-SonPLC_Stop1:	dc.b 2,	$53, $2A, $B3, $30
-SonPLC_Stop2:	dc.b 4,	$53, $3C, $73, $42, $13, $4A, 3, $4C
-SonPLC_Duck:	dc.b 4,	$13, $4D, $73, $4F, $23, $57, 3, $5A
-SonPLC_Balance1:dc.b 3,	$23, $5B, $23, $5E, $F3, $61
-SonPLC_Balance2:dc.b 3,	$B3, $71, $73, $7D, 0, $71
-SonPLC_Float1:	dc.b 3,	$73, $85, $33, $8D, $23, $91
-SonPLC_Float2:	dc.b 1,	$83, $94
-SonPLC_Float3:	dc.b 3,	$73, $9D, 3, $A5, $33, $A6
-SonPLC_Float4:	dc.b 3,	$73, $AA, $33, $B2, $23, $B6
-SonPLC_Spring:	dc.b 3,	$B3, $B9, $13, $C5, 3, $C7
-SonPLC_Hang1:	dc.b 4,	$B3, $C8, $33, $D4, 3, $D8, 3, $D9
-SonPLC_Hang2:	dc.b 4,	$B3, $DA, $33, $E6, 3, $EA, 3, $EB
-SonPLC_Leap1:	dc.b 5,	$83, $EC, $13, $F5, $53, $F7, $13, $FD,	3, $FF
-SonPLC_Leap2:	dc.b 5,	$84, 0,	$14, 9,	$53, $F7, $13, $FD, 3, $FF
-SonPLC_Push1:	dc.b 2,	$84, $B, $74, $14
-SonPLC_Push2:	dc.b 3,	$84, $1C, $24, $25, $14, $28
-SonPLC_Push3:	dc.b 2,	$84, $2A, $74, $33
-SonPLC_Push4:	dc.b 3,	$84, $1C, $24, $3B, $14, $3E
-SonPLC_Surf:	dc.b 2,	$54, $40, $B4, $46
-SonPLC_BubStand:dc.b 3,	$84, $52, $34, $5B, 4, $5F
-SonPLC_Death:	dc.b 3,	$74, $60, $14, $68, $B4, $6A
-SonPLC_Drown:	dc.b 5,	$74, $76, $14, $7E, $54, $80, $34, $86,	4, $8A
-SonPLC_Burnt:	dc.b 5,	$74, $8B, $14, $7E, $54, $93, $34, $86,	4, $8A
-SonPLC_Shrink1:	dc.b 2,	$24, $99, $F4, $9C
-SonPLC_Shrink2:	dc.b 3,	$24, $AC, $B4, $AF, $24, $BB
-SonPLC_Shrink3:	dc.b 1,	$B4, $BE
-SonPLC_Shrink4:	dc.b 1,	$54, $CA
-SonPLC_Shrink5:	dc.b 1,	$14, $D0
-SonPLC_Injury:	dc.b 3,	$B4, $D2, $14, $DE, $34, $E0
-SonPLC_GetAir:	dc.b 3,	$54, $E4, $B4, $EA, $10, $6D
-SonPLC_WaterSlide:dc.b 2, $F4, $F6, $25, 6
-		even
+DPLC_3d51:
+DPLC_3d51_0: 	dc.w DPLC_3d51_B0-DPLC_3d51
+DPLC_3d51_2: 	dc.w DPLC_3d51_B1-DPLC_3d51
+DPLC_3d51_4: 	dc.w DPLC_3d51_B4-DPLC_3d51
+DPLC_3d51_6: 	dc.w DPLC_3d51_B7-DPLC_3d51
+DPLC_3d51_8: 	dc.w DPLC_3d51_BA-DPLC_3d51
+DPLC_3d51_A: 	dc.w DPLC_3d51_BD-DPLC_3d51
+DPLC_3d51_C: 	dc.w DPLC_3d51_C0-DPLC_3d51
+DPLC_3d51_E: 	dc.w DPLC_3d51_C5-DPLC_3d51
+DPLC_3d51_10: 	dc.w DPLC_3d51_C8-DPLC_3d51
+DPLC_3d51_12: 	dc.w DPLC_3d51_CB-DPLC_3d51
+DPLC_3d51_14: 	dc.w DPLC_3d51_CE-DPLC_3d51
+DPLC_3d51_16: 	dc.w DPLC_3d51_D1-DPLC_3d51
+DPLC_3d51_18: 	dc.w DPLC_3d51_D4-DPLC_3d51
+DPLC_3d51_1A: 	dc.w DPLC_3d51_D9-DPLC_3d51
+DPLC_3d51_1C: 	dc.w DPLC_3d51_DC-DPLC_3d51
+DPLC_3d51_1E: 	dc.w DPLC_3d51_DF-DPLC_3d51
+DPLC_3d51_20: 	dc.w DPLC_3d51_E2-DPLC_3d51
+DPLC_3d51_22: 	dc.w DPLC_3d51_E5-DPLC_3d51
+DPLC_3d51_24: 	dc.w DPLC_3d51_E8-DPLC_3d51
+DPLC_3d51_26: 	dc.w DPLC_3d51_ED-DPLC_3d51
+DPLC_3d51_28: 	dc.w DPLC_3d51_F0-DPLC_3d51
+DPLC_3d51_2A: 	dc.w DPLC_3d51_F3-DPLC_3d51
+DPLC_3d51_2C: 	dc.w DPLC_3d51_F6-DPLC_3d51
+DPLC_3d51_2E: 	dc.w DPLC_3d51_F9-DPLC_3d51
+DPLC_3d51_30: 	dc.w DPLC_3d51_FC-DPLC_3d51
+DPLC_3d51_32: 	dc.w DPLC_3d51_101-DPLC_3d51
+DPLC_3d51_34: 	dc.w DPLC_3d51_106-DPLC_3d51
+DPLC_3d51_36: 	dc.w DPLC_3d51_109-DPLC_3d51
+DPLC_3d51_38: 	dc.w DPLC_3d51_10C-DPLC_3d51
+DPLC_3d51_3A: 	dc.w DPLC_3d51_10F-DPLC_3d51
+DPLC_3d51_3C: 	dc.w DPLC_3d51_112-DPLC_3d51
+DPLC_3d51_3E: 	dc.w DPLC_3d51_117-DPLC_3d51
+DPLC_3d51_40: 	dc.w DPLC_3d51_11A-DPLC_3d51
+DPLC_3d51_42: 	dc.w DPLC_3d51_11F-DPLC_3d51
+DPLC_3d51_44: 	dc.w DPLC_3d51_122-DPLC_3d51
+DPLC_3d51_46: 	dc.w DPLC_3d51_125-DPLC_3d51
+DPLC_3d51_48: 	dc.w DPLC_3d51_128-DPLC_3d51
+DPLC_3d51_4A: 	dc.w DPLC_3d51_12B-DPLC_3d51
+DPLC_3d51_4C: 	dc.w DPLC_3d51_12E-DPLC_3d51
+DPLC_3d51_4E: 	dc.w DPLC_3d51_133-DPLC_3d51
+DPLC_3d51_50: 	dc.w DPLC_3d51_136-DPLC_3d51
+DPLC_3d51_52: 	dc.w DPLC_3d51_13B-DPLC_3d51
+DPLC_3d51_54: 	dc.w DPLC_3d51_13E-DPLC_3d51
+DPLC_3d51_56: 	dc.w DPLC_3d51_141-DPLC_3d51
+DPLC_3d51_58: 	dc.w DPLC_3d51_144-DPLC_3d51
+DPLC_3d51_5A: 	dc.w DPLC_3d51_147-DPLC_3d51
+DPLC_3d51_5C: 	dc.w DPLC_3d51_14A-DPLC_3d51
+DPLC_3d51_5E: 	dc.w DPLC_3d51_14D-DPLC_3d51
+DPLC_3d51_60: 	dc.w DPLC_3d51_150-DPLC_3d51
+DPLC_3d51_62: 	dc.w DPLC_3d51_153-DPLC_3d51
+DPLC_3d51_64: 	dc.w DPLC_3d51_156-DPLC_3d51
+DPLC_3d51_66: 	dc.w DPLC_3d51_159-DPLC_3d51
+DPLC_3d51_68: 	dc.w DPLC_3d51_15E-DPLC_3d51
+DPLC_3d51_6A: 	dc.w DPLC_3d51_163-DPLC_3d51
+DPLC_3d51_6C: 	dc.w DPLC_3d51_168-DPLC_3d51
+DPLC_3d51_6E: 	dc.w DPLC_3d51_16D-DPLC_3d51
+DPLC_3d51_70: 	dc.w DPLC_3d51_170-DPLC_3d51
+DPLC_3d51_72: 	dc.w DPLC_3d51_173-DPLC_3d51
+DPLC_3d51_74: 	dc.w DPLC_3d51_176-DPLC_3d51
+DPLC_3d51_76: 	dc.w DPLC_3d51_177-DPLC_3d51
+DPLC_3d51_78: 	dc.w DPLC_3d51_178-DPLC_3d51
+DPLC_3d51_7A: 	dc.w DPLC_3d51_17B-DPLC_3d51
+DPLC_3d51_7C: 	dc.w DPLC_3d51_17E-DPLC_3d51
+DPLC_3d51_7E: 	dc.w DPLC_3d51_181-DPLC_3d51
+DPLC_3d51_80: 	dc.w DPLC_3d51_184-DPLC_3d51
+DPLC_3d51_82: 	dc.w DPLC_3d51_185-DPLC_3d51
+DPLC_3d51_84: 	dc.w DPLC_3d51_188-DPLC_3d51
+DPLC_3d51_86: 	dc.w DPLC_3d51_18B-DPLC_3d51
+DPLC_3d51_88: 	dc.w DPLC_3d51_18E-DPLC_3d51
+DPLC_3d51_8A: 	dc.w DPLC_3d51_191-DPLC_3d51
+DPLC_3d51_8C: 	dc.w DPLC_3d51_194-DPLC_3d51
+DPLC_3d51_8E: 	dc.w DPLC_3d51_197-DPLC_3d51
+DPLC_3d51_90: 	dc.w DPLC_3d51_19A-DPLC_3d51
+DPLC_3d51_92: 	dc.w DPLC_3d51_19D-DPLC_3d51
+DPLC_3d51_94: 	dc.w DPLC_3d51_1A0-DPLC_3d51
+DPLC_3d51_96: 	dc.w DPLC_3d51_1A3-DPLC_3d51
+DPLC_3d51_98: 	dc.w DPLC_3d51_1A8-DPLC_3d51
+DPLC_3d51_9A: 	dc.w DPLC_3d51_1AD-DPLC_3d51
+DPLC_3d51_9C: 	dc.w DPLC_3d51_1B2-DPLC_3d51
+DPLC_3d51_9E: 	dc.w DPLC_3d51_1B9-DPLC_3d51
+DPLC_3d51_A0: 	dc.w DPLC_3d51_1C0-DPLC_3d51
+DPLC_3d51_A2: 	dc.w DPLC_3d51_1C7-DPLC_3d51
+DPLC_3d51_A4: 	dc.w DPLC_3d51_1CE-DPLC_3d51
+DPLC_3d51_A6: 	dc.w DPLC_3d51_1D1-DPLC_3d51
+DPLC_3d51_A8: 	dc.w DPLC_3d51_1D6-DPLC_3d51
+DPLC_3d51_AA: 	dc.w DPLC_3d51_1D9-DPLC_3d51
+DPLC_3d51_AC: 	dc.w DPLC_3d51_1DC-DPLC_3d51
+DPLC_3d51_AE: 	dc.w DPLC_3d51_1DF-DPLC_3d51
+DPLC_3d51_B0: 	dc.b $0
+DPLC_3d51_B1: 	dc.b $1
+	dc.b $C0, $0
+DPLC_3d51_B4: 	dc.b $1
+	dc.b $D0, $D
+DPLC_3d51_B7: 	dc.b $1
+	dc.b $D0, $1B
+DPLC_3d51_BA: 	dc.b $1
+	dc.b $D0, $29
+DPLC_3d51_BD: 	dc.b $1
+	dc.b $D0, $37
+DPLC_3d51_C0: 	dc.b $2
+	dc.b $F0, $45
+	dc.b $10, $55
+DPLC_3d51_C5: 	dc.b $1
+	dc.b $D0, $57
+DPLC_3d51_C8: 	dc.b $1
+	dc.b $D0, $65
+DPLC_3d51_CB: 	dc.b $1
+	dc.b $C0, $73
+DPLC_3d51_CE: 	dc.b $1
+	dc.b $D0, $80
+DPLC_3d51_D1: 	dc.b $1
+	dc.b $C0, $8E
+DPLC_3d51_D4: 	dc.b $2
+	dc.b $F0, $DB
+	dc.b $20, $EB
+DPLC_3d51_D9: 	dc.b $1
+	dc.b $F0, $EE
+DPLC_3d51_DC: 	dc.b $1
+	dc.b $E0, $FE
+DPLC_3d51_DF: 	dc.b $1
+	dc.b $E1, $D
+DPLC_3d51_E2: 	dc.b $1
+	dc.b $D1, $1C
+DPLC_3d51_E5: 	dc.b $1
+	dc.b $D1, $2A
+DPLC_3d51_E8: 	dc.b $2
+	dc.b $F1, $38
+	dc.b $11, $48
+DPLC_3d51_ED: 	dc.b $1
+	dc.b $E1, $4A
+DPLC_3d51_F0: 	dc.b $1
+	dc.b $D1, $59
+DPLC_3d51_F3: 	dc.b $1
+	dc.b $E1, $67
+DPLC_3d51_F6: 	dc.b $1
+	dc.b $E1, $76
+DPLC_3d51_F9: 	dc.b $1
+	dc.b $C1, $85
+DPLC_3d51_FC: 	dc.b $2
+	dc.b $F1, $92
+	dc.b $21, $A2
+DPLC_3d51_101: 	dc.b $2
+	dc.b $F1, $A5
+	dc.b $1, $B5
+DPLC_3d51_106: 	dc.b $1
+	dc.b $E1, $B6
+DPLC_3d51_109: 	dc.b $1
+	dc.b $E1, $C5
+DPLC_3d51_10C: 	dc.b $1
+	dc.b $D1, $D4
+DPLC_3d51_10F: 	dc.b $1
+	dc.b $D1, $E2
+DPLC_3d51_112: 	dc.b $2
+	dc.b $F0, $9B
+	dc.b $0, $AB
+DPLC_3d51_117: 	dc.b $1
+	dc.b $E0, $AC
+DPLC_3d51_11A: 	dc.b $2
+	dc.b $F0, $BB
+	dc.b $0, $CB
+DPLC_3d51_11F: 	dc.b $1
+	dc.b $E2, $E9
+DPLC_3d51_122: 	dc.b $1
+	dc.b $F1, $F0
+DPLC_3d51_125: 	dc.b $1
+	dc.b $F2, $0
+DPLC_3d51_128: 	dc.b $1
+	dc.b $F2, $10
+DPLC_3d51_12B: 	dc.b $1
+	dc.b $E2, $20
+DPLC_3d51_12E: 	dc.b $2
+	dc.b $F2, $6D
+	dc.b $2, $7D
+DPLC_3d51_133: 	dc.b $1
+	dc.b $E2, $7E
+DPLC_3d51_136: 	dc.b $2
+	dc.b $F2, $8D
+	dc.b $2, $9D
+DPLC_3d51_13B: 	dc.b $1
+	dc.b $E2, $9E
+DPLC_3d51_13E: 	dc.b $1
+	dc.b $E2, $AD
+DPLC_3d51_141: 	dc.b $1
+	dc.b $E2, $BC
+DPLC_3d51_144: 	dc.b $1
+	dc.b $E2, $CB
+DPLC_3d51_147: 	dc.b $1
+	dc.b $E2, $DA
+DPLC_3d51_14A: 	dc.b $1
+	dc.b $B2, $2F
+DPLC_3d51_14D: 	dc.b $1
+	dc.b $B2, $3B
+DPLC_3d51_150: 	dc.b $1
+	dc.b $B2, $47
+DPLC_3d51_153: 	dc.b $1
+	dc.b $B2, $53
+DPLC_3d51_156: 	dc.b $1
+	dc.b $D2, $5F
+DPLC_3d51_159: 	dc.b $2
+	dc.b $F3, $2B
+	dc.b $3, $3B
+DPLC_3d51_15E: 	dc.b $2
+	dc.b $F3, $1A
+	dc.b $3, $2A
+DPLC_3d51_163: 	dc.b $2
+	dc.b $F2, $F8
+	dc.b $3, $8
+DPLC_3d51_168: 	dc.b $2
+	dc.b $F3, $9
+	dc.b $3, $19
+DPLC_3d51_16D: 	dc.b $1
+	dc.b $E3, $3C
+DPLC_3d51_170: 	dc.b $1
+	dc.b $D3, $4B
+DPLC_3d51_173: 	dc.b $1
+	dc.b $B3, $59
+DPLC_3d51_176: 	dc.b $0
+DPLC_3d51_177: 	dc.b $0
+DPLC_3d51_178: 	dc.b $1
+	dc.b $C3, $84
+DPLC_3d51_17B: 	dc.b $1
+	dc.b $83, $91
+DPLC_3d51_17E: 	dc.b $1
+	dc.b $A3, $9A
+DPLC_3d51_181: 	dc.b $1
+	dc.b $C3, $A5
+DPLC_3d51_184: 	dc.b $0
+DPLC_3d51_185: 	dc.b $1
+	dc.b $D3, $BF
+DPLC_3d51_188: 	dc.b $1
+	dc.b $D3, $CD
+DPLC_3d51_18B: 	dc.b $1
+	dc.b $E3, $DB
+DPLC_3d51_18E: 	dc.b $1
+	dc.b $E3, $EA
+DPLC_3d51_191: 	dc.b $1
+	dc.b $C3, $F9
+DPLC_3d51_194: 	dc.b $1
+	dc.b $D4, $6
+DPLC_3d51_197: 	dc.b $1
+	dc.b $C4, $14
+DPLC_3d51_19A: 	dc.b $1
+	dc.b $D4, $21
+DPLC_3d51_19D: 	dc.b $1
+	dc.b $D5, $1D
+DPLC_3d51_1A0: 	dc.b $1
+	dc.b $C3, $B2
+DPLC_3d51_1A3: 	dc.b $2
+	dc.b $F4, $2F
+	dc.b $4, $3F
+DPLC_3d51_1A8: 	dc.b $2
+	dc.b $F4, $40
+	dc.b $4, $50
+DPLC_3d51_1AD: 	dc.b $2
+	dc.b $F4, $51
+	dc.b $4, $61
+DPLC_3d51_1B2: 	dc.b $3
+	dc.b $F4, $86
+	dc.b $F4, $96
+	dc.b $44, $A6
+DPLC_3d51_1B9: 	dc.b $3
+	dc.b $F4, $AB
+	dc.b $F4, $BB
+	dc.b $34, $CB
+DPLC_3d51_1C0: 	dc.b $3
+	dc.b $F4, $CF
+	dc.b $F4, $DF
+	dc.b $34, $EF
+DPLC_3d51_1C7: 	dc.b $3
+	dc.b $F4, $62
+	dc.b $F4, $72
+	dc.b $34, $82
+DPLC_3d51_1CE: 	dc.b $1
+	dc.b $D3, $65
+DPLC_3d51_1D1: 	dc.b $2
+	dc.b $F3, $73
+	dc.b $3, $83
+DPLC_3d51_1D6: 	dc.b $1
+	dc.b $D5, $2B
+DPLC_3d51_1D9: 	dc.b $1
+	dc.b $D4, $F3
+DPLC_3d51_1DC: 	dc.b $1
+	dc.b $D5, $1
+DPLC_3d51_1DF: 	dc.b $1
+	dc.b $D5, $F
+	even

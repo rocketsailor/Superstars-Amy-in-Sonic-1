@@ -34,70 +34,73 @@ ptr_WaterSlide:	dc.w SonAni_WaterSlide-Ani_Sonic
 ptr_Null:	dc.w SonAni_Null-Ani_Sonic
 ptr_Float3:	dc.w SonAni_Float3-Ani_Sonic
 ptr_Float4:	dc.w SonAni_Float4-Ani_Sonic
+ptr_HammerAttack: dc.w SonAni_HammerAttack-Ani_Sonic
 
-SonAni_Walk:	dc.b $FF, fr_Walk13, fr_Walk14,	fr_Walk15, fr_Walk16, fr_Walk11, fr_Walk12, afEnd
+SonAni_Walk:	dc.b $FF, 8, 9,	$A, $B,	6, 7, afEnd
 		even
-SonAni_Run:	dc.b $FF,  fr_Run11,  fr_Run12,  fr_Run13,  fr_Run14,     afEnd,     afEnd, afEnd
+SonAni_Run:	dc.b $FF, $1E, $1F, $20, $21, afEnd, afEnd, afEnd
 		even
-SonAni_Roll:	dc.b $FE,  fr_Roll1,  fr_Roll2,  fr_Roll3,  fr_Roll4,  fr_Roll5,     afEnd, afEnd
+SonAni_Roll:	dc.b $FE, $2E, $2F, $30, $31, $32, afEnd, afEnd
 		even
-SonAni_Roll2:	dc.b $FE,  fr_Roll1,  fr_Roll2,  fr_Roll5,  fr_Roll3,  fr_Roll4,  fr_Roll5, afEnd
+SonAni_Roll2:	dc.b $FE, $2E, $2F, $32, $30, $31, $32,	afEnd
 		even
-SonAni_Push:	dc.b $FD,  fr_Push1,  fr_Push2,  fr_Push3,  fr_Push4,     afEnd,     afEnd, afEnd
+SonAni_Push:	dc.b $FD, $45, $46, $47, $48, afEnd, afEnd, afEnd
 		even
-SonAni_Wait:	dc.b $17, fr_Stand, fr_Stand, fr_Stand, fr_Stand, fr_Stand, fr_Stand, fr_Stand, fr_Stand, fr_Stand
-		dc.b fr_Stand, fr_Stand, fr_Stand, fr_Wait2, fr_Wait1, fr_Wait1, fr_Wait1, fr_Wait2, fr_Wait3, afBack, 2
+SonAni_Wait:	dc.b $11, 1, 1, 1, 1, 1, 1, 1, 1, 1
+		dc.b 1,	1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 3, 2, afBack, 4
 		even
-SonAni_Balance:	dc.b $1F, fr_Balance1, fr_Balance2, afEnd
+SonAni_Balance:	dc.b 7, $52, $53, $54, afEnd
 		even
-SonAni_LookUp:	dc.b $3F, fr_LookUp, afEnd
+SonAni_LookUp:	dc.b $3F, 5, afEnd
 		even
-SonAni_Duck:	dc.b $3F, fr_Duck, afEnd
+SonAni_Duck:	dc.b $3F, $39, afEnd
 		even
-SonAni_Warp1:	dc.b $3F, fr_Warp1, afEnd
+SonAni_Warp1:	dc.b $3F, $33, afEnd
 		even
-SonAni_Warp2:	dc.b $3F, fr_Warp2, afEnd
+SonAni_Warp2:	dc.b $3F, $34, afEnd
 		even
-SonAni_Warp3:	dc.b $3F, fr_Warp3, afEnd
+SonAni_Warp3:	dc.b $3F, $35, afEnd
 		even
-SonAni_Warp4:	dc.b $3F, fr_Warp4, afEnd
+SonAni_Warp4:	dc.b $3F, $36, afEnd
 		even
-SonAni_Stop:	dc.b 7,	fr_Stop1, fr_Stop2, afEnd
+SonAni_Stop:	dc.b 7,	$37, $38, afEnd
 		even
-SonAni_Float1:	dc.b 7,	fr_Float1, fr_Float4, afEnd
+SonAni_Float1:	dc.b 7,	$3C, $3F, afEnd
 		even
-SonAni_Float2:	dc.b 7,	fr_Float1, fr_Float2, fr_Float5, fr_Float3, fr_Float6, afEnd
+SonAni_Float2:	dc.b 7,	$3C, $3D, $53, $3E, $54, afEnd
 		even
-SonAni_Spring:	dc.b $2F, fr_Spring, afChange, id_Walk
+SonAni_Spring:	dc.b 7, $49, $4A, $49, $4A, $49, $4A, afChange, id_Walk
 		even
-SonAni_Hang:	dc.b 4,	fr_Hang1, fr_Hang2, afEnd
+SonAni_Hang:	dc.b 4,	$41, $42, afEnd
 		even
-SonAni_Leap1:	dc.b $F, fr_Leap1, fr_Leap1, fr_Leap1,	afBack, 1
+SonAni_Leap1:	dc.b $F, $43, $43, $43,	afBack, 1
 		even
-SonAni_Leap2:	dc.b $F, fr_Leap1, fr_Leap2, afBack, 1
+SonAni_Leap2:	dc.b $F, $43, $44, afBack, 1
 		even
-SonAni_Surf:	dc.b $3F, fr_Surf, afEnd
+SonAni_Surf:	dc.b $3F, $49, afEnd
 		even
-SonAni_GetAir:	dc.b $B, fr_GetAir, fr_GetAir, fr_Walk15, fr_Walk16, afChange, id_Walk
+SonAni_GetAir:	dc.b $B, $56, $56, $A, $B, afChange, id_Walk
 		even
-SonAni_Burnt:	dc.b $20, fr_Burnt, afEnd
+SonAni_Burnt:	dc.b $20, $4B, afEnd
 		even
-SonAni_Drown:	dc.b $2F, fr_Drown, afEnd
+SonAni_Drown:	dc.b $2F, $4C, afEnd
 		even
-SonAni_Death:	dc.b 3,	fr_Death, afEnd
+SonAni_Death:	dc.b 3,	$4D, afEnd
 		even
-SonAni_Shrink:	dc.b 3,	fr_Shrink1, fr_Shrink2, fr_Shrink3, fr_Shrink4, fr_Shrink5, fr_Null, afBack, 1
+SonAni_Shrink:	dc.b 3,	$4E, $4F, $50, $51, $52, 0, afBack, 1
 		even
-SonAni_Hurt:	dc.b 3,	fr_Injury, afEnd
+SonAni_Hurt:	dc.b 3,	$55, afEnd
 		even
 SonAni_WaterSlide:
-		dc.b 7, fr_Injury, fr_WaterSlide, afEnd
+		dc.b 7, $55, $57, afEnd
 		even
-SonAni_Null:	dc.b $77, fr_Null, afChange, id_Walk
+SonAni_Null:	dc.b $77, 0, afChange, id_Walk
 		even
-SonAni_Float3:	dc.b 3,	fr_Float1, fr_Float2, fr_Float5, fr_Float3, fr_Float6, afEnd
+SonAni_Float3:	dc.b 3,	$3C, $3D, $53, $3E, $54, afEnd
 		even
-SonAni_Float4:	dc.b 3,	fr_Float1, afChange, id_Walk
+SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
+		even
+SonAni_HammerAttack:	dc.b 3, $33, $4F, $34, $50, $35, $51, $36, $4E, afEnd, afEnd
 		even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2	; 0
@@ -131,3 +134,4 @@ id_WaterSlide:	equ (ptr_WaterSlide-Ani_Sonic)/2 ; $1B
 id_Null:	equ (ptr_Null-Ani_Sonic)/2	; $1C
 id_Float3:	equ (ptr_Float3-Ani_Sonic)/2	; $1D
 id_Float4:	equ (ptr_Float4-Ani_Sonic)/2	; $1E
+id_HammerAttack: equ (ptr_HammerAttack-Ani_Sonic)/2 ; $1F 

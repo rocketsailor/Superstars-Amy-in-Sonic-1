@@ -29,7 +29,8 @@ Sonic_LoadGfx:
 		lsr.b	#4,d0
 		lsl.w	#8,d2
 		move.b	(a2)+,d2
-		lsl.w	#5,d2
+		andi.w	#$0FFF,d2	; MJ: clear the counter
+		lsl.l	#5,d2		; MJ: shifting long-word instead of word (more than FFFF bytes)
 		lea	(Art_Sonic).l,a1
 		adda.l	d2,a1
 

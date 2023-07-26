@@ -60,9 +60,9 @@ fillVRAM:	macro value,length,loc
 ; input: source, destination, width [cells], height [cells]
 ; ---------------------------------------------------------------------------
 
-copyTilemap:	macro source,destination,width,height
+copyTilemap:	macro source,loc,width,height
 		lea	(source).l,a1
-		locVRAM	destination,d0
+		move.l	#$40000000+((loc&$3FFF)<<16)+((loc&$C000)>>14),d0
 		moveq	#width,d1
 		moveq	#height,d2
 		bsr.w	TilemapToVRAM
@@ -231,11 +231,11 @@ out_of_range:	macro exit,pos
 ; ---------------------------------------------------------------------------
 
 gotoSRAM:	macro
-		move.b	#1,($A130F1).l
+		move.b  #1,($A130F1).l
 		endm
 
 gotoROM:	macro
-		move.b	#0,($A130F1).l
+		move.b  #0,($A130F1).l
 		endm
 
 ; ---------------------------------------------------------------------------

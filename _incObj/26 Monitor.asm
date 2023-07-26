@@ -163,3 +163,4 @@ Mon_Explode:
 		bset	#0,2(a2,d0.w)
 		move.b	#9,obAnim(a0)	; set monitor type to broken
 		bra.w	DisplaySprite
+
