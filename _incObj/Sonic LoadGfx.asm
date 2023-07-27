@@ -15,32 +15,30 @@ Sonic_LoadGfx:
 		lea	(SonicDynPLC).l,a2 ; load PLC script
 		add.w	d0,d0
 		adda.w	(a2,d0.w),a2
-		moveq	#0,d1
-		move.b	(a2)+,d1	; read "number of entries" value
-		subq.b	#1,d1
+		moveq	#0,d6
+		move.b	(a2)+,d6	; read "number of entries" value
+		subq.b	#1,d6
 		bmi.s	.nochange	; if zero, branch
-		lea	(v_sgfx_buffer).w,a3
-		move.b	#1,(f_sonframechg).w ; set flag for Sonic graphics DMA
+		move.w 	#vram_sonic,d5
 
 .readentry:
-		moveq	#0,d2
-		move.b	(a2)+,d2
-		move.w	d2,d0
-		lsr.b	#4,d0
-		lsl.w	#8,d2
-		move.b	(a2)+,d2
-		andi.w	#$0FFF,d2	; MJ: clear the counter
-		lsl.l	#5,d2		; MJ: shifting long-word instead of word (more than FFFF bytes)
-		lea	(Art_Sonic).l,a1
-		adda.l	d2,a1
+		moveq	#0,d1
+		move.b	(a2)+,d1
+		move.w	d1,d3
+		andi.b 	#$F0,d3
+		addi.w 	#$10,d3
+		lsl.w	#8,d1
+		move.b	(a2)+,d1
+		andi.w	#$0FFF,d1	; MJ: clear the counter
+		lsl.l	#5,d1		; MJ: shifting long-word instead of word (more than FFFF bytes)
+		addi.l 	#Art_Sonic,d1
+		move.w 	d5,d2
+		add.w 	d3,d5
+		add.w 	d3,d5
 
-.loadtile:
-		movem.l	(a1)+,d2-d6/a4-a6
-		movem.l	d2-d6/a4-a6,(a3)
-		lea	$20(a3),a3	; next tile
-		dbf	d0,.loadtile	; repeat for number of tiles
+		jsr		(QueueDMATransfer).w
 
-		dbf	d1,.readentry	; repeat for number of entries
+		dbf		d6,.readentry	; repeat for number of entries
 
 .nochange:
 		rts	

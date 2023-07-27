@@ -15,7 +15,9 @@ v_ngfx_buffer	= ramaddr ( $FFFFAA00 )	; Nemesis graphics decompression buffer ($
 v_spritequeue	= ramaddr ( $FFFFAC00 )	; sprite display queue, in order of priority ($400 bytes)
 v_16x16	= ramaddr ( $FFFFB000 )	; 16x16 tile mappings
 
-v_sgfx_buffer	= ramaddr ( $FFFFC800 )	; buffered Sonic graphics ($17 cells) ($2E0 bytes)
+VDP_Command_Buffer	= ramaddr ( $FFFFC800 )	; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
+VDP_Command_Buffer_Slot = ramaddr ( $FFFFC800+7*$12*2 ) ; stores the address of the next open slot for a queued VDP command
+
 v_tracksonic	= ramaddr ( $FFFFCB00 )	; position tracking data for Sonic ($100 bytes)
 v_hscrolltablebuffer	= ramaddr ( $FFFFCC00 )	; scrolling table data (actually $380 bytes, but $400 is reserved for it)
 v_objspace	= ramaddr ( $FFFFD000 )	; object variable space ($40 bytes per object) ($2000 bytes)
@@ -190,7 +192,7 @@ v_sonspeedmax	= ramaddr ( $FFFFF760 )	; Sonic's maximum speed (2 bytes)
 v_sonspeedacc	= ramaddr ( $FFFFF762 )	; Sonic's acceleration (2 bytes)
 v_sonspeeddec	= ramaddr ( $FFFFF764 )	; Sonic's deceleration (2 bytes)
 v_sonframenum	= ramaddr ( $FFFFF766 )	; frame to display for Sonic
-f_sonframechg	= ramaddr ( $FFFFF767 )	; flag set to update Sonic's sprite frame
+;f_sonframechg	= ramaddr ( $FFFFF767 )	; flag set to update Sonic's sprite frame
 v_anglebuffer	= ramaddr ( $FFFFF768 )	; angle of collision block that Sonic or object is standing on
 
 v_opl_routine	= ramaddr ( $FFFFF76C )	; ObjPosLoad - routine counter
