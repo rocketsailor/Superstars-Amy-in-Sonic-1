@@ -1,4 +1,8 @@
 ; ---------------------------------------------------------------------------
+;   rocketsailor's note: 
+;	reset double jump flag line from an SSRG forum thread by FlyTF
+; ---------------------------------------------------------------------------
+; ---------------------------------------------------------------------------
 ; Subroutine to	reset Sonic's mode when he lands on the floor
 ; ---------------------------------------------------------------------------
 
@@ -6,6 +10,7 @@
 
 
 Sonic_ResetOnFloor:
+		bclr 	#7,$22(a0)	; reset double jump flag
 		btst	#4,obStatus(a0)
 		beq.s	loc_137AE
 		nop	

@@ -7150,6 +7150,7 @@ Sonic_MdJump:
 loc_12E5C:
 		bsr.w	Sonic_JumpAngle
 		bsr.w	Sonic_Floor
+		bsr.w 	HammerAttack
 		rts	
 ; ===========================================================================
 
@@ -7176,6 +7177,7 @@ Sonic_MdJump2:
 loc_12EA6:
 		bsr.w	Sonic_JumpAngle
 		bsr.w	Sonic_Floor
+		bsr.w 	HammerAttack
 		rts	
 
 		include	"_incObj/Sonic Move.asm"
@@ -7203,6 +7205,7 @@ locret_13302:
 
 		include	"_incObj/Sonic LevelBound.asm"
 		include	"_incObj/Sonic Roll.asm"
+		include	"_incObj/HammerAttack.asm"
 		include	"_incObj/Sonic Jump.asm"
 		include	"_incObj/Sonic JumpHeight.asm"
 		include	"_incObj/Sonic SlopeResist.asm"
