@@ -1,3 +1,9 @@
+;  =========================================================================
+;   rocketsailor's note: 
+; 	This script contains code written by MarkeyJester (extending art limits) 
+; 	and Clownacy (DMA queue).
+;  =========================================================================
+
 ; ---------------------------------------------------------------------------
 ; Sonic	graphics loading subroutine
 ; ---------------------------------------------------------------------------
@@ -36,7 +42,7 @@ Sonic_LoadGfx:
 		add.w 	d3,d5
 		add.w 	d3,d5
 
-		jsr		(QueueDMATransfer).w
+		jsr		(QueueDMATransfer).w 
 
 		dbf		d6,.readentry	; repeat for number of entries
 

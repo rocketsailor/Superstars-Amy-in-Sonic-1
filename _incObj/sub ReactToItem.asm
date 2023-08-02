@@ -1,3 +1,9 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   This script has been modified to account for the hammer attack.
+;   Huge thanks to HitaxasTV for helping me out!
+;  =========================================================================
+
 ; ---------------------------------------------------------------------------
 ; Subroutine to react to obColType(a0)
 ; ---------------------------------------------------------------------------
@@ -156,7 +162,12 @@ React_Monitor:
 
 .movingdown:
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
-		bne.s	.donothing
+		beq.s	.okaytodestroy
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s	.okaytodestroy
+		bra.w	.donothing
+
+.okaytodestroy:		
 		neg.w	obVelY(a0)	; reverse Sonic's y-motion
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
@@ -168,8 +179,11 @@ React_Enemy:
 		tst.b	(v_invinc).w	; is Sonic invincible?
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
-		bne.w	React_ChkHurt	; if not, branch
-
+		beq.s 	.donthurtsonic	; if yes, branch	
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s 	.donthurtsonic	; if yes, branch
+		bra.w	React_ChkHurt
+		
 .donthurtsonic:
 		tst.b	obColProp(a1)
 		beq.s	.breakenemy

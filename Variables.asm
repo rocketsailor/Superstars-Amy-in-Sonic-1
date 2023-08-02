@@ -1,3 +1,11 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   This list has been modified to include variables for the DMA Queue,
+;   replacing the variable for Sonic's RAM to VRAM art buffer.
+;   The new lines of code were originally written by Clownacy, 
+;   and have been slightly modified by rocketsailor.
+;  =========================================================================
+
 ; sign-extends a 32-bit integer to 64-bit
 ; all RAM addresses are run through this function to allow them to work in both 16-bit and 32-bit addressing modes
 ramaddr function x,(-(x&$80000000)<<1)|x

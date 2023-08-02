@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c",
+    "node": "061152c0-1399-4fb8-974b-9a6546af8377",
     "objects": [
         {
             "name": "STUFF",
@@ -80,56 +80,6 @@
                         "label": ""
                     },
                     "uuid": "1a1f8a8d-85a7-4f8a-93cc-bc35e9fc8e51"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "water surface",
-                    "palettes": [
-                        {
-                            "path": "palette\\Cycle - LZ Waterfall.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\LZ Water Surface.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "2a081aad-4b6b-45bf-bbed-2624a328e807"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "GHZ waterfall",
-                    "palettes": [
-                        {
-                            "path": "palette\\Cycle - GHZ.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Scenery.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "012a081a-ad4b-4b95-bf3b-ed2624a328e8"
                 },
                 {
                     "format": "Sonic 1.js",
@@ -347,7 +297,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
