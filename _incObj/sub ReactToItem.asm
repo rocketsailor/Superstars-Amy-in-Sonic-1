@@ -379,6 +379,8 @@ React_Special:
 ; ===========================================================================
 
 .yadrin:
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s 	.normalenemy	; if yes, branch
 		sub.w	d0,d5
 		cmpi.w	#8,d5
 		bcc.s	.normalenemy
