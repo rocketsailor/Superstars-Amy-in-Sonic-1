@@ -49,7 +49,7 @@ SonAni_Push:	dc.b $FD, $45, $46, $47, $48, afEnd, afEnd, afEnd
 SonAni_Wait:	dc.b $11, 1, 1, 1, 1, 1, 1, 1, 1, 1
 		dc.b 1,	1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 3, 2, afBack, 4
 		even
-SonAni_Balance:	dc.b 7, $52, $53, $54, afEnd
+SonAni_Balance:	dc.b 5, $52, $53, $54, afEnd
 		even
 SonAni_LookUp:	dc.b $3F, 5, afEnd
 		even
@@ -67,7 +67,7 @@ SonAni_Stop:	dc.b 7,	$37, $38, afEnd
 		even
 SonAni_Float1:	dc.b 7,	$3C, $3F, afEnd
 		even
-SonAni_Float2:	dc.b 7,	$3C, $3D, $53, $3E, $54, afEnd
+SonAni_Float2:	dc.b 7, $3C, $3D, $3E, $3F, afEnd
 		even
 SonAni_Spring:	dc.b 7, $49, $4A, $49, $4A, $49, $4A, afChange, id_Walk
 		even

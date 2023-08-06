@@ -1,11 +1,248 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "6337c46a-a914-4b30-85fe-2f6400cd250e",
+    "node": "511a57a1-e8dd-481c-939e-896a365cd177",
     "objects": [
         {
             "name": "STUFF",
             "children": [
+                {
+                    "name": "animals",
+                    "children": [
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "blackbird",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Blackbird.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 1.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "855f2eea-e884-49e0-83e7-3235cb44c154"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "penguin",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Penguin.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 1.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "5f2eeae8-8439-40c3-a732-35cb44c15488"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "pig",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Pig.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 3.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "2eeae884-39e0-43e7-b235-cb44c15488de"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "squirrel",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Squirrel.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 3.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "f20ae308-7649-42e6-97ec-4f7393dc2433"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "flicky",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Flicky.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 2.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "88855f2e-eae8-4439-a0c3-e73235cb44c1"
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": false,
+                    "uuid": "832a582f-ce73-4c97-a66d-ce43fee58e73"
+                },
+                {
+                    "name": "hud stuff",
+                    "children": [
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "menu text",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artunc\\menutext.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\HUD.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "061152c0-1399-4fb8-974b-9a6546af8377"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "title cards",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Cards.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "f6a60d79-de61-4e17-bd65-b6bcfb49cbff"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "HUD numbers",
+                            "palettes": [],
+                            "art": {
+                                "path": "artunc\\HUD Numbers.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "991cb682-61b6-4189-80ff-d13dcd5da58c",
+                            "expanded": true
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "HUD life icon",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\HUD - Life Counter Icon.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "2d410600-8545-4683-85eb-11070b480920"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "HUD",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\HUD.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\HUD.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "1d2d4106-0085-4586-83c5-eb11070b4809"
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": false,
+                    "uuid": "2a582fce-73fc-47a6-adce-43fee58e73bc"
+                },
                 {
                     "format": "Sonic 1.js",
                     "name": "ending sonic",
@@ -83,151 +320,6 @@
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "menu text",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artunc\\menutext.bin",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\HUD.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "061152c0-1399-4fb8-974b-9a6546af8377"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "title cards",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Title Cards.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "f6a60d79-de61-4e17-bd65-b6bcfb49cbff"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "HUD life icon",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\HUD - Life Counter Icon.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "2d410600-8545-4683-85eb-11070b480920"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "HUD numbers",
-                    "palettes": [],
-                    "art": {
-                        "path": "artunc\\HUD Numbers.bin",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "991cb682-61b6-4189-80ff-d13dcd5da58c"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "HUD",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\HUD.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\HUD.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "1d2d4106-0085-4586-83c5-eb11070b4809"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "title cards",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Title Cards.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "233c0404-87b6-4196-8c70-a8778849aba1"
-                },
-                {
-                    "format": "Sonic 1.js",
                     "name": "Eggman",
                     "palettes": [
                         {
@@ -277,15 +369,20 @@
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "flicky",
-                    "palettes": [],
+                    "name": "invincible stars",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic.bin",
+                            "length": 1
+                        }
+                    ],
                     "art": {
-                        "path": "artnem\\Animal Flicky.bin",
+                        "path": "artnem\\Invincibility Stars.bin",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "_maps\\Animals 2.asm",
+                        "path": "_maps\\Shield and Invincibility.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -293,7 +390,57 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "f20ae308-7649-42e6-97ec-4f7393dc2433"
+                    "uuid": "6c810495-dc32-47bf-bdee-def3983dd5c2"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "shield",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Shield.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Shield and Invincibility.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "096c227f-2bfe-4ac4-a2a3-2971e863e573"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "air bubble",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\LZ Bubbles & Countdown.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Bubbles.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "c16c8104-95dc-4257-bfbd-eedef3983dd5"
                 }
             ],
             "isDirectory": true,
@@ -304,7 +451,7 @@
             "name": "Common",
             "children": [
                 {
-                    "name": "Amy Rose",
+                    "name": "Amy",
                     "palettes": [
                         {
                             "path": "palette/Sonic.bin",
@@ -326,13 +473,63 @@
                         "path": "_maps/Sonic - Dynamic Gfx Script.asm",
                         "label": ""
                     },
+                    "uuid": "97a66dce-43fe-458e-b3bc-d95a6f536916"
+                },
+                {
+                    "name": "SONIC TEST",
+                    "palettes": [
+                        {
+                            "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\palette\\Sonic.bin",
+                            "length": 1
+                        }
+                    ],
+                    "format": "Sonic 1.js",
+                    "art": {
+                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\artunc\\Sonic.bin",
+                        "compression": "Uncompressed",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\_maps\\Sonic.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": true,
+                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\_maps\\Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
                     "uuid": "00d51d95-5736-44fb-b4fb-36f64b6ccb8d"
                 },
                 {
-                    "name": "Amy Rose LZ",
+                    "name": "Amy LZ",
                     "palettes": [
                         {
                             "path": "palette\\Sonic - LZ Underwater.bin",
+                            "length": 1
+                        }
+                    ],
+                    "format": "Sonic 1.js",
+                    "art": {
+                        "path": "artunc/Sonic.bin",
+                        "compression": "Uncompressed",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps/Sonic.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": true,
+                        "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
+                    "uuid": "eae88439-e0c3-4732-b5cb-44c15488decf"
+                },
+                {
+                    "name": "Amy SBZ3",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic - SBZ3 Underwater.bin",
                             "length": 1
                         }
                     ],
@@ -404,7 +601,7 @@
                     "uuid": "2ab9f363-55e6-4ee3-a83f-d70d6d9cd886"
                 },
                 {
-                    "name": "Monitor",
+                    "name": "Monitors",
                     "format": "Sonic 1.js",
                     "palettes": [
                         {
@@ -1842,7 +2039,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "6c6337c4-6aa9-448b-b085-fe2f6400cd25"
         },
         {
