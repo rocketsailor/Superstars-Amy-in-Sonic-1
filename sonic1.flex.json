@@ -1,8 +1,165 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "511a57a1-e8dd-481c-939e-896a365cd177",
+    "node": "3905508a-7b73-4134-a414-e4eaf3703d9f",
     "objects": [
+        {
+            "name": "Special Stage",
+            "children": [
+                {
+                    "format": "Sonic 1.js",
+                    "name": "goal",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special GOAL.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\SS Walls.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "c92d8fa3-4498-4905-908a-7b7311346414"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "up",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special UP-DOWN.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\SS UP Block.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "c4c92d8f-a344-4839-8550-8a7b73113464"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "down",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special UP-DOWN.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\SS DOWN Block.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "0a89c4c9-2d8f-4344-9839-05508a7b7311"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "red-white",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special Red-White.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "2d8fa344-9839-4550-8a7b-7311346414e4"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "ghost",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special Ghost.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "8fa34498-3905-408a-bb73-11346414e4ea"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "emeralds",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage Results.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special Result Emeralds.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\SS Result Chaos Emeralds.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "89c4c92d-8fa3-4498-b905-508a7b731134"
+                }
+            ],
+            "isDirectory": true,
+            "expanded": false
+        },
         {
             "name": "STUFF",
             "children": [
@@ -245,7 +402,27 @@
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "ending sonic",
+                    "name": "points",
+                    "palettes": [],
+                    "art": {
+                        "path": "artnem\\Points.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Points.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "0704095a-5bae-4fcc-b302-a7cd40b16555"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "ending amy",
                     "palettes": [
                         {
                             "path": "palette\\Sonic.bin",
@@ -263,7 +440,57 @@
                     },
                     "dplcs": {
                         "enabled": false,
+                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
+                    "uuid": "a3449839-0550-4a7b-b311-346414e4eaf3"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "continue amy",
+                    "palettes": [
+                        {
+                            "path": "",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Continue Screen Sonic.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Continue Screen.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
+                    "uuid": "3905508a-7b73-4134-a414-e4eaf3703d9f"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "continue stuff",
+                    "palettes": [
+                        {
+                            "path": "",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Continue Screen Stuff.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
                         "path": "",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
                         "label": ""
                     },
                     "uuid": "d0ab084f-b346-4510-8f28-14b6d734a590"
@@ -444,7 +671,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -1890,7 +2117,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8b3085fe-2f64-40cd-a50e-813fb40ef06c"
+                    "uuid": "a3070409-5a5b-4e6f-8c33-02a7cd40b165"
                 },
                 {
                     "name": "Yadrin",

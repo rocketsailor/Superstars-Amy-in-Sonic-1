@@ -1,28 +1,25 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - points that	appear when you	destroy	something
-; ---------------------------------------------------------------------------
-Map_Poi_internal:
-		dc.w byte_94BC-Map_Poi_internal
-		dc.w byte_94C2-Map_Poi_internal
-		dc.w byte_94C8-Map_Poi_internal
-		dc.w byte_94CE-Map_Poi_internal
-		dc.w byte_94D4-Map_Poi_internal
-		dc.w byte_94DA-Map_Poi_internal
-		dc.w byte_94E5-Map_Poi_internal
-byte_94BC:	dc.b 1
-		dc.b $FC, 4, $20,	0, $F8	; 100 points
-byte_94C2:	dc.b 1
-		dc.b $FC, 4, $20,	2, $F8	; 200 points
-byte_94C8:	dc.b 1
-		dc.b $FC, 4, $20,	4, $F8	; 500 points
-byte_94CE:	dc.b 1
-		dc.b $FC, 8, $20,	6, $F8	; 1000 points
-byte_94D4:	dc.b 1
-		dc.b $FC, 0, 0,	6, $FC	; 10 points
-byte_94DA:	dc.b 2
-		dc.b $FC, 8, 0,	6, $F4	; 10,000 points
-		dc.b $FC, 4, 0,	7, 1
-byte_94E5:	dc.b 2
-		dc.b $FC, 8, 0,	6, $F4	; 100,000 points
-		dc.b $FC, 4, 0,	7, 6
-		even
+Map_0409:
+Map_0409_0: 	dc.w Map_0409_E-Map_0409
+Map_0409_2: 	dc.w Map_0409_14-Map_0409
+Map_0409_4: 	dc.w Map_0409_1A-Map_0409
+Map_0409_6: 	dc.w Map_0409_20-Map_0409
+Map_0409_8: 	dc.w Map_0409_26-Map_0409
+Map_0409_A: 	dc.w Map_0409_2C-Map_0409
+Map_0409_C: 	dc.w Map_0409_37-Map_0409
+Map_0409_E: 	dc.b $1
+	dc.b $FC, $4, $20, $0, $F8
+Map_0409_14: 	dc.b $1
+	dc.b $FC, $4, $20, $2, $F8
+Map_0409_1A: 	dc.b $1
+	dc.b $FC, $4, $20, $4, $F8
+Map_0409_20: 	dc.b $1
+	dc.b $FC, $8, $20, $6, $F8
+Map_0409_26: 	dc.b $1
+	dc.b $FC, $0, $20, $6, $FC
+Map_0409_2C: 	dc.b $2
+	dc.b $FC, $8, $20, $6, $F4
+	dc.b $FC, $4, $20, $7, $1
+Map_0409_37: 	dc.b $2
+	dc.b $FC, $8, $20, $6, $F4
+	dc.b $FC, $4, $20, $7, $6
+	even
