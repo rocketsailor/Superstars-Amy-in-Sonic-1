@@ -81,6 +81,7 @@ ReactToItem:
 		dc.b  $18, $18		; $22
 		dc.b   $C, $18		; $23
 		dc.b  $48,   8		; $24
+		dc.b  $14, $1B 		; $25
 ; ===========================================================================
 
 .proximity:
@@ -135,7 +136,7 @@ ReactToItem:
 		move.b	obColType(a1),d0
 		andi.b	#$3F,d0
 		cmpi.b	#6,d0		; is collision type $46	?
-		beq.s	React_Monitor	; if yes, branch
+		beq.s	.monitorchk	; if yes, branch
 		cmpi.w	#90,$30(a0)	; is Sonic invincible?
 		bcc.w	.invincible	; if yes, branch
 		addq.b	#2,obRoutine(a1) ; advance the object's routine counter
@@ -144,6 +145,13 @@ ReactToItem:
 		rts	
 ; ===========================================================================
 
+.monitorchk:
+		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
+		beq.s	React_Monitor
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s	React_Monitor
+		bra.s	No_Reaction
+
 React_Monitor:
 		tst.w	obVelY(a0)	; is Sonic moving upwards?
 		bpl.s	.movingdown	; if not, branch
@@ -151,27 +159,20 @@ React_Monitor:
 		move.w	obY(a0),d0
 		subi.w	#$10,d0
 		cmp.w	obY(a1),d0
-		bcs.s	.donothing
+		bcs.s	No_Reaction
 		neg.w	obVelY(a0)	; reverse Sonic's vertical speed
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
-		bne.s	.donothing
+		bne.s	No_Reaction
 		addq.b	#4,ob2ndRout(a1) ; advance the monitor's routine counter
-		rts	
+		rts		
 ; ===========================================================================
 
 .movingdown:
-		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
-		beq.s	.okaytodestroy
-		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
-		beq.s	.okaytodestroy
-		bra.w	.donothing
-
-.okaytodestroy:		
-		neg.w	obVelY(a0)	; reverse Sonic's y-motion
+		neg.w	obVelY(a0)	; reverse Sonic's y-motion		
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
-.donothing:
+No_Reaction:
 		rts	
 ; ===========================================================================
 
