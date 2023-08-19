@@ -4140,8 +4140,8 @@ End_MoveSon2:
 		move.w	d0,(v_jpadhold2).w ; stop Sonic moving
 		move.w	d0,(v_player+obInertia).w
 		move.b	#$81,(f_playerctrl).w ; lock controls and disable object interaction
-		move.b	#fr_Wait2,(v_player+obFrame).w
-		move.w	#(id_Wait<<8)+id_Wait,(v_player+obAnim).w ; use "standing" animation
+		move.b	#fr_BadEndWait,(v_player+obFrame).w
+		move.w	#(id_BadEndWait<<8)+id_BadEndWait,(v_player+obAnim).w ; use bad ending sprite
 		move.b	#3,(v_player+obTimeFrame).w
 		rts	
 ; ===========================================================================

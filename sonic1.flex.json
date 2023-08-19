@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "a3449839-0550-4a7b-b311-346414e4eaf3",
+    "node": "061152c0-1399-4fb8-974b-9a6546af8377",
     "objects": [
         {
             "name": "Special Stage",
@@ -54,7 +54,8 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c4c92d8f-a344-4839-8550-8a7b73113464"
+                    "uuid": "c4c92d8f-a344-4839-8550-8a7b73113464",
+                    "expanded": true
                 },
                 {
                     "format": "Sonic 1.js",
@@ -79,7 +80,8 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "0a89c4c9-2d8f-4344-9839-05508a7b7311"
+                    "uuid": "0a89c4c9-2d8f-4344-9839-05508a7b7311",
+                    "expanded": true
                 },
                 {
                     "format": "Sonic 1.js",
@@ -162,8 +164,94 @@
             "uuid": "dd19396a-a83a-4ada-948a-7ca860fb9667"
         },
         {
-            "name": "STUFF",
+            "name": "stuff",
             "children": [
+                {
+                    "name": "Eggman",
+                    "children": [
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "Eggman",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                },
+                                {
+                                    "path": "palette\\Green Hill Zone.bin",
+                                    "length": 3
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Boss - Main.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Eggman.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "43106550-4f8e-4956-a0dd-181151666d28"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "try again",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                },
+                                {
+                                    "path": "",
+                                    "length": 3
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Ending - Try Again.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Try Again & End Eggman.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "f3a5f20a-e308-4649-92e6-17ec4f7393dc"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "Eggman FZ end",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Boss - Eggman after FZ Fight.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\FZ Damaged Eggmobile.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "e2bb531d-7def-4cb9-859d-0739cccf1696"
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": false,
+                    "uuid": "c1653022-d2fa-4433-bcbc-bad9eb176695"
+                },
                 {
                     "name": "animals",
                     "children": [
@@ -444,6 +532,56 @@
                         "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
                         "label": ""
                     },
+                    "uuid": "c870da14-845b-42d5-a0b4-c790daf5996e"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "ending logo",
+                    "palettes": [
+                        {
+                            "path": "palette\\Ending.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Ending - StH Logo.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Ending Sequence STH.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
+                    "uuid": "14845b22-d5e0-44c7-90da-f5996ec57c57"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "credits text",
+                    "palettes": [
+                        {
+                            "path": "palette\\Ending.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Ending - Credits.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Credits.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                        "label": ""
+                    },
                     "uuid": "a3449839-0550-4a7b-b311-346414e4eaf3"
                 },
                 {
@@ -548,35 +686,6 @@
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "Eggman",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        },
-                        {
-                            "path": "palette\\Green Hill Zone.bin",
-                            "length": 3
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Boss - Main.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Eggman.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "f3a5f20a-e308-4649-92e6-17ec4f7393dc"
-                },
-                {
-                    "format": "Sonic 1.js",
                     "name": "explosions",
                     "palettes": [],
                     "art": {
@@ -672,12 +781,70 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
             "name": "Common",
             "children": [
+                {
+                    "name": "alt palettes",
+                    "children": [
+                        {
+                            "name": "Amy LZ",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - LZ Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 1.js",
+                            "art": {
+                                "path": "artunc/Sonic.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "eae88439-e0c3-4732-b5cb-44c15488decf"
+                        },
+                        {
+                            "name": "Amy SBZ3",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic - SBZ3 Underwater.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "format": "Sonic 1.js",
+                            "art": {
+                                "path": "artunc/Sonic.bin",
+                                "compression": "Uncompressed",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps/Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": true,
+                                "path": "_maps/Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
+                        }
+                    ],
+                    "isDirectory": true,
+                    "expanded": false,
+                    "uuid": "653022d2-fa04-433c-bcba-d9eb17669577"
+                },
                 {
                     "name": "Amy",
                     "palettes": [
@@ -702,81 +869,6 @@
                         "label": ""
                     },
                     "uuid": "97a66dce-43fe-458e-b3bc-d95a6f536916"
-                },
-                {
-                    "name": "SONIC TEST",
-                    "palettes": [
-                        {
-                            "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "format": "Sonic 1.js",
-                    "art": {
-                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\artunc\\Sonic.bin",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\_maps\\Sonic.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": true,
-                        "path": "..\\..\\!ORIGINAL Sonic 1 Disassembly\\s1disasm-AS\\_maps\\Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "00d51d95-5736-44fb-b4fb-36f64b6ccb8d"
-                },
-                {
-                    "name": "Amy LZ",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic - LZ Underwater.bin",
-                            "length": 1
-                        }
-                    ],
-                    "format": "Sonic 1.js",
-                    "art": {
-                        "path": "artunc/Sonic.bin",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps/Sonic.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": true,
-                        "path": "_maps/Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "eae88439-e0c3-4732-b5cb-44c15488decf"
-                },
-                {
-                    "name": "Amy SBZ3",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic - SBZ3 Underwater.bin",
-                            "length": 1
-                        }
-                    ],
-                    "format": "Sonic 1.js",
-                    "art": {
-                        "path": "artunc/Sonic.bin",
-                        "compression": "Uncompressed",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps/Sonic.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": true,
-                        "path": "_maps/Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
                 },
                 {
                     "name": "Signpost",
@@ -1034,7 +1126,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {
