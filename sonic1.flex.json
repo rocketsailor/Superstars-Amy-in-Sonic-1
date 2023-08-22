@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "061152c0-1399-4fb8-974b-9a6546af8377",
+    "node": "511a57a1-e8dd-481c-939e-896a365cd177",
     "objects": [
         {
             "name": "Special Stage",
@@ -228,6 +228,35 @@
                             "uuid": "f3a5f20a-e308-4649-92e6-17ec4f7393dc"
                         },
                         {
+                            "name": "Eggman sbz2",
+                            "palettes": [
+                                {
+                                    "path": "palette/Sonic.bin",
+                                    "length": 1
+                                },
+                                {
+                                    "path": "palette/SBZ Act 2.bin",
+                                    "length": 3
+                                }
+                            ],
+                            "format": "Sonic 1.js",
+                            "art": {
+                                "path": "artnem\\Boss - Eggman in SBZ2 & FZ.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Eggman - Scrap Brain 2.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "511a57a1-e8dd-481c-939e-896a365cd177"
+                        },
+                        {
                             "format": "Sonic 1.js",
                             "name": "Eggman FZ end",
                             "palettes": [],
@@ -246,6 +275,26 @@
                                 "label": ""
                             },
                             "uuid": "e2bb531d-7def-4cb9-859d-0739cccf1696"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "exhaust flame",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Boss - Exhaust Flame.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "532cd88c-fd38-45d6-b736-54374f49b7ec"
                         }
                     ],
                     "isDirectory": true,
@@ -3202,7 +3251,7 @@
                             "length": 1
                         },
                         {
-                            "path": "palette/SBZ Act 2.bin",
+                            "path": "",
                             "length": 3
                         }
                     ],
@@ -3568,7 +3617,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "511a57a1-e8dd-481c-939e-896a365cd177"
+                    "uuid": "4c566312-efca-45fe-b53f-6b95e414fc53"
                 },
                 {
                     "name": "Girder Block",
@@ -3632,6 +3681,43 @@
             "isDirectory": true,
             "expanded": false,
             "uuid": "59c71df9-6d67-4a04-a38a-0756b3511a57"
+        },
+        {
+            "name": "FZ",
+            "children": [
+                {
+                    "name": "plasma launcher",
+                    "palettes": [
+                        {
+                            "path": "palette/Sonic.bin",
+                            "length": 1
+                        },
+                        {
+                            "path": "palette/SBZ Act 2.bin",
+                            "length": 3
+                        }
+                    ],
+                    "format": "Sonic 1.js",
+                    "art": {
+                        "path": "artnem\\Boss - Final Zone.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Plasma Ball Launcher.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "59c2b94c-4e6d-43cc-b035-a3818d06e342"
+                }
+            ],
+            "isDirectory": true,
+            "expanded": false,
+            "uuid": "2259c2b9-4c4e-4d63-8c30-35a3818d06e3"
         }
     ]
 }
