@@ -42,7 +42,7 @@ loc_1341C:
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
 		bne.s	loc_13490
-		move.b	#$E,obHeight(a0)
+		move.b	#$B,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#id_Roll,obAnim(a0) ; use "jumping" animation
 		bset	#2,obStatus(a0)

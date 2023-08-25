@@ -1,32 +1,36 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   This script has been modified to account for the hammer attack.
-;   Huge thanks to HitaxasTV for helping me out!
+;   Special thanks to HitaxasTV and DeltaWooloo for helping me out!
 ;  =========================================================================
-
 ; ---------------------------------------------------------------------------
 ; Subroutine to react to obColType(a0)
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
-
 ReactToItem:
 		nop	
-		move.w	obX(a0),d2	; load Sonic's x-axis position
-		move.w	obY(a0),d3	; load Sonic's y-axis position
-		subq.w	#8,d2
+		move.w	obX(a0),d2	; load Player's x-axis position
+		move.w	obY(a0),d3	; load Player's y-axis position
+		subq.w	#8,d2 
 		moveq	#0,d5
-		move.b	obHeight(a0),d5	; load Sonic's height
-		subq.b	#3,d5
+		move.b	obHeight(a0),d5	; load Player's height
+		subq.b	#3,d5 ; Now Player's collision height
 		sub.w	d5,d3
-		cmpi.b	#fr_Duck,obFrame(a0) ; is Sonic ducking?
+		cmpi.b 	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s 	.hammerisattacking ; if yes, branch
+		cmpi.b	#fr_Duck,obFrame(a0) ; is Player ducking?
 		bne.s	.notducking	; if not, branch
 		addi.w	#$C,d3
 		moveq	#$A,d5
 
+.hammerisattacking:
+		sub.w	#$10,d3 ; move hitbox upwards
+		move.w 	#$18,d5 ; hammer attack's hitbox height
+
 .notducking:
-		move.w	#$10,d4
+		move.w	#$10,d4 ; Player's collision width
 		add.w	d5,d5
 		lea	(v_objspace+$800).w,a1 ; set object RAM start address
 		move.w	#$5F,d6
@@ -137,7 +141,7 @@ ReactToItem:
 		andi.b	#$3F,d0
 		cmpi.b	#6,d0		; is collision type $46	?
 		beq.s	.monitorchk	; if yes, branch
-		cmpi.w	#90,$30(a0)	; is Sonic invincible?
+		cmpi.w	#90,$30(a0)	; is Player invincible?
 		bcc.w	.invincible	; if yes, branch
 		addq.b	#2,obRoutine(a1) ; advance the object's routine counter
 
@@ -146,21 +150,28 @@ ReactToItem:
 ; ===========================================================================
 
 .monitorchk:
-		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
+		cmpi.b	#id_Roll,obAnim(a0) ; is Player rolling/jumping?
 		beq.s	React_Monitor
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s	React_Monitor
 		bra.s	No_Reaction
 
 React_Monitor:
-		tst.w	obVelY(a0)	; is Sonic moving upwards?
+		tst.w	obVelY(a0)	; is Player moving upwards?
 		bpl.s	.movingdown	; if not, branch
 
 		move.w	obY(a0),d0
 		subi.w	#$10,d0
 		cmp.w	obY(a1),d0
 		bcs.s	No_Reaction
-		neg.w	obVelY(a0)	; reverse Sonic's vertical speed
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		bne.s	.monitorfall ; if not, branch
+		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
+		rts
+
+; make monitor fall if hit from bottom
+.monitorfall: 	
+		neg.w	obVelY(a0)	; reverse Player's vertical speed
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
 		bne.s	No_Reaction
@@ -169,7 +180,7 @@ React_Monitor:
 ; ===========================================================================
 
 .movingdown:
-		neg.w	obVelY(a0)	; reverse Sonic's y-motion		
+		neg.w	obVelY(a0)	; reverse Player's y-motion		
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
 No_Reaction:
@@ -177,9 +188,9 @@ No_Reaction:
 ; ===========================================================================
 
 React_Enemy:
-		tst.b	(v_invinc).w	; is Sonic invincible?
+		tst.b	(v_invinc).w	; is Player invincible?
 		bne.s	.donthurtsonic	; if yes, branch
-		cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
+		cmpi.b	#id_Roll,obAnim(a0) ; is Player rolling/jumping?
 		beq.s 	.donthurtsonic	; if yes, branch	
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s 	.donthurtsonic	; if yes, branch
@@ -189,7 +200,7 @@ React_Enemy:
 		tst.b	obColProp(a1)
 		beq.s	.breakenemy
 
-		neg.w	obVelX(a0)	; repel Sonic
+		neg.w	obVelX(a0)	; repel Player
 		neg.w	obVelY(a0)
 		asr	obVelX(a0)
 		asr	obVelY(a0)
@@ -248,7 +259,7 @@ React_Caterkiller:
 		bset	#7,obStatus(a1)
 
 React_ChkHurt:
-		tst.b	(v_invinc).w	; is Sonic invincible?
+		tst.b	(v_invinc).w	; is Player invincible?
 		beq.s	.notinvincible	; if not, branch
 
 .isflashing:
@@ -258,7 +269,7 @@ React_ChkHurt:
 
 .notinvincible:
 		nop	
-		tst.w	$30(a0)		; is Sonic flashing?
+		tst.w	$30(a0)		; is Player flashing?
 		bne.s	.isflashing	; if yes, branch
 		movea.l	a1,a2
 
@@ -266,16 +277,16 @@ React_ChkHurt:
 ; continue straight to HurtSonic
 
 ; ---------------------------------------------------------------------------
-; Hurting Sonic	subroutine
+; Hurting Player subroutine
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
 
 HurtSonic:
-		tst.b	(v_shield).w	; does Sonic have a shield?
+		tst.b	(v_shield).w	; does Player have a shield?
 		bne.s	.hasshield	; if yes, branch
-		tst.w	(v_rings).w	; does Sonic have any rings?
+		tst.w	(v_rings).w	; does Player have any rings?
 		beq.w	.norings	; if not, branch
 
 		jsr	(FindFreeObj).l
@@ -289,9 +300,9 @@ HurtSonic:
 		move.b	#4,obRoutine(a0)
 		bsr.w	Sonic_ResetOnFloor
 		bset	#1,obStatus(a0)
-		move.w	#-$400,obVelY(a0) ; make Sonic bounce away from the object
+		move.w	#-$400,obVelY(a0) ; make Player bounce away from the object
 		move.w	#-$200,obVelX(a0)
-		btst	#6,obStatus(a0)	; is Sonic underwater?
+		btst	#6,obStatus(a0)	; is Player underwater?
 		beq.s	.isdry		; if not, branch
 
 		move.w	#-$200,obVelY(a0) ; slower bounce
@@ -300,8 +311,8 @@ HurtSonic:
 .isdry:
 		move.w	obX(a0),d0
 		cmp.w	obX(a2),d0
-		bcs.s	.isleft		; if Sonic is left of the object, branch
-		neg.w	obVelX(a0)	; if Sonic is right of the object, reverse
+		bcs.s	.isleft		; if Player is left of the object, branch
+		neg.w	obVelX(a0)	; if Player is right of the object, reverse
 
 .isleft:
 		move.w	#0,obInertia(a0)
@@ -325,7 +336,7 @@ HurtSonic:
 		bne.w	.hasshield	; if yes, branch
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	kill Sonic
+; Subroutine to	kill Player
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
