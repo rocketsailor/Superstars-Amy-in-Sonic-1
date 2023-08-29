@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "3905508a-7b73-4134-a414-e4eaf3703d9f",
+    "node": "97a66dce-43fe-458e-b3bc-d95a6f536916",
     "objects": [
         {
             "name": "Special Stage",
@@ -830,7 +830,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -1175,7 +1175,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {

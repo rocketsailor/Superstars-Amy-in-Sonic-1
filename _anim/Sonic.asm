@@ -97,7 +97,7 @@ SonAni_WaterSlide:
 		even
 SonAni_Null:	dc.b $77, 0, afChange, id_Walk
 		even
-SonAni_Float3:	dc.b 3,	$3C, $3D, $53, $3E, $54, afEnd
+SonAni_Float3:	dc.b 3,	$3C, $3D, $3E, $3F, $40, afEnd
 		even
 SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
 		even
