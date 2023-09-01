@@ -1,7 +1,8 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
-;   This script has been modified to account for the hammer attack.
-;   Special thanks to HitaxasTV and DeltaWooloo for helping me out!
+;   This script has been modified by rocketsailor and DeltaWooloo.
+;	Thank you DeltaWooloo for helping me make the hammer's hitbox!
+;   In addition, thank you HitaxasTV for helping me with React_Enemy!
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Subroutine to react to obColType(a0)
@@ -11,6 +12,21 @@
 
 ReactToItem:
 		nop	
+		cmpi.b 	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		bne.s 	.nohammer ; if not, branch		
+        ; (DeltaWooloo) By this point, we're focusing purely on the Piko-Piko hammer
+        move.w	obX(a0),d2                ; Get player's x_pos
+        move.w	obY(a0),d3                ; Get player's y_pos
+        subi.w	#$18,d2                    ; Subtract width of hammer
+        subi.w	#$18,d3                    ; Subtract height of hammer     
+		move.w	#$30,d4                    ; Player's width
+        move.w	#$30,d5                    ; Player's height
+        bsr.w	.process  
+		moveq	#0,d0
+		rts	
+; ---------------------------------------------------------------------------
+; Normal ReactToItem comes after this	
+.nohammer:		
 		move.w	obX(a0),d2	; load Player's x-axis position
 		move.w	obY(a0),d3	; load Player's y-axis position
 		subq.w	#8,d2 
@@ -18,20 +34,16 @@ ReactToItem:
 		move.b	obHeight(a0),d5	; load Player's height
 		subq.b	#3,d5 ; Now Player's collision height
 		sub.w	d5,d3
-		cmpi.b 	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
-		beq.s 	.hammerisattacking ; if yes, branch
 		cmpi.b	#fr_Duck,obFrame(a0) ; is Player ducking?
 		bne.s	.notducking	; if not, branch
 		addi.w	#$C,d3
 		moveq	#$A,d5
 
-.hammerisattacking:
-		sub.w	#$10,d3 ; move hitbox upwards
-		move.w 	#$18,d5 ; hammer attack's hitbox height
-
 .notducking:
 		move.w	#$10,d4 ; Player's collision width
 		add.w	d5,d5
+	
+.process:	
 		lea	(v_objspace+$800).w,a1 ; set object RAM start address
 		move.w	#$5F,d6
 
