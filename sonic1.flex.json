@@ -830,7 +830,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -891,7 +891,7 @@
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": false,
+                    "expanded": true,
                     "uuid": "653022d2-fa04-433c-bcba-d9eb17669577"
                 },
                 {
@@ -1049,7 +1049,7 @@
                     "uuid": "6355e6ce-e3a8-4fd7-8d6d-9cd8865fb147"
                 },
                 {
-                    "name": "Spring",
+                    "name": "Spring Horizontal",
                     "format": "Sonic 1.js",
                     "palettes": [
                         {
@@ -1059,6 +1059,31 @@
                     ],
                     "art": {
                         "path": "artnem/Spring Horizontal.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps/Springs.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "5fddd0a3-6cc6-463d-afad-c529f536a957"
+                },
+                {
+                    "name": "Spring Vertical",
+                    "format": "Sonic 1.js",
+                    "palettes": [
+                        {
+                            "path": "palette/Sonic.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Spring Vertical.bin",
                         "compression": "Nemesis",
                         "offset": 0
                     },
@@ -1175,7 +1200,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {
