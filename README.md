@@ -8,14 +8,17 @@ This project is for experimental and educational purposes only. No copyright inf
 
 Changes and Features
 ============
-* You play as Amy (instead of Sonic, obviously)
-  * Amy's sprites have been modified for a 15 color palette
-  * Amy has her jumping hammer attack (press jump again in air to activate)
-  * Note: Hammer Rush will NOT be added
-  * Might add spindash if I feel like it sometime later
-  * Might add custom sfx for the hammer attack (again, if I feel like it sometime later)
-* Palette line 0 is changed, meaning various objects will have different colors
-* HUD, title card and other things (hopefully monitors) will use yellow from palette line 1 instead of line 0
+* You play as Amy instead of Sonic
+* Amy's sprites have been modified for a limited color palette
+* Amy has her jumping hammer attack: press jump again in the air to activate
+* Spindash will be added at somepoint
+* Palette line 0 is changed, meaning various objects will have different colors or look slightly different
 * No spike bug
 * Press start button text displays on title screen
-* There might be more stuff that I'm forgetting idk
+* Other stuff probably
+
+Source Credits
+============
+* Sonic Retro
+* Sonic Stuff Research Group
+* Clownacy's YouTube Channel
