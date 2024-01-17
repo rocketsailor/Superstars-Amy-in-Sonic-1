@@ -81,7 +81,9 @@ Mon_Solid:	; Routine 2
 		beq.w	loc_A25C
 		tst.w	obVelY(a1)
 		bmi.s	loc_A20A
-		cmpi.b	#id_Roll,obAnim(a1) ; is Sonic rolling?
+		cmpi.b	#id_Roll,obAnim(a1) ; is player rolling?
+		beq.s	loc_A25C	; if yes, branch
+		cmpi.b	#id_SpinDash,obAnim(a1) ; is player spin dashing?
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a1) ; is hammer attacking?
 		beq.s	loc_A25C	; if yes, branch

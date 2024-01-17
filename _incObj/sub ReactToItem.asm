@@ -1,6 +1,6 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
-;   This script has been modified by rocketsailor and DeltaWooloo.
+;   This script has been modified by me and DeltaWooloo.
 ;	Thank you DeltaWooloo for helping me make the hammer's hitbox!
 ;   In addition, thank you HitaxasTV for helping me with React_Enemy!
 ;  =========================================================================
@@ -204,6 +204,8 @@ React_Enemy:
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is Player rolling/jumping?
 		beq.s 	.donthurtsonic	; if yes, branch	
+		cmpi.b	#id_SpinDash,obAnim(a0)	; is Player Spin Dashing? 
+		beq.s 	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s 	.donthurtsonic	; if yes, branch
 		bra.w	React_ChkHurt
@@ -327,6 +329,7 @@ HurtSonic:
 		neg.w	obVelX(a0)	; if Player is right of the object, reverse
 
 .isleft:
+		move.b 	#0,f_spindash(a0) ; clear Spin Dash flag 
 		move.w	#0,obInertia(a0)
 		move.b	#id_Hurt,obAnim(a0)
 		move.w	#120,$30(a0)	; set temp invincible time to 2 seconds

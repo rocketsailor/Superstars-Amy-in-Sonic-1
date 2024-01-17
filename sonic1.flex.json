@@ -164,7 +164,7 @@
             "uuid": "dd19396a-a83a-4ada-948a-7ca860fb9667"
         },
         {
-            "name": "stuff",
+            "name": "Stuff",
             "children": [
                 {
                     "name": "Eggman",
@@ -802,35 +802,10 @@
                         "label": ""
                     },
                     "uuid": "096c227f-2bfe-4ac4-a2a3-2971e863e573"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "air bubble",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\LZ Bubbles & Countdown.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Bubbles.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "c16c8104-95dc-4257-bfbd-eedef3983dd5"
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -891,7 +866,7 @@
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": true,
+                    "expanded": false,
                     "uuid": "653022d2-fa04-433c-bcba-d9eb17669577"
                 },
                 {
@@ -1200,7 +1175,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {

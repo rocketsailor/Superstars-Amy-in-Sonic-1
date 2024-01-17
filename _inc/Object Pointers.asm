@@ -5,7 +5,7 @@ ptr_SonicPlayer:	dc.l SonicPlayer	; $01
 ptr_Obj02:		dc.l NullObject
 ptr_Obj03:		dc.l NullObject
 ptr_Obj04:		dc.l NullObject
-ptr_Obj05:		dc.l NullObject
+ptr_Obj05:		dc.l SpinDash_dust
 ptr_Obj06:		dc.l NullObject
 ptr_Obj07:		dc.l NullObject
 ptr_Splash:		dc.l Splash		; $08

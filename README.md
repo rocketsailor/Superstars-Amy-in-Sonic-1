@@ -11,14 +11,14 @@ Changes and Features
 * You play as Amy instead of Sonic
 * Amy's sprites have been modified for a limited color palette
 * Amy has her jumping hammer attack: press jump again in the air to activate
-* Spindash will be added at somepoint
+* Amy can spindash!
 * Palette line 0 is changed, meaning various objects will have different colors or look slightly different
 * No spike bug
 * Press start button text displays on title screen
 * Other stuff probably
 
-Source Credits
+Credits
 ============
 * Sonic Retro
 * Sonic Stuff Research Group
-* Clownacy's YouTube Channel
+* Clownacy's YouTube tutorials

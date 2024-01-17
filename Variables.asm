@@ -1,9 +1,9 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
-;   This list has been modified to include variables for the DMA Queue,
-;   replacing the variable for Sonic's RAM to VRAM art buffer.
-;   The new lines of code were originally written by Clownacy, 
-;   and have been slightly modified by rocketsailor.
+;   This list has been modified to include variables for the DMA Queue.
+;   These new lines of code were originally written by Clownacy, 
+;   and have been slightly modified by me.
+;   In addition, a new variable is added for the spin dash.
 ;  =========================================================================
 
 ; sign-extends a 32-bit integer to 64-bit
@@ -360,3 +360,5 @@ v_creditsnum	= ramaddr ( $FFFFFFF4 )	; credits index number (2 bytes)
 v_megadrive	= ramaddr ( $FFFFFFF8 )	; Megadrive machine type
 f_debugmode	= ramaddr ( $FFFFFFFA )	; debug mode flag (sometimes 2 bytes)
 v_init		= ramaddr ( $FFFFFFFC )	; 'init' text string (4 bytes)
+
+f_spindash		= $39 

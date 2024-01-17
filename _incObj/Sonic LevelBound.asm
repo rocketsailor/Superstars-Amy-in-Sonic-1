@@ -33,8 +33,13 @@ Sonic_LevelBound:
 		blt.s	.bottom		; if yes, branch
 		rts	
 ; ===========================================================================
-
+;   rocketsailor's note: 
+;   This "bottom" part has been modified to account for the spin dash
 .bottom:
+		move.w 	(v_limitbtm1).w,d0 
+		move.w 	(v_limitbtm2).w,d1 
+		cmp.w 	d0,d1 ; screen still scrolling down? 
+		blt.s 	.dontkill; if so, don't kill Sonic 
 		cmpi.w	#(id_SBZ<<8)+1,(v_zone).w ; is level SBZ2 ?
 		bne.w	KillSonic	; if not, kill Sonic
 		cmpi.w	#$2000,(v_player+obX).w
@@ -43,6 +48,8 @@ Sonic_LevelBound:
 		move.w	#1,(f_restart).w ; restart the level
 		move.w	#(id_LZ<<8)+3,(v_zone).w ; set level to SBZ3 (LZ4)
 		rts	
+.dontkill: 
+		rts
 ; ===========================================================================
 
 .sides:

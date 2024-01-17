@@ -2,7 +2,7 @@
 ;   rocketsailor's note: 
 ;   This script contains double jump code written by "EB".
 ;   The original code is from an SSRG forum thread.
-;   The subroutine below has been modified by rocketsailor.
+;   The subroutine below has been modified by me.
 ;  =========================================================================
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
