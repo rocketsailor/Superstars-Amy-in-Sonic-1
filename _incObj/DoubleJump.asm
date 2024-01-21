@@ -7,7 +7,7 @@
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
-HammerAttack:
+DoubleJump:
 	cmpi.b	#id_Roll,obAnim(a0) ; is Sonic rolling/jumping?
         bne.s    .return                ; (EB) if not, branch
         btst    #7,$22(a0)        ; (EB) read if DoubleJump flag was set
@@ -16,8 +16,9 @@ HammerAttack:
 	andi.b	#btnABC,d0	           ; is A, B or C pressed?
         beq.w    .return                ; (EB) if not, branch
         bset    #7,$22(a0)        ; (EB) set DoubleJump flag
-;        move.w    #sfx_AB,d0           
-;        jsr    (PlaySound_Special).l
+        move.w	#sfx_Jump,d0           
+        jsr    (PlaySound_Special).l
+        move.w  #-$580,obVelY(A0)          ; bounce up
 	move.b	#$B,obHeight(a0)
 	move.b	#7,obWidth(a0)
 	move.b	#id_HammerAttack,obAnim(a0) ; use hammer attack animation

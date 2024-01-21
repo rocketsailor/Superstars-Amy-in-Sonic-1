@@ -102,7 +102,7 @@ SonAni_Float3:	dc.b 3,	$3C, $3D, $3E, $3F, $40, afEnd
 		even
 SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
 		even
-SonAni_HammerAttack:	dc.b 3, $33, $4F, $34, $50, $35, $51, $36, $4E, afEnd, afEnd
+SonAni_HammerAttack:	dc.b 3, $33, $4F, $34, $50, $35, $51, $36, $4E, afChange, id_Roll
 		even
 SonAni_BadEndWait: 	dc.b 3, $58, afEnd
 		even

@@ -43,15 +43,15 @@ Obj01_ResetScr2:
 loc_132A0:
 		subq.w	#2,(v_lookshift).w
 
-loc_132A4:
+loc_132A4:	; XREF: Sonic_JumpPeakDecelerate
 		cmpi.w	#-$400,obVelY(a0) ; is Sonic moving faster than -$400 upwards?
 		bcs.s	locret_132D2	; if yes, branch
 		move.w	obVelX(a0),d0
 		move.w	d0,d1
-		asr.w	#5,d1
-		beq.s	locret_132D2
-		bmi.s	loc_132C6
-		sub.w	d1,d0
+		asr.w	#5,d1 	; d1 = x_velocity / 32
+		beq.s	locret_132D2	; return if d1 is 0
+		bmi.s	loc_132C6 	; branch if moving left
+		sub.w	d1,d0	; reduce x velocity by d1
 		bcc.s	loc_132C0
 		move.w	#0,d0
 
@@ -60,8 +60,8 @@ loc_132C0:
 		rts	
 ; ===========================================================================
 
-loc_132C6:
-		sub.w	d1,d0
+loc_132C6:	; XREF: Sonic_JumpPeakDecelerateLeft
+		sub.w	d1,d0	; reduce x velocity by d1
 		bcs.s	loc_132CE
 		move.w	#0,d0
 
