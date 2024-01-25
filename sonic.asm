@@ -112,8 +112,8 @@ loc_E0:
 	endif
 		dc.b "SEGA MEGA DRIVE " ; Hardware system ID (Console name)
 		dc.b "(C)SEGA 1991.APR" ; Copyright holder and release date (generally year)
-		dc.b "SONIC THE               HEDGEHOG                " ; Domestic name
-		dc.b "SONIC THE               HEDGEHOG                " ; International name
+		dc.b "AMY ROSE IN SONIC THE               HEDGEHOG    " ; Domestic name
+		dc.b "AMY ROSE IN SONIC THE               HEDGEHOG    " ; International name
 		if Revision=0
 		dc.b "GM 00001009-00"   ; Serial/version number (Rev 0)
 		else

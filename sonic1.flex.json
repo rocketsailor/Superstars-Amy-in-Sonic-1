@@ -805,7 +805,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {

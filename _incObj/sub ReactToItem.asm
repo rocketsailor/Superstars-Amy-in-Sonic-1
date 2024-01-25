@@ -166,6 +166,8 @@ ReactToItem:
 		beq.s	React_Monitor
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s	React_Monitor
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		beq.s	React_Monitor
 		bra.s	No_Reaction
 
 React_Monitor:
@@ -177,18 +179,20 @@ React_Monitor:
 		cmp.w	obY(a1),d0
 		bcs.s	No_Reaction
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
-		bne.s	.monitorfall ; if not, branch
-		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
-		rts
-
-; make monitor fall if hit from bottom
-.monitorfall: 	
+		beq.s	.instantbreak ; if yes, branch
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		beq.s	.instantbreak ; if yes, branch
 		neg.w	obVelY(a0)	; reverse Player's vertical speed
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
 		bne.s	No_Reaction
 		addq.b	#4,ob2ndRout(a1) ; advance the monitor's routine counter
 		rts		
+
+.instantbreak: 	; break floating monitor instantly if using hammer
+		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
+		move.w	#-$180,obVelY(a1)
+		rts
 ; ===========================================================================
 
 .movingdown:
@@ -207,6 +211,8 @@ React_Enemy:
 		cmpi.b	#id_SpinDash,obAnim(a0)	; is Player Spin Dashing? 
 		beq.s 	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s 	.donthurtsonic	; if yes, branch
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
 		beq.s 	.donthurtsonic	; if yes, branch
 		bra.w	React_ChkHurt
 		
@@ -408,6 +414,8 @@ React_Special:
 .yadrin:
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s 	.normalenemy	; if yes, branch
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		beq.s 	.normalenemy	; if yes, branch
 		sub.w	d0,d5
 		cmpi.w	#8,d5
 		bcc.s	.normalenemy
@@ -440,4 +448,5 @@ React_Special:
 .D7orE1:
 		addq.b	#1,obColProp(a1)
 		rts	
+
 ; End of function React_Special

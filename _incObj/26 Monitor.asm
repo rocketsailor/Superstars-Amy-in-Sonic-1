@@ -87,6 +87,8 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a1) ; is hammer attacking?
 		beq.s	loc_A25C	; if yes, branch
+		cmpi.b	#id_HammerAttack2,obAnim(a1) ; is hammer attacking?
+		beq.s	loc_A25C	; if yes, branch
 
 loc_A20A:
 		tst.w	d1

@@ -182,7 +182,16 @@ loc_19F48:
 loc_19F50:
 		addq.w	#7,(v_random).w
 		cmpi.b	#id_Roll,(v_player+obAnim).w
-		bne.s	loc_19F48
+		beq.s 	loc_19F50_Part2
+		cmpi.b	#id_SpinDash,(v_player+obAnim).w
+		beq.s 	loc_19F50_Part2
+		cmpi.b	#id_HammerAttack,(v_player+obAnim).w
+		beq.s 	loc_19F50_Part2
+		cmpi.b	#id_HammerAttack2,(v_player+obAnim).w
+		beq.s 	loc_19F50_Part2
+		bra.s	loc_19F48
+
+loc_19F50_Part2:		
 		move.w	#$300,d0
 		btst	#0,obStatus(a0)
 		bne.s	loc_19F6A

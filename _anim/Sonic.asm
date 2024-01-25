@@ -35,6 +35,7 @@ ptr_Null:	dc.w SonAni_Null-Ani_Sonic
 ptr_Float3:	dc.w SonAni_Float3-Ani_Sonic
 ptr_Float4:	dc.w SonAni_Float4-Ani_Sonic
 ptr_HammerAttack: dc.w SonAni_HammerAttack-Ani_Sonic
+ptr_HammerAttack2: dc.w SonAni_HammerAttack2-Ani_Sonic
 ptr_BadEndWait: dc.w SonAni_BadEndWait-Ani_Sonic
 ptr_SpinDash: dc.w SonAni_SpinDash-Ani_Sonic
 
@@ -104,6 +105,8 @@ SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
 		even
 SonAni_HammerAttack:	dc.b 3, $33, $4F, $34, $50, $35, $51, $36, $4E, afChange, id_Roll
 		even
+SonAni_HammerAttack2:	dc.b 3, $33, $4F, $34, $50, $35, $51, $36, $4E, afChange, id_Roll
+		even
 SonAni_BadEndWait: 	dc.b 3, $58, afEnd
 		even
 SonAni_SpinDash: dc.b 0, $59, $5A, $59, $5B, $59, $5C, $59, $5D, $59, $5E, afEnd 
@@ -141,5 +144,6 @@ id_Null:	equ (ptr_Null-Ani_Sonic)/2	; $1C
 id_Float3:	equ (ptr_Float3-Ani_Sonic)/2	; $1D
 id_Float4:	equ (ptr_Float4-Ani_Sonic)/2	; $1E
 id_HammerAttack: equ (ptr_HammerAttack-Ani_Sonic)/2 ; $1F 
-id_BadEndWait: equ (ptr_BadEndWait-Ani_Sonic)/2 ; $20
-id_SpinDash: equ (ptr_SpinDash-Ani_Sonic)/2 ; $21
+id_HammerAttack2: equ (ptr_HammerAttack2-Ani_Sonic)/2 ; $20
+id_BadEndWait: equ (ptr_BadEndWait-Ani_Sonic)/2 ; $21
+id_SpinDash: equ (ptr_SpinDash-Ani_Sonic)/2 ; $22

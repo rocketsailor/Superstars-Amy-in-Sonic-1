@@ -6,10 +6,10 @@
 
 
 Sonic_JumpHeight:
-		tst.b	$3C(a0) 	; is Sonic jumping?
+		tst.b	$3C(a0) 	; is player jumping?
 		beq.s	loc_134C4	; if not, branch
 		move.w	#-$400,d1	; default value
-		btst	#6,obStatus(a0) 	; is Sonic underwater?
+		btst	#6,obStatus(a0) 	; is player underwater?
 		beq.s	loc_134AE 	; if not, branch
 		move.w	#-$200,d1 	; Underwater-specific value
 
@@ -26,7 +26,7 @@ locret_134C2:
 ; ===========================================================================
 
 loc_134C4:
-		cmpi.w	#-$FC0,obVelY(a0) ; is Sonic's Y speed faster (less than) than -15.75 (-$FC0)?
+		cmpi.w	#-$FC0,obVelY(a0) ; is player's Y speed faster (less than) than -15.75 (-$FC0)?
 		bge.s	locret_134D2	; if not, branch
 		move.w	#-$FC0,obVelY(a0)	; cap upward speed
 
