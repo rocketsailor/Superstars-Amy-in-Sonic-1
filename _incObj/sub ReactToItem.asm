@@ -13,6 +13,20 @@
 ReactToItem:
 		nop	
 		cmpi.b 	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		bne.s 	.secondcheck ; if not, branch
+	     ; (DeltaWooloo) By this point, we're focusing purely on the Piko-Piko hammer
+        move.w	obX(a0),d2                ; Get player's x_pos
+        move.w	obY(a0),d3                ; Get player's y_pos
+        subi.w	#$18,d2                    ; Subtract width of hammer
+        subi.w	#$18,d3                    ; Subtract height of hammer     
+		move.w	#$30,d4                    ; Player's width
+        move.w	#$30,d5                    ; Player's height
+        bsr.w	.process  
+		moveq	#0,d0
+		rts	
+
+.secondcheck:
+		cmpi.b 	#id_HammerAttack2,obAnim(a0) ; is hammer attacking after double jump?
 		bne.s 	.nohammer ; if not, branch		
         ; (DeltaWooloo) By this point, we're focusing purely on the Piko-Piko hammer
         move.w	obX(a0),d2                ; Get player's x_pos
@@ -166,22 +180,21 @@ ReactToItem:
 		beq.s	React_Monitor
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s	React_Monitor
-		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking after double jump?
 		beq.s	React_Monitor
 		bra.s	No_Reaction
 
 React_Monitor:
 		tst.w	obVelY(a0)	; is Player moving upwards?
 		bpl.s	.movingdown	; if not, branch
-
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
+		beq.s	.instantbreak ; if yes, branch
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking after double jump?
+		beq.s	.instantbreak ; if yes, branch
 		move.w	obY(a0),d0
 		subi.w	#$10,d0
 		cmp.w	obY(a1),d0
 		bcs.s	No_Reaction
-		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
-		beq.s	.instantbreak ; if yes, branch
-		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
-		beq.s	.instantbreak ; if yes, branch
 		neg.w	obVelY(a0)	; reverse Player's vertical speed
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
@@ -189,9 +202,8 @@ React_Monitor:
 		addq.b	#4,ob2ndRout(a1) ; advance the monitor's routine counter
 		rts		
 
-.instantbreak: 	; break floating monitor instantly if using hammer
+.instantbreak: 	; break monitor instantly if using hammer
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
-		move.w	#-$180,obVelY(a1)
 		rts
 ; ===========================================================================
 
@@ -212,7 +224,7 @@ React_Enemy:
 		beq.s 	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s 	.donthurtsonic	; if yes, branch
-		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking after double jump?
 		beq.s 	.donthurtsonic	; if yes, branch
 		bra.w	React_ChkHurt
 		
@@ -414,7 +426,7 @@ React_Special:
 .yadrin:
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is hammer attacking?
 		beq.s 	.normalenemy	; if yes, branch
-		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking?
+		cmpi.b	#id_HammerAttack2,obAnim(a0) ; is hammer attacking after double jump?
 		beq.s 	.normalenemy	; if yes, branch
 		sub.w	d0,d5
 		cmpi.w	#8,d5
