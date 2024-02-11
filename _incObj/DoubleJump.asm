@@ -26,7 +26,7 @@ DoubleJump:
 DoubleJumpPart2:
 	move.b	#$B,obHeight(a0)
 	move.b	#7,obWidth(a0)
-	move.b	#id_HammerAttack2,obAnim(a0) ; use an alt copy of the animation to ensure a reset
+	move.b	#id_HammerAttack2,obAnim(a0) ; use 2nd hammer animation
         bset	#2,obStatus(a0)
 
 DoubleJumpEnd:

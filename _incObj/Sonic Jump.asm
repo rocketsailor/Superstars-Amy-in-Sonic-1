@@ -40,8 +40,8 @@ loc_1341C:
 		jsr	(PlaySound_Special).l	; play jumping sound
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		btst	#2,obStatus(a0) ; is player jumping/is bit 2?
-		bne.s	loc_13490 ; if not, branch
+		;btst	#2,obStatus(a0) ; is player jumping/is bit 2?
+		;bne.s	loc_13490 ; if not, branch
 		move.b	#$B,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#id_HammerAttack,obAnim(a0) ; use hammer attack animation
@@ -52,9 +52,9 @@ locret_1348E:
 		rts	
 ; ===========================================================================
 
-loc_13490:
-		bset	#4,obStatus(a0) ; set to bit 4 (jumping after rolling)
-		move.b	#id_HammerAttack,obAnim(a0) ; use hammer when jumping after rolling
-		rts	
+;loc_13490:
+		;bset	#4,obStatus(a0) ; set to bit 4 (jumping after rolling)
+		;move.b	#id_HammerAttack,obAnim(a0) ; use hammer when jumping after rolling
+		;rts	
 
 ; End of function Sonic_Jump
