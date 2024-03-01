@@ -336,7 +336,7 @@ PLC_SBZAnimalsend:
 ; ---------------------------------------------------------------------------
 PLC_SSResult:dc.w ((PLC_SpeStResultend-PLC_SSResult-2)/6)-1
 		plcm	Nem_ResultEm, $A820	; emeralds
-		plcm	Nem_MiniSonic, $AA20	; mini Sonic
+		plcm	Nem_MiniSonic, $AAA0	; mini Sonic
 PLC_SpeStResultend:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - ending sequence
