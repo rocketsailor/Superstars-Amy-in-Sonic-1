@@ -117,18 +117,18 @@
 	dc.w $7A9
 	dc.l Map_Ring
 	dc.w $27B2
+	dc.l Map_SS_Chaos4
+	dc.w $797
 	dc.l Map_SS_Chaos3
-	dc.w $770
+	dc.w $2797
 	dc.l Map_SS_Chaos3
-	dc.w $2770
+	dc.w $4797
 	dc.l Map_SS_Chaos3
-	dc.w $4770
-	dc.l Map_SS_Chaos3
-	dc.w $6770
+	dc.w $6797
 	dc.l Map_SS_Chaos1
-	dc.w $770
+	dc.w $797
 	dc.l Map_SS_Chaos2
-	dc.w $770
+	dc.w $797
 	dc.l Map_SS_R
 	dc.w $4F0
 	dc.l Map_Ring+$4000000

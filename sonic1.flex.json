@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "97a66dce-43fe-458e-b3bc-d95a6f536916",
+    "node": "54f32801-e7fd-471e-8860-537591b34596",
     "objects": [
         {
             "name": "Special Stage",
@@ -135,11 +135,36 @@
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "emeralds",
+                    "name": "SS emeralds",
+                    "palettes": [
+                        {
+                            "path": "palette\\Special Stage.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Special Emeralds.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\SS Chaos Emeralds.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "54f32801-e7fd-471e-8860-537591b34596"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "result emeralds",
                     "palettes": [
                         {
                             "path": "palette\\Special Stage Results.bin",
-                            "length": 1
+                            "length": 4
                         }
                     ],
                     "art": {
@@ -156,11 +181,11 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "89c4c92d-8fa3-4498-b905-508a7b731134"
+                    "uuid": "01e7fde7-1e48-4053-b591-b345961d20bc"
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "dd19396a-a83a-4ada-948a-7ca860fb9667"
         },
         {
@@ -802,10 +827,35 @@
                         "label": ""
                     },
                     "uuid": "096c227f-2bfe-4ac4-a2a3-2971e863e573"
+                },
+                {
+                    "format": "Sonic 1.js",
+                    "name": "End emeralds",
+                    "palettes": [
+                        {
+                            "path": "palette\\Ending.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Ending - Emeralds.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Ending Sequence Emeralds.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "89c4c92d-8fa3-4498-b905-508a7b731134"
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -1175,7 +1225,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {
@@ -2851,7 +2901,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "c3047fd4-d422-443f-9ed1-3c29d58b5f0d"
         },
         {

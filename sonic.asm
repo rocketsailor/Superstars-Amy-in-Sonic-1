@@ -6268,22 +6268,20 @@ byte_CD6B:	dc.b $C			; "SPECIAL STAGE"
 		dc.b $F8, 5, 0,	0, $34
 		dc.b $F8, 5, 0,	$18, $44
 		dc.b $F8, 5, 0,	$10, $54
-byte_CDA8:	dc.b $F			; "SONIC GOT THEM ALL"
-		dc.b $F8, 5, 0,	$3E, $88
-		dc.b $F8, 5, 0,	$32, $98
-		dc.b $F8, 5, 0,	$2E, $A8
-		dc.b $F8, 1, 0,	$20, $B8
-		dc.b $F8, 5, 0,	8, $C0
-		dc.b $F8, 5, 0,	$18, $D8
-		dc.b $F8, 5, 0,	$32, $E8
-		dc.b $F8, 5, 0,	$42, $F8
-		dc.b $F8, 5, 0,	$42, $10
-		dc.b $F8, 5, 0,	$1C, $20
-		dc.b $F8, 5, 0,	$10, $30
-		dc.b $F8, 5, 0,	$2A, $40
-		dc.b $F8, 5, 0,	0, $58
-		dc.b $F8, 5, 0,	$26, $68
-		dc.b $F8, 5, 0,	$26, $78
+byte_CDA8:	dc.b $D			; "AMY GOT THEM ALL"
+		dc.b $F8, 5, 0, 0, $88		;A
+		dc.b $F8, 5, 0, $2A, $98	;m
+		dc.b $F8, 5, 0, $4A, $A8	;y
+		dc.b $F8, 5, 0,	$18, $C8	;G
+		dc.b $F8, 5, 0,	$32, $D8	;o
+		dc.b $F8, 5, 0,	$42, $E8	;t
+		dc.b $F8, 5, 0,	$42, $8		;T
+		dc.b $F8, 5, 0,	$1C, $18	;h
+		dc.b $F8, 5, 0,	$10, $28	;e
+		dc.b $F8, 5, 0,	$2A, $38	;m
+		dc.b $F8, 5, 0,	0, $58		;A
+		dc.b $F8, 5, 0,	$26, $68	;l
+		dc.b $F8, 5, 0,	$26, $78	;l
 		even
 
 Map_SSRC:	include	"_maps/SS Result Chaos Emeralds.asm"
