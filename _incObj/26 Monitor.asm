@@ -50,7 +50,7 @@ Mon_Solid:	; Routine 2
 		move.b	obActWid(a0),d1
 		addi.w	#$B,d1
 		bsr.w	ExitPlatform
-		btst	#3,obStatus(a1) ; is Sonic on top of the monitor?
+		btst	#3,obStatus(a1) ; is player on top of the monitor?
 		bne.w	.ontop		; if yes, branch
 		clr.b	ob2ndRout(a0)
 		bra.w	Mon_Animate
@@ -87,7 +87,7 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_HammerAttack,obAnim(a1) ; is hammer attacking?
 		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_HammerAttack2,obAnim(a1) ; is hammer attacking?
+		cmpi.b	#id_HammerAttack2,obAnim(a1) ; is hammer attacking after double jumping?
 		beq.s	loc_A25C	; if yes, branch
 
 loc_A20A:
@@ -128,7 +128,12 @@ loc_A246:
 loc_A25C:
 		btst	#5,obStatus(a0)
 		beq.s	Mon_Animate
-		move.w	#1,obAnim(a1)	; clear obAnim and set obNextAni to 1
+		; Walk-jump Bug Fix from Sonic Retro How-to Guide by Cinossu and Mercury
+		cmpi.b	#id_HammerAttack,obAnim(a1)	; is hammer attacking?
+		beq.s	loc_A26A	; if so, branch
+		cmpi.b	#id_Drown,obAnim(a1)	; is player in their drowning animation?
+		beq.s	loc_A26A	; if so, branch
+		move.w	#1,obAnim(a1)	; clear obAnim and set obNextAni to 1, putting player in walking animation
 
 loc_A26A:
 		bclr	#5,obStatus(a0)
