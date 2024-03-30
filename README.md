@@ -1,7 +1,8 @@
-s1disasm-ProjectAmy
+Superstars Amy Rose in Sonic the Hedgehog
 ============
 
-This repository is a fork of Sonic Retro's Sonic 1 Github Disassembly. The goal is to replace Sonic with Amy.
+This repository is a fork of Sonic Retro's Sonic 1 Github Disassembly. The goal is to replace Sonic with Amy (and include her playstyle from Sonic Superstars).
+PLEASE NOTE: this rom hack is still a work in progress!
 
 Disclaimer:
 This project is for experimental and educational purposes only. No copyright infringement is intended. All rights belong to Sega. Without the work of Sega, Sonic Team, Headcannon, and Arzest, this project would not exist. Please support the official releases of Sonic Origins Plus and Sonic Superstars.
@@ -13,9 +14,9 @@ Changes and Features
 * Amy jumps with a swinging hammer! Press jump again in the air to perform a double jump!
 * Amy can spindash!
 * Palette line 0 is changed, meaning various objects will have different colors or look slightly different
-* No spike bug
+* No spike bug is present
 * Press start button text displays on title screen
-* Other stuff probably
+* And more!
 
 Hacking/Modification Related Credits
 ============
