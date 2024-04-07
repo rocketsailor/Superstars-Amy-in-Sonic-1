@@ -206,7 +206,7 @@ Solid_Ignore:
 		btst	#5,obStatus(a0)	; is player pushing?
 		beq.s	Solid_Debug	; if not, branch
 		; Walk-jump Bug Fix from Sonic Retro How-to Guide by Cinossu and Mercury
-		cmpi.b	#id_HammerAttack,obAnim(a1)	; is hammer attacking?
+		cmpi.b	#id_HammerAttack,obAnim(a1)	; is player jumping?
 		beq.s	Solid_NotPushing	; if so, branch
 		cmpi.b	#id_Drown,obAnim(a1)	; is player in their drowning animation?
 		beq.s	Solid_NotPushing	; if so, branch

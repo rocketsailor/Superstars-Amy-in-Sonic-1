@@ -85,9 +85,9 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_SpinDash,obAnim(a1) ; is player spin dashing?
 		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_HammerAttack,obAnim(a1) ; is hammer attacking?
+		cmpi.b	#id_HammerAttack,obAnim(a1) ; is player jumping?
 		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_HammerAttack2,obAnim(a1) ; is hammer attacking after double jumping?
+		cmpi.b	#id_HammerCharge,obAnim(a1) ; is player double jumping?
 		beq.s	loc_A25C	; if yes, branch
 
 loc_A20A:
@@ -129,7 +129,7 @@ loc_A25C:
 		btst	#5,obStatus(a0)
 		beq.s	Mon_Animate
 		; Walk-jump Bug Fix from Sonic Retro How-to Guide by Cinossu and Mercury
-		cmpi.b	#id_HammerAttack,obAnim(a1)	; is hammer attacking?
+		cmpi.b	#id_HammerAttack,obAnim(a1)	; is player jumping?
 		beq.s	loc_A26A	; if so, branch
 		cmpi.b	#id_Drown,obAnim(a1)	; is player in their drowning animation?
 		beq.s	loc_A26A	; if so, branch

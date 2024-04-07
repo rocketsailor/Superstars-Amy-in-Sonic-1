@@ -1,7 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   This script contains double jump code written by "EB".
-;   The original code is from an SSRG forum thread.
+;   The original code is from an SSRG forum thread by FlyTF.
 ;   The subroutine below has been heavily modified by me.
 ;  =========================================================================
 
@@ -26,7 +26,7 @@ DoubleJump:
 DoubleJumpPart2:
 	move.b	#$B,obHeight(a0)
 	move.b	#7,obWidth(a0)
-	move.b	#id_HammerAttack2,obAnim(a0) ; use 2nd hammer animation
+	move.b	#id_HammerCharge,obAnim(a0) ; use 2nd hammer animation
         bset	#2,obStatus(a0)
 
 DoubleJumpEnd:

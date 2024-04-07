@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "54f32801-e7fd-471e-8860-537591b34596",
+    "node": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8",
     "objects": [
         {
             "name": "Special Stage",
@@ -156,7 +156,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "54f32801-e7fd-471e-8860-537591b34596"
+                    "uuid": "9d98c0d3-98eb-451d-b9e4-8c4c8476beeb"
                 },
                 {
                     "format": "Sonic 1.js",
@@ -181,11 +181,11 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "01e7fde7-1e48-4053-b591-b345961d20bc"
+                    "uuid": "43fa069d-98c0-4398-abd5-1db9e48c4c84"
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "dd19396a-a83a-4ada-948a-7ca860fb9667"
         },
         {
@@ -360,6 +360,26 @@
                             },
                             "mappings": {
                                 "path": "_maps\\Animals 1.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "22935597-7b42-4795-ba87-3eda90ee6d79"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "chicken",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Animal Chicken.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Animals 2.asm",
                                 "label": ""
                             },
                             "dplcs": {
@@ -710,6 +730,31 @@
                 },
                 {
                     "format": "Sonic 1.js",
+                    "name": "TM",
+                    "palettes": [
+                        {
+                            "path": "palette\\Title Screen.bin",
+                            "length": 4
+                        }
+                    ],
+                    "art": {
+                        "path": "artnem\\Title Screen TM.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8"
+                },
+                {
+                    "format": "Sonic 1.js",
                     "name": "title screen",
                     "palettes": [
                         {
@@ -731,11 +776,11 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8"
+                    "uuid": "04f915c1-46e2-4495-9d1c-6031ac97ee80"
                 },
                 {
                     "format": "Sonic 1.js",
-                    "name": "title screen sonic",
+                    "name": "title screen amy",
                     "palettes": [
                         {
                             "path": "palette\\Title Screen.bin",
@@ -855,7 +900,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -2901,7 +2946,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "c3047fd4-d422-443f-9ed1-3c29d58b5f0d"
         },
         {

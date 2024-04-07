@@ -34,8 +34,9 @@ ptr_WaterSlide:	dc.w SonAni_WaterSlide-Ani_Sonic
 ptr_Null:	dc.w SonAni_Null-Ani_Sonic
 ptr_Float3:	dc.w SonAni_Float3-Ani_Sonic
 ptr_Float4:	dc.w SonAni_Float4-Ani_Sonic
-ptr_HammerAttack: dc.w SonAni_HammerAttack-Ani_Sonic
-ptr_HammerAttack2: dc.w SonAni_HammerAttack2-Ani_Sonic
+ptr_HammerAttack: dc.w SonAni_HammerAttack-Ani_Sonic ; jump animation
+ptr_HammerCharge: dc.w SonAni_HammerCharge-Ani_Sonic ; double jump animation
+ptr_HammerRush: dc.w SonAni_HammerRush-Ani_Sonic ; running with hammer animation
 ptr_BadEndWait: dc.w SonAni_BadEndWait-Ani_Sonic
 ptr_SpinDash: dc.w SonAni_SpinDash-Ani_Sonic
 
@@ -105,7 +106,9 @@ SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
 		even
 SonAni_HammerAttack:	dc.b 2, $51, $4E, $4F, $33, $34, $35, $4E, $4F, $50, afChange, id_Roll
 		even
-SonAni_HammerAttack2:	dc.b 2, $4F, $50, $51, $35, $36, $33, $50, $51, $4E, afChange, id_Roll
+SonAni_HammerCharge:	dc.b 2, $4F, $50, $51, $35, $36, $33, $50, $51, $4E, $4F, $50, $51, afBack, 4
+		even
+SonAni_HammerRush:	dc.b 4, $5F, $60, $61, $62, $63, $64, $65, $66, afEnd
 		even
 SonAni_BadEndWait: 	dc.b 3, $58, afEnd
 		even
@@ -144,6 +147,7 @@ id_Null:	equ (ptr_Null-Ani_Sonic)/2	; $1C
 id_Float3:	equ (ptr_Float3-Ani_Sonic)/2	; $1D
 id_Float4:	equ (ptr_Float4-Ani_Sonic)/2	; $1E
 id_HammerAttack: equ (ptr_HammerAttack-Ani_Sonic)/2 ; $1F 
-id_HammerAttack2: equ (ptr_HammerAttack2-Ani_Sonic)/2 ; $20
-id_BadEndWait: equ (ptr_BadEndWait-Ani_Sonic)/2 ; $21
-id_SpinDash: equ (ptr_SpinDash-Ani_Sonic)/2 ; $22
+id_HammerCharge: equ (ptr_HammerCharge-Ani_Sonic)/2 ; $20
+id_HammerRush: equ (ptr_HammerRush-Ani_Sonic)/2 ; $21
+id_BadEndWait: equ (ptr_BadEndWait-Ani_Sonic)/2 ; $22
+id_SpinDash: equ (ptr_SpinDash-Ani_Sonic)/2 ; $23

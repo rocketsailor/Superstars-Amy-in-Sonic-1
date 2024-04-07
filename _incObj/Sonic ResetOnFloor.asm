@@ -1,10 +1,3 @@
-;  =========================================================================
-;   rocketsailor's note: 
-;   This script contains a line by FlyTF (reset double jump flag).
-; 	It comes from the same SSRG forum thread as EB's double jump code.
-;   The line allows the HammerAttack to reactivate for each jump.
-;  =========================================================================
-
 ; ---------------------------------------------------------------------------
 ; Subroutine to	reset Sonic's mode when he lands on the floor
 ; ---------------------------------------------------------------------------
