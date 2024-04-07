@@ -67,7 +67,7 @@ TrackSz:	equ $30
 ; VRAM data
 vram_fg:	equ $C000	; foreground namespace
 vram_bg:	equ $E000	; background namespace
-vram_sonic:	equ $F000	; Sonic graphics
+vram_sonic:	equ $F000	; player graphics
 vram_sprites:	equ $F800	; sprite table
 vram_hscroll:	equ $FC00	; horizontal scroll table
 
@@ -151,11 +151,11 @@ obAngle:	equ $26	; angle
 obSubtype:	equ $28	; object subtype
 obSolid:	equ ob2ndRout ; solid status flag
 
-; Object variables used by Sonic
+; Object variables used by player
 flashtime:	equ $30	; time between flashes after getting hit
 invtime:	equ $32	; time left for invincibility
 shoetime:	equ $34	; time left for speed shoes
-standonobject:	equ $3D	; object Sonic stands on
+standonobject:	equ $3D	; object player stands on
 
 ; Object variables (Sonic 2 disassembly nomenclature)
 render_flags:	equ 1	; bitfield for x/y flip, display mode
@@ -279,7 +279,7 @@ bgm_Slowdown:	equ ((ptr_flgE3-Sound_ExIndex)/4)+flg__First
 bgm_Stop:	equ ((ptr_flgE4-Sound_ExIndex)/4)+flg__First
 flg__Last:	equ ((ptr_flgend-Sound_ExIndex-4)/4)+flg__First
 
-; Sonic frame IDs
+; player frame IDs
 fr_Null:	equ 0
 fr_Stand:	equ 1
 fr_Wait1:	equ 2

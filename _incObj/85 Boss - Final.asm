@@ -187,7 +187,7 @@ loc_19F50:
 		beq.s 	loc_19F50_Part2
 		cmpi.b	#id_HammerAttack,(v_player+obAnim).w
 		beq.s 	loc_19F50_Part2
-		cmpi.b	#id_HammerAttack2,(v_player+obAnim).w
+		cmpi.b	#id_HammerCharge,(v_player+obAnim).w
 		beq.s 	loc_19F50_Part2
 		bra.s	loc_19F48
 

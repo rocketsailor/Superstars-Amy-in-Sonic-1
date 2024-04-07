@@ -112,8 +112,8 @@ loc_E0:
 	endif
 		dc.b "SEGA MEGA DRIVE " ; Hardware system ID (Console name)
 		dc.b "(C)SEGA 1991.APR" ; Copyright holder and release date (generally year)
-		dc.b "AMY ROSE IN SONIC THE               HEDGEHOG    " ; Domestic name
-		dc.b "AMY ROSE IN SONIC THE               HEDGEHOG    " ; International name
+		dc.b "SUPERSTARS AMY ROSE IN SONIC THE    HEDGEHOG    " ; Domestic name
+		dc.b "SUPERSTARS AMY ROSE IN SONIC THE    HEDGEHOG    " ; International name
 		if Revision=0
 		dc.b "GM 00001009-00"   ; Serial/version number (Rev 0)
 		else
@@ -1056,7 +1056,7 @@ ClearScreen:
 
 		lea	(v_hscrolltablebuffer).w,a1
 		moveq	#0,d0
-		move.w	#($400/4),d1	; This should be ($400/4)-1, leading to a slight bug (first bit of the Sonic object's RAM is cleared)
+		move.w	#($400/4),d1	; This should be ($400/4)-1, leading to a slight bug (first bit of the player object's RAM is cleared)
 
 .clearhscroll:
 		move.l	d0,(a1)+
@@ -2226,7 +2226,7 @@ Tit_ClrPal:
 		move.l	d0,(a1)+
 		dbf	d1,Tit_ClrPal	; fill palette with 0 (black)
 
-		moveq	#palid_Sonic,d0	; load Sonic's palette
+		moveq	#palid_Sonic,d0	; load player's palette
 		bsr.w	PalLoad1
 		move.b	#id_CreditsText,(v_objspace+$80).w ; load "SONIC TEAM PRESENTS" object
 		jsr	(ExecuteObjects).l
@@ -2236,7 +2236,7 @@ Tit_ClrPal:
 		locVRAM	$4000
 		lea	(Nem_TitleFg).l,a0 ; load title	screen patterns
 		bsr.w	NemDec
-		locVRAM	$6000
+		locVRAM	$7000
 		lea	(Nem_TitleSonic).l,a0 ;	load Sonic title screen	patterns
 		bsr.w	NemDec
 		locVRAM	$A200
@@ -2312,7 +2312,7 @@ Tit_ClrObj2:
 		move.b	#id_PSBTM,(v_objspace+$C0).w ; load "TM" object
 		move.b	#3,(v_objspace+$C0+obFrame).w
 .isjap:
-		move.b	#id_PSBTM,(v_objspace+$100).w ; load object which hides part of Sonic
+		;move.b	#id_PSBTM,(v_objspace+$100).w ; load object which hides part of Sonic
 		move.b	#2,(v_objspace+$100+obFrame).w
 		jsr	(ExecuteObjects).l
 		bsr.w	DeformLayers
@@ -2943,7 +2943,7 @@ Level_LoadPal:
 		move.w	#30,(v_air).w
 		enable_ints
 		moveq	#palid_Sonic,d0
-		bsr.w	PalLoad2	; load Sonic's palette
+		bsr.w	PalLoad2	; load player's palette
 		cmpi.b	#id_LZ,(v_zone).w ; is level LZ?
 		bne.s	Level_GetBgm	; if not, branch
 
@@ -2993,7 +2993,7 @@ Level_TtlCardLoop:
 
 Level_SkipTtlCard:
 		moveq	#palid_Sonic,d0
-		bsr.w	PalLoad1	; load Sonic's palette
+		bsr.w	PalLoad1	; load player's palette
 		bsr.w	LevelSizeLoad
 		bsr.w	DeformLayers
 		bset	#2,(v_fg_scroll_flags).w
@@ -3002,7 +3002,7 @@ Level_SkipTtlCard:
 		jsr	(ConvertCollisionArray).l
 		bsr.w	ColIndexLoad
 		bsr.w	LZWaterFeatures
-		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
+		move.b	#id_SonicPlayer,(v_player).w ; load player object
 		tst.w	(f_demo).w
 		bmi.s	Level_ChkDebug
 		move.b	#id_HUD,(v_objspace+$40).w ; load HUD object
@@ -3132,7 +3132,7 @@ Level_MainLoop:
 		endif
 		tst.w	(v_debuguse).w	; is debug mode being used?
 		bne.s	Level_DoScroll	; if yes, branch
-		cmpi.b	#6,(v_player+obRoutine).w ; has Sonic just died?
+		cmpi.b	#6,(v_player+obRoutine).w ; has player just died?
 		bhs.s	Level_SkipScroll ; if yes, branch
 
 Level_DoScroll:
@@ -3301,7 +3301,7 @@ SignpostArtLoad:
 		move.w	(v_screenposx).w,d0
 		move.w	(v_limitright2).w,d1
 		subi.w	#$100,d1
-		cmp.w	d1,d0		; has Sonic reached the	edge of	the level?
+		cmp.w	d1,d0		; has player reached the	edge of	the level?
 		blt.s	.exit		; if not, branch
 		tst.b	(f_timecount).w
 		beq.s	.exit
@@ -3389,7 +3389,7 @@ SS_ClrNemRam:
 		jsr	(SS_Load).l		; load SS layout data
 		move.l	#0,(v_screenposx).w
 		move.l	#0,(v_screenposy).w
-		move.b	#id_SonicSpecial,(v_player).w ; load special stage Sonic object
+		move.b	#id_SonicSpecial,(v_player).w ; load special stage player object
 		bsr.w	PalCycle_SS
 		clr.w	(v_ssangle).w	; set stage angle to "upright"
 		move.w	#$40,(v_ssrotate).w ; set stage rotation speed
@@ -3851,7 +3851,7 @@ Cont_ClrObjRam:
 		lea	(Nem_TitleCard).l,a0 ; load title card patterns
 		bsr.w	NemDec
 		locVRAM	$A000
-		lea	(Nem_ContSonic).l,a0 ; load Sonic patterns
+		lea	(Nem_ContSonic).l,a0 ; load player patterns
 		bsr.w	NemDec
 		locVRAM	$AA20
 		lea	(Nem_MiniSonic).l,a0 ; load continue screen patterns
@@ -3865,7 +3865,7 @@ Cont_ClrObjRam:
 		move.w	#659,(v_demolength).w ; set time delay to 11 seconds
 		clr.l	(v_screenposx).w
 		move.l	#$1000000,(v_screenposy).w
-		move.b	#id_ContSonic,(v_player).w ; load Sonic object
+		move.b	#id_ContSonic,(v_player).w ; load player object
 		move.b	#id_ContScrItem,(v_objspace+$40).w ; load continue screen objects
 		move.b	#id_ContScrItem,(v_objspace+$80).w
 		move.b	#3,(v_objspace+$80+obPriority).w
@@ -3898,7 +3898,7 @@ Cont_MainLoop:
 loc_4DF2:
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
-		cmpi.w	#$180,(v_player+obX).w ; has Sonic run off screen?
+		cmpi.w	#$180,(v_player+obX).w ; has player run off screen?
 		bhs.s	Cont_GotoLevel	; if yes, branch
 		cmpi.b	#6,(v_player+obRoutine).w
 		bhs.s	Cont_MainLoop
@@ -4002,7 +4002,7 @@ End_LoadData:
 		lea	($FFFF9400).w,a1 ; RAM address to buffer the patterns
 		bsr.w	KosDec
 		moveq	#palid_Sonic,d0
-		bsr.w	PalLoad1	; load Sonic's palette
+		bsr.w	PalLoad1	; load player's palette
 		move.w	#bgm_Ending,d0
 		bsr.w	PlaySound	; play ending sequence music
 		btst	#bitA,(v_jpadhold1).w ; is button A pressed?
@@ -4010,11 +4010,11 @@ End_LoadData:
 		move.b	#1,(f_debugmode).w ; enable debug mode
 
 End_LoadSonic:
-		move.b	#id_SonicPlayer,(v_player).w ; load Sonic object
-		bset	#0,(v_player+obStatus).w ; make Sonic face left
+		move.b	#id_SonicPlayer,(v_player).w ; load player object
+		bset	#0,(v_player+obStatus).w ; make player face left
 		move.b	#1,(f_lockctrl).w ; lock controls
-		move.w	#(btnL<<8),(v_jpadhold2).w ; move Sonic to the left
-		move.w	#$F800,(v_player+obInertia).w ; set Sonic's speed
+		move.w	#(btnL<<8),(v_jpadhold2).w ; move player to the left
+		move.w	#$F800,(v_player+obInertia).w ; set player's speed
 		move.b	#id_HUD,(v_objspace+$40).w ; load HUD object
 		jsr	(ObjPosLoad).l
 		jsr	(ExecuteObjects).l
@@ -4071,7 +4071,7 @@ End_MainLoop:
 ; ===========================================================================
 
 End_ChkEmerald:
-		tst.w	(f_restart).w	; has Sonic released the emeralds?
+		tst.w	(f_restart).w	; has player released the emeralds?
 		beq.w	End_MainLoop	; if not, branch
 
 		clr.w	(f_restart).w
@@ -4112,7 +4112,7 @@ End_SlowFade:
 		bra.w	End_MainLoop
 
 ; ---------------------------------------------------------------------------
-; Subroutine controlling Sonic on the ending sequence
+; Subroutine controlling player on the ending sequence
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -4121,25 +4121,25 @@ End_SlowFade:
 End_MoveSonic:
 		move.b	(v_sonicend).w,d0
 		bne.s	End_MoveSon2
-		cmpi.w	#$90,(v_player+obX).w ; has Sonic passed $90 on x-axis?
+		cmpi.w	#$90,(v_player+obX).w ; has player passed $90 on x-axis?
 		bhs.s	End_MoveSonExit	; if not, branch
 
 		addq.b	#2,(v_sonicend).w
 		move.b	#1,(f_lockctrl).w ; lock player's controls
-		move.w	#(btnR<<8),(v_jpadhold2).w ; move Sonic to the right
+		move.w	#(btnR<<8),(v_jpadhold2).w ; move player to the right
 		rts	
 ; ===========================================================================
 
 End_MoveSon2:
 		subq.b	#2,d0
 		bne.s	End_MoveSon3
-		cmpi.w	#$A0,(v_player+obX).w ; has Sonic passed $A0 on x-axis?
+		cmpi.w	#$A0,(v_player+obX).w ; has player passed $A0 on x-axis?
 		blo.s	End_MoveSonExit	; if not, branch
 
 		addq.b	#2,(v_sonicend).w
 		moveq	#0,d0
 		move.b	d0,(f_lockctrl).w
-		move.w	d0,(v_jpadhold2).w ; stop Sonic moving
+		move.w	d0,(v_jpadhold2).w ; stop player moving
 		move.w	d0,(v_player+obInertia).w
 		move.b	#$81,(f_playerctrl).w ; lock controls and disable object interaction
 		move.b	#fr_BadEndWait,(v_player+obFrame).w
@@ -4153,7 +4153,7 @@ End_MoveSon3:
 		bne.s	End_MoveSonExit
 		addq.b	#2,(v_sonicend).w
 		move.w	#$A0,(v_player+obX).w
-		move.b	#id_EndSonic,(v_player).w ; load Sonic ending sequence object
+		move.b	#id_EndSonic,(v_player).w ; load player ending sequence object
 		clr.w	(v_player+obRoutine).w
 
 End_MoveSonExit:
@@ -4210,7 +4210,7 @@ Cred_ClrPal:
 		dbf	d1,Cred_ClrPal ; fill palette with black
 
 		moveq	#palid_Sonic,d0
-		bsr.w	PalLoad1	; load Sonic's palette
+		bsr.w	PalLoad1	; load player's palette
 		move.b	#id_CreditsText,(v_objspace+$80).w ; load credits object
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
@@ -5475,7 +5475,7 @@ LevLoad_Row:
 
 PlatformObject:
 		lea	(v_player).w,a1
-		tst.w	obVelY(a1)	; is Sonic moving up/jumping?
+		tst.w	obVelY(a1)	; is player moving up/jumping?
 		bmi.w	Plat_Exit	; if yes, branch
 
 ;		perform x-axis range check
@@ -5607,7 +5607,7 @@ Swing_Solid:
 		include	"_incObj/11 Bridge (part 2).asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine allowing Sonic to walk or jump off	a platform
+; Subroutine allowing player to walk or jump off	a platform
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -5643,7 +5643,7 @@ Map_Bri:	include	"_maps/Bridge.asm"
 		include	"_incObj/15 Swinging Platforms (part 1).asm"
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	change Sonic's position with a platform
+; Subroutine to	change player's position with a platform
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -5657,7 +5657,7 @@ MvSonicOnPtfm:
 ; End of function MvSonicOnPtfm
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	change Sonic's position with a platform
+; Subroutine to	change player's position with a platform
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -6150,7 +6150,7 @@ M_Card_FZ:	dc.b 5			; FINAL
 Map_Over:	include	"_maps/Game Over.asm"
 
 ; ---------------------------------------------------------------------------
-; Sprite mappings - "SONIC HAS PASSED" title card
+; Sprite mappings - "AMY HAS PASSED" title card
 ; ---------------------------------------------------------------------------
 Map_Got:	dc.w M_Got_SonicHas-Map_Got
 		dc.w M_Got_Passed-Map_Got
@@ -7015,7 +7015,6 @@ Map_Bub:	include	"_maps/Bubbles.asm"
 		include	"_anim/Waterfalls.asm"
 Map_WFall	include	"_maps/Waterfalls.asm"
 
-; ===========================================================================
 ;	Spin dash dust object (from Sonic Retro Spin Dash Guide Part 2 by Puto)
 
 SpinDash_dust:
@@ -7344,7 +7343,7 @@ word_1E0EC:	dc 1
 	dc $F0BA
 	even
 ; ---------------------------------------------------------------------------
-; Object 01 - Sonic
+; Object 01 - Player
 ; ---------------------------------------------------------------------------
 
 SonicPlayer:
@@ -7375,27 +7374,28 @@ Sonic_Main:	; Routine 0 ; Obj01_Main
 		move.b	#2,obPriority(a0)
 		move.b	#$18,obActWid(a0)
 		move.b	#4,obRender(a0)
-		move.w	#$600,(v_sonspeedmax).w ; Sonic's top speed
-		move.w	#$C,(v_sonspeedacc).w ; Sonic's acceleration
-		move.w	#$80,(v_sonspeeddec).w ; Sonic's deceleration
+		move.w	#$600,(v_sonspeedmax).w ; player's top speed
+		move.w	#$C,(v_sonspeedacc).w ; player's acceleration
+		move.w	#$80,(v_sonspeeddec).w ; player's deceleration
 		move.b	#5,$FFFFD1C0.w ; load spin dash object
+		;move.b 	#2,$FFFFD180.w ; load hammer object
 
 Sonic_Control:	; Routine 2 ; Obj01_Control
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
 		beq.s	loc_12C58	; if not, branch
 		btst	#bitB,(v_jpadpress1).w ; is button B pressed?
 		beq.s	loc_12C58	; if not, branch
-		move.w	#1,(v_debuguse).w ; change Sonic into a ring/item
+		move.w	#1,(v_debuguse).w ; change player into a ring/item
 		clr.b	(f_lockctrl).w
 		rts	
 ; ===========================================================================
 
-loc_12C58:
+loc_12C58: ; Sonic_Hurt 
 		tst.b	(f_lockctrl).w	; are controls locked?
 		bne.s	loc_12C64	; if yes, branch
 		move.w	(v_jpadhold1).w,(v_jpadhold2).w ; enable joypad control
 
-loc_12C64:
+loc_12C64: ; Sonic_Death
 		btst	#0,(f_playerctrl).w ; are controls locked?
 		bne.s	loc_12C7E	; if yes, branch
 		moveq	#0,d0
@@ -7404,7 +7404,7 @@ loc_12C64:
 		move.w	Sonic_Modes(pc,d0.w),d1
 		jsr	Sonic_Modes(pc,d1.w)
 
-loc_12C7E:
+loc_12C7E: ; Sonic_ResetLevel
 		bsr.s	Sonic_Display
 		bsr.w	Sonic_RecordPosition
 		bsr.w	Sonic_Water
@@ -7509,6 +7509,7 @@ loc_12EA6:
 		bsr.w	Sonic_JumpAngle
 		bsr.w	Sonic_Floor
 		bsr.w 	DoubleJump
+		bsr.w 	HammerChargeCheck
 		rts	
 
 		include	"_incObj/Sonic Move.asm"
@@ -7518,7 +7519,7 @@ loc_12EA6:
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
-; Unused subroutine to squash Sonic
+; Unused subroutine to squash player
 ; ---------------------------------------------------------------------------
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
@@ -7527,7 +7528,7 @@ loc_12EA6:
 		bsr.w	Sonic_DontRunOnWalls
 		tst.w	d1
 		bpl.s	locret_13302
-		move.w	#0,obInertia(a0) ; stop Sonic moving
+		move.w	#0,obInertia(a0) ; stop player moving
 		move.w	#0,obVelX(a0)
 		move.w	#0,obVelY(a0)
 		move.b	#id_Warp3,obAnim(a0) ; use "warping" animation
@@ -7538,6 +7539,7 @@ locret_13302:
 		include	"_incObj/Sonic LevelBound.asm"
 		include	"_incObj/Sonic Roll.asm"
 		include	"_incObj/DoubleJump.asm"
+		include "_incObj/HammerChargeCheck.asm"
 		include	"_incObj/Sonic Jump.asm"
 		include	"_incObj/Sonic JumpHeight.asm"
 		include	"_incObj/Sonic SlopeResist.asm"
@@ -7572,11 +7574,11 @@ ResumeMusic:
 
 .notsbz:
 		if Revision<>0
-			tst.b	(v_invinc).w ; is Sonic invincible?
+			tst.b	(v_invinc).w ; is player invincible?
 			beq.s	.notinvinc ; if not, branch
 			move.w	#bgm_Invincible,d0
 .notinvinc:
-			tst.b	(f_lockscreen).w ; is Sonic at a boss?
+			tst.b	(f_lockscreen).w ; is player at a boss?
 			beq.s	.playselected ; if not, branch
 			move.w	#bgm_Boss,d0
 .playselected:
@@ -7795,7 +7797,7 @@ sub_14D48:
 ; End of function sub_14D48
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	make Sonic land	on the floor after jumping
+; Subroutine to	make player land on the floor after jumping
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -7962,8 +7964,7 @@ locret_14F06:
 ; End of function ObjHitWallRight
 
 ; ---------------------------------------------------------------------------
-; Subroutine preventing	Sonic from running on walls and	ceilings when he
-; touches them
+; Subroutine preventing	player from running on walls and ceilings upon contact
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -8085,7 +8086,7 @@ loc_14FD6:
 		bra.w	loc_14DD0
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	stop Sonic when	he jumps at a wall
+; Subroutine to	stop player when they jump at a wall
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||

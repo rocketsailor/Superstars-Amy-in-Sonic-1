@@ -346,11 +346,11 @@ PLC_Ending:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
 		plcm	Nem_GHZ_2nd, $39A0	; GHZ secondary	patterns
 		plcm	Nem_Stalk, $6B00	; flower stalk
 		plcm	Nem_EndFlower, $7400	; flowers
-		plcm	Nem_EndEm, $78A0	; emeralds
-		plcm	Nem_EndSonic, $7C20	; Sonic
-		if Revision=0
-		plcm	Nem_EndEggman, $A480	; Eggman's death ((unused)
-		endif
+		plcm	Nem_EndEm, $B8A0	; emeralds
+		plcm	Nem_EndSonic, $78A0	; Sonic
+		;if Revision=0
+		;plcm	Nem_EndEggman, $A480	; Eggman's death ((unused)
+		;endif
 		plcm	Nem_Rabbit, $AA60	; rabbit
 		plcm	Nem_Chicken, $ACA0	; chicken
 		plcm	Nem_BlackBird, $AE60	; blackbird
@@ -358,7 +358,7 @@ PLC_Ending:	dc.w ((PLC_Endingend-PLC_Ending-2)/6)-1
 		plcm	Nem_Pig, $B260		; pig
 		plcm	Nem_Flicky, $B4A0	; flicky
 		plcm	Nem_Squirrel, $B660	; squirrel
-		plcm	Nem_EndStH, $B8A0	; "SONIC THE HEDGEHOG"
+		plcm	Nem_EndStH, $A000	; "SONIC THE HEDGEHOG"
 PLC_Endingend:
 ; ---------------------------------------------------------------------------
 ; Pattern load cues - "TRY AGAIN" and "END" screens
