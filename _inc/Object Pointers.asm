@@ -2,6 +2,7 @@
 ; Object pointers
 ; ---------------------------------------------------------------------------
 ptr_SonicPlayer:	dc.l SonicPlayer	; $01
+;ptr_Obj02:		dc.l HammerObject
 ptr_Obj02:		dc.l NullObject
 ptr_Obj03:		dc.l NullObject
 ptr_Obj04:		dc.l NullObject
@@ -16,7 +17,7 @@ ptr_FlapDoor:		dc.l FlapDoor
 ptr_Signpost:		dc.l Signpost
 ptr_TitleSonic:		dc.l TitleSonic
 ptr_PSBTM:		dc.l PSBTM
-ptr_Obj10:		dc.l Obj10		; $10
+ptr_TitleBanner:		dc.l TitleBanner		; $10
 ptr_Bridge:		dc.l Bridge
 ptr_SpinningLight:	dc.l SpinningLight
 ptr_LavaMaker:		dc.l LavaMaker
@@ -146,6 +147,7 @@ NullObject:
 		;jmp	(DeleteObject).l	; It would be safer to have this instruction here, but instead it just falls through to ObjectFall
 
 id_SonicPlayer:		equ ((ptr_SonicPlayer-Obj_Index)/4)+1		; $01
+;id_Obj02:		equ ((ptr_HammerObject-Obj_Index)/4)+1
 id_Obj02:		equ ((ptr_Obj02-Obj_Index)/4)+1
 id_Obj03:		equ ((ptr_Obj03-Obj_Index)/4)+1
 id_Obj04:		equ ((ptr_Obj04-Obj_Index)/4)+1
@@ -160,7 +162,7 @@ id_FlapDoor:		equ ((ptr_FlapDoor-Obj_Index)/4)+1
 id_Signpost:		equ ((ptr_Signpost-Obj_Index)/4)+1
 id_TitleSonic:		equ ((ptr_TitleSonic-Obj_Index)/4)+1
 id_PSBTM:		equ ((ptr_PSBTM-Obj_Index)/4)+1
-id_Obj10:		equ ((ptr_Obj10-Obj_Index)/4)+1			; $10
+id_TitleBanner:		equ ((ptr_TitleBanner-Obj_Index)/4)+1			; $10
 id_Bridge:		equ ((ptr_Bridge-Obj_Index)/4)+1
 id_SpinningLight:	equ ((ptr_SpinningLight-Obj_Index)/4)+1
 id_LavaMaker:		equ ((ptr_LavaMaker-Obj_Index)/4)+1

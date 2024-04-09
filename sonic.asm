@@ -2239,6 +2239,9 @@ Tit_ClrPal:
 		locVRAM	$7000
 		lea	(Nem_TitleSonic).l,a0 ;	load Sonic title screen	patterns
 		bsr.w	NemDec
+		locVRAM $9000
+		lea	(Nem_TitleBanner).l,a0 ;	load title screen banner patterns
+		bsr.w	NemDec
 		locVRAM	$A200
 		lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
 		bsr.w	NemDec
@@ -2281,7 +2284,7 @@ Tit_LoadText:
 		move.w	#0,d0
 		bsr.w	EniDec
 
-		copyTilemap	$FF0000,$C206,$21,$15
+		copyTilemap	$FF0000,$C208,$21,$15
 
 		locVRAM	0
 		lea	(Nem_GHZ_1st).l,a0 ; load GHZ patterns
@@ -2301,7 +2304,8 @@ Tit_ClrObj2:
 		dbf	d1,Tit_ClrObj2
 
 		move.b	#id_TitleSonic,(v_objspace+$40).w ; load big Sonic object
-		move.b	#id_PSBTM,(v_objspace+$80).w ; load "PRESS START BUTTON" object
+		move.b	#id_TitleBanner,(v_objspace+$80).w ; load banner object
+		;move.b	#id_PSBTM,(v_objspace+$80).w ; load "PRESS START BUTTON" object
 		;clr.b	(v_objspace+$80+obRoutine).w ; The 'Mega Games 10' version of Sonic 1 added this line, to fix the 'PRESS START BUTTON' object not appearing
 
 		if Revision<>0
@@ -2313,7 +2317,7 @@ Tit_ClrObj2:
 		move.b	#3,(v_objspace+$C0+obFrame).w
 .isjap:
 		;move.b	#id_PSBTM,(v_objspace+$100).w ; load object which hides part of Sonic
-		move.b	#2,(v_objspace+$100+obFrame).w
+		;move.b	#2,(v_objspace+$100+obFrame).w
 		jsr	(ExecuteObjects).l
 		bsr.w	DeformLayers
 		jsr	(BuildSprites).l
@@ -5986,6 +5990,7 @@ Map_Monitor:	include	"_maps/Monitor.asm"
 
 		include	"_incObj/0E Title Screen Sonic.asm"
 		include	"_incObj/0F Press Start and TM.asm"
+		include	"_incObj/10 Title Screen Banner.asm"
 
 		include	"_anim/Title Screen Sonic.asm"
 		include	"_anim/Press Start and TM.asm"
@@ -5994,6 +5999,7 @@ Map_Monitor:	include	"_maps/Monitor.asm"
 
 Map_PSB:	include	"_maps/Press Start and TM.asm"
 Map_TSon:	include	"_maps/Title Screen Sonic.asm"
+Map_Banner:	include	"_maps/Title Screen Banner.asm"
 
 		include	"_incObj/2B Chopper.asm"
 		include	"_anim/Chopper.asm"
@@ -8851,8 +8857,6 @@ Map_SS_Down:	include	"_maps/SS DOWN Block.asm"
 
 		include	"_incObj/09 Sonic in Special Stage.asm"
 
-		include	"_incObj/10.asm"
-
 		include	"_inc/AnimateLevelGfx.asm"
 
 		include	"_incObj/21 HUD.asm"
@@ -8998,6 +9002,8 @@ Eni_Title:	binclude	"tilemaps/Title Screen.bin" ; title screen foreground (mappi
 Nem_TitleFg:	binclude	"artnem/Title Screen Foreground.bin"
 		even
 Nem_TitleSonic:	binclude	"artnem/Title Screen Sonic.bin"
+		even
+Nem_TitleBanner:	binclude	"artnem/Title Screen banner.bin"
 		even
 Nem_TitleTM:	binclude	"artnem/Title Screen TM.bin"
 		even

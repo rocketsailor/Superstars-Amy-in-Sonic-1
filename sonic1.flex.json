@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8",
+    "node": "1a1f8a8d-85a7-4f8a-93cc-bc35e9fc8e51",
     "objects": [
         {
             "name": "Special Stage",
@@ -584,323 +584,371 @@
                     "uuid": "2a582fce-73fc-47a6-adce-43fee58e73bc"
                 },
                 {
-                    "format": "Sonic 1.js",
-                    "name": "points",
-                    "palettes": [],
-                    "art": {
-                        "path": "artnem\\Points.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Points.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "0704095a-5bae-4fcc-b302-a7cd40b16555"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "ending amy",
-                    "palettes": [
+                    "name": "Title screen",
+                    "children": [
                         {
-                            "path": "palette\\Ending.bin",
-                            "length": 4
+                            "format": "Sonic 1.js",
+                            "name": "TM",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Title Screen.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Screen TM.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "foreground",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Title Screen.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Screen Foreground.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "04f915c1-46e2-4495-9d1c-6031ac97ee80"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "title screen amy",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Title Screen.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Screen Sonic.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Title Screen Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "b6e901a5-b03a-4200-8034-d65d0ae4ae80"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "banner",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Title Screen.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Screen Banner.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Title Screen Banner.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "1a1f8a8d-85a7-4f8a-93cc-bc35e9fc8e51"
                         }
                     ],
-                    "art": {
-                        "path": "artnem\\Ending - Sonic.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Ending Sequence Sonic.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "c870da14-845b-42d5-a0b4-c790daf5996e"
+                    "isDirectory": true,
+                    "expanded": true
                 },
                 {
-                    "format": "Sonic 1.js",
-                    "name": "ending logo",
-                    "palettes": [
+                    "name": "Ending",
+                    "children": [
                         {
-                            "path": "palette\\Ending.bin",
-                            "length": 4
+                            "format": "Sonic 1.js",
+                            "name": "ending amy",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Ending - Sonic.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Ending Sequence Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "c870da14-845b-42d5-a0b4-c790daf5996e"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "ending logo",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Ending - StH Logo.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Ending Sequence STH.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "14845b22-d5e0-44c7-90da-f5996ec57c57"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "End emeralds",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Ending - Emeralds.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Ending Sequence Emeralds.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "89c4c92d-8fa3-4498-b905-508a7b731134"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "credits text",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Ending.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Ending - Credits.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Credits.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "a3449839-0550-4a7b-b311-346414e4eaf3"
                         }
                     ],
-                    "art": {
-                        "path": "artnem\\Ending - StH Logo.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Ending Sequence STH.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "14845b22-d5e0-44c7-90da-f5996ec57c57"
+                    "isDirectory": true,
+                    "expanded": false
                 },
                 {
-                    "format": "Sonic 1.js",
-                    "name": "credits text",
-                    "palettes": [
+                    "name": "Misc",
+                    "children": [
                         {
-                            "path": "palette\\Ending.bin",
-                            "length": 4
+                            "format": "Sonic 1.js",
+                            "name": "continue stuff",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Special Stage Continue Bonus.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Continue Screen Sonic.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Continue Screen.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
+                                "label": ""
+                            },
+                            "uuid": "3905508a-7b73-4134-a414-e4eaf3703d9f",
+                            "expanded": true
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "continue stuff 2",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Special Stage Results.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Continue Screen Stuff.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Continue Screen.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "96140ef8-b1c8-457f-b4d8-01f353394862"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "explosions",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Explosion.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Explosions.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "a5f20ae3-0876-4912-a617-ec4f7393dc24"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "invincible stars",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Invincibility Stars.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Shield and Invincibility.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "6c810495-dc32-47bf-bdee-def3983dd5c2"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "shield",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Shield.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Shield and Invincibility.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "096c227f-2bfe-4ac4-a2a3-2971e863e573"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "points",
+                            "palettes": [],
+                            "art": {
+                                "path": "artnem\\Points.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Points.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "0704095a-5bae-4fcc-b302-a7cd40b16555",
+                            "expanded": true
                         }
                     ],
-                    "art": {
-                        "path": "artnem\\Ending - Credits.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Credits.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "a3449839-0550-4a7b-b311-346414e4eaf3"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "continue stuff",
-                    "palettes": [
-                        {
-                            "path": "palette\\Special Stage Continue Bonus.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Continue Screen Sonic.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Continue Screen.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "_maps\\Sonic - Dynamic Gfx Script.asm",
-                        "label": ""
-                    },
-                    "uuid": "3905508a-7b73-4134-a414-e4eaf3703d9f"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "continue stuff 2",
-                    "palettes": [
-                        {
-                            "path": "palette\\Special Stage Results.bin",
-                            "length": 4
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Continue Screen Stuff.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Continue Screen.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "96140ef8-b1c8-457f-b4d8-01f353394862"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "TM",
-                    "palettes": [
-                        {
-                            "path": "palette\\Title Screen.bin",
-                            "length": 4
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Title Screen TM.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "1f8a8d85-a73f-4ad3-8cbc-35e9fc8e51f8"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "title screen",
-                    "palettes": [
-                        {
-                            "path": "palette\\Title Screen.bin",
-                            "length": 4
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Title Screen Foreground.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "04f915c1-46e2-4495-9d1c-6031ac97ee80"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "title screen amy",
-                    "palettes": [
-                        {
-                            "path": "palette\\Title Screen.bin",
-                            "length": 4
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Title Screen Sonic.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Title Screen Sonic.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "1a1f8a8d-85a7-4f8a-93cc-bc35e9fc8e51"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "explosions",
-                    "palettes": [],
-                    "art": {
-                        "path": "artnem\\Explosion.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Explosions.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "a5f20ae3-0876-4912-a617-ec4f7393dc24"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "invincible stars",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Invincibility Stars.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Shield and Invincibility.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "6c810495-dc32-47bf-bdee-def3983dd5c2"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "shield",
-                    "palettes": [
-                        {
-                            "path": "palette\\Sonic.bin",
-                            "length": 1
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Shield.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Shield and Invincibility.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "096c227f-2bfe-4ac4-a2a3-2971e863e573"
-                },
-                {
-                    "format": "Sonic 1.js",
-                    "name": "End emeralds",
-                    "palettes": [
-                        {
-                            "path": "palette\\Ending.bin",
-                            "length": 4
-                        }
-                    ],
-                    "art": {
-                        "path": "artnem\\Ending - Emeralds.bin",
-                        "compression": "Nemesis",
-                        "offset": 0
-                    },
-                    "mappings": {
-                        "path": "_maps\\Ending Sequence Emeralds.asm",
-                        "label": ""
-                    },
-                    "dplcs": {
-                        "enabled": false,
-                        "path": "",
-                        "label": ""
-                    },
-                    "uuid": "89c4c92d-8fa3-4498-b905-508a7b731134"
+                    "isDirectory": true,
+                    "expanded": false
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {

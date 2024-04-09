@@ -13,9 +13,6 @@ Changes and Features
 * Amy's sprites have been modified for a limited color palette
 * Amy jumps with a swinging hammer! Press jump again in the air to perform a double jump!
 * Amy can spindash!
-* Palette line 0 is changed, meaning various objects will have different colors or look slightly different
-* No spike bug is present
-* Press start button text displays on title screen
 * And more!
 
 Hacking/Modification Related Credits
