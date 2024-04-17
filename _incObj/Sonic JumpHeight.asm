@@ -22,7 +22,15 @@ loc_134AE:
 		move.w	d1,obVelY(a0)	; cap jump height
 
 locret_134C2:
+		cmpi.b	#id_HammerCharge,obAnim(a0) ; is player double jumping?
+		beq.s 	locret_134D2	; if yes, branch
+		tst.b 	obVelY(a0) ; is player exactly at the height of their jump?
+		beq.s 	SwitchToRolling ; if yes, branch
 		rts	
+
+SwitchToRolling:
+		move.b 	#id_Roll,obAnim(a0) ; set animation to rolling
+		rts
 ; ===========================================================================
 
 loc_134C4:
