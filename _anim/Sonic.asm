@@ -104,9 +104,9 @@ SonAni_Float3:	dc.b 3,	$3C, $3D, $3E, $3F, $40, afEnd
 		even
 SonAni_Float4:	dc.b 3,	$3C, afChange, id_Walk
 		even
-SonAni_HammerAttack:	dc.b 2, $33, $50, $34, $51, $35, $4E, $36, $4F, afEnd
+SonAni_HammerAttack:	dc.b 2, $33, $34, $35, $4E, $4F, $50, $34, $35, $36, $4F, $50, $51, $35, $36, $33, $50, $51, $4E, $36, $33, $34, $51, $4E, $4F, afEnd
 		even
-SonAni_HammerCharge:	dc.b 2, $35, $4E, $36, $4F, $33, $50, $34, $51, $35, $4E, $36, $4F, $50, $51, $4E, $4F, afBack, 4
+SonAni_HammerCharge:	dc.b 1, $68, $69, $6A, $67, afEnd
 		even
 SonAni_HammerRush:	dc.b 4, $5F, $60, $61, $62, $63, $64, $65, $66, afEnd
 		even

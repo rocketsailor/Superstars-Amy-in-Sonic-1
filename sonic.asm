@@ -2243,9 +2243,9 @@ Tit_ClrPal:
 		lea	(Nem_TitleBanner).l,a0 ;	load title screen banner patterns
 		bsr.w	NemDec
 		locVRAM	$A200
-		lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
-		bsr.w	NemDec
-		lea	(vdp_data_port).l,a6
+		;lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
+		;bsr.w	NemDec
+		;lea	(vdp_data_port).l,a6
 		locVRAM	$D000,4(a6)
 		lea	(Art_Text).l,a5	; load level select font
 		move.w	#$28F,d1
@@ -2284,7 +2284,7 @@ Tit_LoadText:
 		move.w	#0,d0
 		bsr.w	EniDec
 
-		copyTilemap	$FF0000,$C208,$21,$15
+		copyTilemap	$FF0000,$C408,$21,$15
 
 		locVRAM	0
 		lea	(Nem_GHZ_1st).l,a0 ; load GHZ patterns
@@ -2308,13 +2308,13 @@ Tit_ClrObj2:
 		;move.b	#id_PSBTM,(v_objspace+$80).w ; load "PRESS START BUTTON" object
 		;clr.b	(v_objspace+$80+obRoutine).w ; The 'Mega Games 10' version of Sonic 1 added this line, to fix the 'PRESS START BUTTON' object not appearing
 
-		if Revision<>0
-			tst.b   (v_megadrive).w	; is console Japanese?
-			bpl.s   .isjap		; if yes, branch
-		endif
+		;if Revision<>0
+		;	tst.b   (v_megadrive).w	; is console Japanese?
+		;	bpl.s   .isjap		; if yes, branch
+		;endif
 
-		move.b	#id_PSBTM,(v_objspace+$C0).w ; load "TM" object
-		move.b	#3,(v_objspace+$C0+obFrame).w
+		;move.b	#id_PSBTM,(v_objspace+$C0).w ; load "TM" object
+		;move.b	#3,(v_objspace+$C0+obFrame).w
 .isjap:
 		;move.b	#id_PSBTM,(v_objspace+$100).w ; load object which hides part of Sonic
 		;move.b	#2,(v_objspace+$100+obFrame).w
@@ -7020,29 +7020,72 @@ Map_Bub:	include	"_maps/Bubbles.asm"
 		include	"_incObj/65 Waterfalls.asm"
 		include	"_anim/Waterfalls.asm"
 Map_WFall	include	"_maps/Waterfalls.asm"
+Map_HammerBox: include "_maps/Invisible Hammer Hitbox.asm"
 
+;  =========================================================================
+;   rocketsailor's note: 
+;   Huge thank you to E-122-Psi for assisting me with creating this object!
+;	Also thank you DeltaWooloo for your Insta Shield porting tutorial!
+;  =========================================================================
+; ---------------------------------------------------------------------------
+; Object 02 - Invisible hammer hitbox
+; ---------------------------------------------------------------------------
+
+HammerObj: ; XREF: Obj_Index
+        moveq #0,d0
+        move.b obRoutine(a0),d0
+        move.w HammerObj_Index(pc,d0.w),d1
+        jmp HammerObj_Index(pc,d1.w)
+ 
+; =========================================================================== 
+HammerObj_Index:
+        dc.w HammerObj_Init-HammerObj_Index
+		dc.w HammerObj_Main-HammerObj_Index
+; ===========================================================================
+ 
+HammerObj_Init:
+		move.l	#Map_HammerBox,obMap(a0)
+		move.w	#$8680,obGfx(a0)
+		move.b	#4,obRender(a0)
+        move.b 	#$18,obHeight(a0)
+		addq.b 	#2,obRoutine(a0)
+
+HammerObj_Main:
+        lea (v_objspace).w,a1
+		move.w	obX(a1),obX(a0)
+		move.w	obY(a1),obY(a0)
+		tst.b	($FFFFFFA4).w	; is hammer flag set?
+		beq.s 	HammerObj_End	; if not, branch
+		jsr    (ReactToItem).l
+		; comment line below to hide, uncomment to display
+		;jmp	(DisplaySprite).l
+
+HammerObj_End:
+        rts
+
+; ---------------------------------------------------------------------------
 ;	Spin dash dust object (from Sonic Retro Spin Dash Guide Part 2 by Puto)
-
+; ---------------------------------------------------------------------------
 SpinDash_dust:
 Sprite_1DD20:				; DATA XREF: ROM:0001600C?o
 		moveq	#0,d0
-		move.b	$24(a0),d0
+		move.b	obRoutine(a0),d0
 		move	off_1DD2E(pc,d0.w),d1
 		jmp	off_1DD2E(pc,d1.w)
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 off_1DD2E:	dc loc_1DD36-off_1DD2E; 0 ; DATA XREF: h+6DBA?o h+6DBC?o ...
 		dc loc_1DD90-off_1DD2E; 1
 		dc loc_1DE46-off_1DD2E; 2
 		dc loc_1DE4A-off_1DD2E; 3
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DD36:				; DATA XREF: h+6DBA?o
 		addq.b	#2,$24(a0)
 		move.l	#MapUnc_1DF5E,4(a0)
-		or.b	#4,1(a0)
-		move.b	#1,$18(a0)
-		move.b	#$10,$19(a0)
-		move	#$7A0,2(a0)
+		or.b	#4,obRender(a0)
+		move.b	#1,obPriority(a0)
+		move.b	#$10,obActWid(a0)
+		move	#$7A0,obGfx(a0)
 		move	#-$3000,$3E(a0)
 		move	#$F400,$3C(a0)
 		cmp	#-$2E40,a0
@@ -7060,50 +7103,50 @@ loc_1DD8C:				; CODE XREF: h+6DF6?j h+6E04?j
 loc_1DD90:				; DATA XREF: h+6DBA?o
 		movea.w	$3E(a0),a2
 		moveq	#0,d0
-		move.b	$1C(a0),d0
+		move.b	obAnim(a0),d0
 		add	d0,d0
 		move	off_1DDA4(pc,d0.w),d1
 		jmp	off_1DDA4(pc,d1.w)
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 off_1DDA4:	dc loc_1DE28-off_1DDA4; 0 ; DATA XREF: h+6E30?o h+6E32?o ...
 		dc loc_1DDAC-off_1DDA4; 1
 		dc loc_1DDCC-off_1DDA4; 2
 		dc loc_1DE20-off_1DDA4; 3
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DDAC:				; DATA XREF: h+6E30?o
-		move	($FFFFF646).w,$C(a0)
-		tst.b	$1D(a0)
+		move	($FFFFF646).w,obY(a0)
+		tst.b	obNextAni(a0)
 		bne.s	loc_1DE28
-		move	8(a2),8(a0)
-		move.b	#0,$22(a0)
-		and	#$7FFF,2(a0)
+		move	obX(a2),obX(a0)
+		move.b	#0,obStatus(a0)
+		and	#$7FFF,obGfx(a0)
 		bra.s	loc_1DE28
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DDCC:				; DATA XREF: h+6E30?o
 ;		cmp.b	#$C,$28(a2)
 ;		bcs.s	loc_1DE3E
-		cmp.b	#4,$24(a2)
+		cmp.b	#4,obRoutine(a2)
 		bcc.s	loc_1DE3E
 		tst.b	$39(a2)
 		beq.s	loc_1DE3E
-		move	8(a2),8(a0)
-		move	$C(a2),$C(a0)
-		move.b	$22(a2),$22(a0)
-		and.b	#1,$22(a0)
+		move	obX(a2),obX(a0)
+		move	obY(a2),obY(a0)
+		move.b	obStatus(a2),obStatus(a0)
+		and.b	#1,obStatus(a0)
 		tst.b	$34(a0)
 		beq.s	loc_1DE06
-		sub	#4,$C(a0)
+		sub	#4,obY(a0)
 
 loc_1DE06:				; CODE XREF: h+6E8A?j
-		tst.b	$1D(a0)
+		tst.b	obNextAni(a0)
 		bne.s	loc_1DE28
-		and	#$7FFF,2(a0)
-		tst	2(a2)
+		and	#$7FFF,obGfx(a0)
+		tst	obGfx(a2)
 		bpl.s	loc_1DE28
-		or	#-$8000,2(a0)
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+		or	#-$8000,obGfx(a0)
+; ===========================================================================
 
 loc_1DE20:				; DATA XREF: h+6E30?o
 loc_1DE28:				; CODE XREF: h+6E42?j h+6E56?j ...
@@ -7111,31 +7154,29 @@ loc_1DE28:				; CODE XREF: h+6E42?j h+6E56?j ...
 		jsr	AnimateSprite
 		bsr.w	loc_1DEE4
 		jmp	DisplaySprite
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DE3E:				; CODE XREF: h+6E5E?j h+6E66?j ...
-		move.b	#0,$1C(a0)
+		move.b	#0,obAnim(a0)
 		rts	
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DE46:				; DATA XREF: h+6DBA?o
 		bra.w	DeleteObject
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-
-
+; ===========================================================================
 
 loc_1DE4A:
 	movea.w	$3E(a0),a2
 	moveq	#$10,d1
-	cmp.b	#$D,$1C(a2)
+	cmp.b	#$D,obAnim(a2)
 	beq.s	loc_1DE64
 	moveq	#$6,d1
-	cmp.b	#$3,$21(a2)
+	cmp.b	#$3,obColProp(a2)
 	beq.s	loc_1DE64
-	move.b	#2,$24(a0)
+	move.b	#2,obRoutine(a0)
 	move.b	#0,$32(a0)
 	rts
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DE64:				; CODE XREF: h+6EE0?j
 		subq.b	#1,$32(a0)
@@ -7144,36 +7185,36 @@ loc_1DE64:				; CODE XREF: h+6EE0?j
 		jsr		FindFreeObj
 		bne.s	loc_1DEE0
 		move.b	0(a0),0(a1)
-		move	8(a2),8(a1)
-		move	$C(a2),$C(a1)
+		move	obX(a2),obX(a1)
+		move	obY(a2),obY(a1)
 		tst.b	$34(a0)
 		beq.s	loc_1DE9A
 		sub	#4,d1
 
 loc_1DE9A:				; CODE XREF: h+6F1E?j
 		add	d1,$C(a1)
-		move.b	#0,$22(a1)
-		move.b	#3,$1C(a1)
-		addq.b	#2,$24(a1)
-		move.l	4(a0),4(a1)
-		move.b	1(a0),1(a1)
-		move.b	#1,$18(a1)
-		move.b	#4,$19(a1)
-		move	2(a0),2(a1)
+		move.b	#0,obStatus(a1)
+		move.b	#3,obAnim(a1)
+		addq.b	#2,obRoutine(a1)
+		move.l	obMap(a0),obMap(a1)
+		move.b	obRender(a0),obRender(a1)
+		move.b	#1,obPriority(a1)
+		move.b	#4,obActWid(a1)
+		move	obGfx(a0),obGfx(a1)
 		move	$3E(a0),$3E(a1)
-		and	#$7FFF,2(a1)
-		tst	2(a2)
+		and	#$7FFF,obGfx(a1)
+		tst	obGfx(a2)
 		bpl.s	loc_1DEE0
-		or	#-$8000,2(a1)
+		or	#-$8000,obGfx(a1)
 
 loc_1DEE0:				; CODE XREF: h+6EF4?j h+6F00?j ...
 		bsr.s	loc_1DEE4
 		rts	
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 
 loc_1DEE4:				; CODE XREF: h+6EC0?p h+6F6C?p
 		moveq	#0,d0
-		move.b	$1A(a0),d0
+		move.b	obFrame(a0),d0
 		cmp.b	$30(a0),d0
 		beq.w	locret_1DF36
 		move.b	d0,$30(a0)
@@ -7204,7 +7245,7 @@ loc_1DF0A:				; CODE XREF: h+6FBE?j
 
 locret_1DF36:				; CODE XREF: h+6F7A?j h+6F90?j
 		rts	
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ===========================================================================
 off_1DF38:	dc byte_1DF40-off_1DF38; 0 ; DATA XREF: h+6EB4?o h+6FC4?o ...
 		dc byte_1DF43-off_1DF38; 1
 		dc byte_1DF4F-off_1DF38; 2
@@ -7373,7 +7414,7 @@ Sonic_Index:	dc.w Sonic_Main-Sonic_Index
 
 Sonic_Main:	; Routine 0 ; Obj01_Main
 		addq.b	#2,obRoutine(a0)
-		move.b	#$13,obHeight(a0)
+		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.l	#Map_Sonic,obMap(a0)
 		move.w	#$780,obGfx(a0)
@@ -7383,8 +7424,8 @@ Sonic_Main:	; Routine 0 ; Obj01_Main
 		move.w	#$600,(v_sonspeedmax).w ; player's top speed
 		move.w	#$C,(v_sonspeedacc).w ; player's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; player's deceleration
-		move.b	#5,$FFFFD1C0.w ; load spin dash object
-		;move.b 	#2,$FFFFD180.w ; load hammer object
+		move.b	#5,$FFFFD1C0.w ; load spin dash dust object
+		move.b 	#2,$FFFFD180.w ; load hammer object
 
 Sonic_Control:	; Routine 2 ; Obj01_Control
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
@@ -7487,6 +7528,7 @@ loc_12E5C:
 		bsr.w	Sonic_JumpAngle
 		bsr.w	Sonic_Floor
 		bsr.w 	DoubleJump
+		bsr.w 	HammerChargeCheck
 		rts	
 ; ===========================================================================
 
@@ -7522,6 +7564,7 @@ loc_12EA6:
 		include	"_incObj/Sonic RollSpeed.asm"
 		include	"_incObj/Sonic JumpDirection.asm"
 		include	"_incObj/SpinDash.asm"
+		;include "_incObj/Hammer.asm"
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------

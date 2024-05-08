@@ -50,10 +50,10 @@ loc_131AA:
 		tst.w	obInertia(a0)	; is Sonic moving?
 		bne.s	loc_131CC	; if yes, branch
 		bclr	#2,obStatus(a0)
-		move.b	#$13,obHeight(a0)
+		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.b	#id_Wait,obAnim(a0) ; use "standing" animation
-		subq.w	#5,obY(a0)
+		subq.w	#1,obY(a0)
 
 loc_131CC:
 		move.b	obAngle(a0),d0

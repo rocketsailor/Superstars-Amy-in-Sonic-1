@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Subroutine allowing Sonic to jump
+; Subroutine allowing player to jump
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -38,15 +38,16 @@ loc_1341C:
 		clr.b	$38(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(PlaySound_Special).l	; play jumping sound
-		move.b	#$13,obHeight(a0)
-		move.b	#9,obWidth(a0)
+		;move.b	#$F,obHeight(a0)	; standing height
+		;move.b	#9,obWidth(a0)	; standing width
 		;btst	#2,obStatus(a0) ; is player jumping/is bit 2?
 		;bne.s	loc_13490 ; if not, branch
-		move.b	#$B,obHeight(a0)
-		move.b	#7,obWidth(a0)
+		move.b	#$E,obHeight(a0) ; ball height
+		move.b	#7,obWidth(a0) ; ball width
 		move.b	#id_HammerAttack,obAnim(a0) ; use hammer attack animation
+		move.b	#1,($FFFFFFA4).w ; set flag for using the hammer
 		bset	#2,obStatus(a0)
-		addq.w	#5,obY(a0)
+		addq.w	#1,obY(a0)
 
 locret_1348E:
 		rts	

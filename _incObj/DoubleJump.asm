@@ -1,7 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   This script contains double jump code written by "EB".
-;   The original code is from an SSRG forum thread by FlyTF.
+;   The code was found on an SSRG forum thread by FlyTF.
 ;   The subroutine below has been heavily modified by me.
 ;  =========================================================================
 
@@ -18,15 +18,16 @@ DoubleJump:
         bset    #7,$22(a0)        ; (EB) set DoubleJump flag
         move.w	#sfx_Jump,d0           
         jsr    (PlaySound_Special).l
-        move.w  #-$580,obVelY(A0)         ; bounce up
+        move.w  #-$580,obVelY(A0)         ; bounce up        
         btst	#6,obStatus(a0) 	; is player underwater?
 	beq.s	DoubleJumpPart2 	; if not, branch
 	move.w  #-$290,obVelY(A0) 	; Underwater-specific value
         
 DoubleJumpPart2:
-	move.b	#$B,obHeight(a0)
+	move.b	#$E,obHeight(a0)
 	move.b	#7,obWidth(a0)
-	move.b	#id_HammerCharge,obAnim(a0) ; use 2nd hammer animation
+	move.b	#id_HammerAttack,obAnim(a0) ; use hammer animation
+        move.b	#1,($FFFFFFA4).w ; set flag for using the hammer
         bset	#2,obStatus(a0)
 
 DoubleJumpEnd:

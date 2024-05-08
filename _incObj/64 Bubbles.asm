@@ -96,7 +96,7 @@ Bub_ChkWater:	; Routine 4
 		bclr	#2,obStatus(a1)
 		move.b	#$13,obHeight(a1)
 		move.b	#9,obWidth(a1)
-		subq.w	#5,obY(a1)
+		subq.w	#1,obY(a1)
 		bra.w	.burst
 ; ===========================================================================
 

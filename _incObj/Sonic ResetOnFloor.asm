@@ -20,10 +20,10 @@ loc_137AE:
 		btst	#2,obStatus(a0)
 		beq.s	loc_137E4
 		bclr	#2,obStatus(a0)
-		move.b	#$13,obHeight(a0)
+		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
-		subq.w	#5,obY(a0)
+		subq.w	#1,obY(a0)
 
 loc_137E4:
 		move.b	#0,$3C(a0)

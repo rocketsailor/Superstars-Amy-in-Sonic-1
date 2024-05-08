@@ -13,7 +13,7 @@ Banner_Index:	dc.w Banner_Main-Banner_Index
 
 Banner_Main:
 		move.w	#$120,obX(a0)
-		move.w	#$B5,obScreenY(a0) ; position is fixed to screen
+		move.w	#$B8,obScreenY(a0) ; position is fixed to screen
 		move.l	#Map_Banner,obMap(a0)
 		move.w	#($9000/$20),obGfx(a0)
 		move.b	#1,obPriority(a0)
