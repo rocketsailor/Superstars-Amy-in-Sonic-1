@@ -7054,10 +7054,9 @@ HammerObj_Main:
         lea (v_objspace).w,a1
 		move.w	obX(a1),obX(a0)
 		move.w	obY(a1),obY(a0)
-		tst.b	($FFFFFFA4).w	; is hammer flag set?
+		tst.b	(f_hammerobject).w	; is hammer flag set?
 		beq.s 	HammerObj_End	; if not, branch
 		jsr    (ReactToItem).l
-		; comment line below to hide, uncomment to display
 		;jmp	(DisplaySprite).l
 
 HammerObj_End:
@@ -7425,7 +7424,7 @@ Sonic_Main:	; Routine 0 ; Obj01_Main
 		move.w	#$C,(v_sonspeedacc).w ; player's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; player's deceleration
 		move.b	#5,$FFFFD1C0.w ; load spin dash dust object
-		move.b 	#2,$FFFFD180.w ; load hammer object
+		move.b 	#2,$FFFFD580.w ; load hammer object
 
 Sonic_Control:	; Routine 2 ; Obj01_Control
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
@@ -7529,6 +7528,7 @@ loc_12E5C:
 		bsr.w	Sonic_Floor
 		bsr.w 	DoubleJump
 		bsr.w 	HammerChargeCheck
+		bsr.w 	HammerBounceCheck
 		rts	
 ; ===========================================================================
 
@@ -7558,13 +7558,13 @@ loc_12EA6:
 		bsr.w	Sonic_Floor
 		bsr.w 	DoubleJump
 		bsr.w 	HammerChargeCheck
+		bsr.w 	HammerBounceCheck
 		rts	
 
 		include	"_incObj/Sonic Move.asm"
 		include	"_incObj/Sonic RollSpeed.asm"
 		include	"_incObj/Sonic JumpDirection.asm"
 		include	"_incObj/SpinDash.asm"
-		;include "_incObj/Hammer.asm"
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -7585,6 +7585,7 @@ loc_12EA6:
 locret_13302:
 		rts	
 
+		include "_incObj/HammerBounceCheck.asm"
 		include	"_incObj/Sonic LevelBound.asm"
 		include	"_incObj/Sonic Roll.asm"
 		include	"_incObj/DoubleJump.asm"

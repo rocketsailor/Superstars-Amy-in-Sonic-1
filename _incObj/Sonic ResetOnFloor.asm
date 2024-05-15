@@ -7,6 +7,7 @@
 
 Sonic_ResetOnFloor:
 		bclr 	#7,$22(a0)	; reset double jump flag
+		clr.b	(f_hammerobject).w ; clear hammer flag
 		btst	#4,obStatus(a0)
 		beq.s	loc_137AE
 		nop	

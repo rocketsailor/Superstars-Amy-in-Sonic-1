@@ -13,8 +13,8 @@ ReactToItem:
 		cmp.b 	#2,(a0) ; if NOT using hammer,
 		bne.s 	.nohammer ; then branch		
         ; (DeltaWooloo) By this point, we're focusing purely on the Piko-Piko hammer
-        move.w	obX(a0),d2                ; Get x pos
-        move.w	obY(a0),d3                ; Get y pos
+        move.w	obX(a0),d2                ; Get x-pos
+        move.w	obY(a0),d3                ; Get y-pos
         subi.w	#$18,d2                    ; Subtract width of hammer
         subi.w	#$18,d3                    ; Subtract height of hammer     
 		move.w	#$30,d4                    ; hitbox width
@@ -24,7 +24,7 @@ ReactToItem:
 		rts	
 ; ---------------------------------------------------------------------------
 ; Normal ReactToItem comes after this	
-.nohammer:		
+.nohammer:	
 		move.w	obX(a0),d2	; load player's x-axis position
 		move.w	obY(a0),d3	; load player's y-axis position
 		subq.w	#8,d2 
@@ -46,8 +46,8 @@ ReactToItem:
 		move.w	#$5F,d6
 
 .loop:
-		tst.b	obRender(a1)
-		bpl.s	.next
+		;tst.b	obRender(a1)
+		;bpl.s	.next
 		move.b	obColType(a1),d0 ; load collision type
 		bne.s	.proximity	; if nonzero, branch
 
@@ -151,10 +151,10 @@ ReactToItem:
 		andi.b	#$3F,d0
 		cmpi.b	#6,d0		; is collision type $46	?
 		beq.s	.monitorchk	; if yes, branch
-		cmp.b 	#2,(a0) 	; if using hammer,
-		beq.s 	.invincible ; then branch (and prevent game crash)
 		cmpi.w	#90,$30(a0)	; is player invincible?
 		bcc.w	.invincible	; if yes, branch
+		cmp.b 	#2,(a0) 	; if using hammer,
+		beq.s 	.invincible ; then branch
 		addq.b	#2,obRoutine(a1) ; advance the object's routine counter
 
 .invincible:
@@ -165,10 +165,12 @@ ReactToItem:
 .monitorchk:
 		cmp.b 	#2,(a0) ; if using hammer,	
         beq.s 	Instant_Break	; then branch
-		cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
-		beq.s 	Instant_Break	; then branch
-		cmpi.b	#id_HammerAttack,obAnim(a0) ; if using hammer,
-		beq.s 	Instant_Break	; then branch
+		;cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
+		;beq.s 	Instant_Break	; then branch
+		;cmpi.b	#id_HammerAttack,obAnim(a0) ; if using hammer,
+		;beq.s 	Instant_Break	; then branch
+		cmpi.b	#id_SpinDash,obAnim(a0) ; is player Spin Dashing? 
+		beq.s 	React_Monitor
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling/jumping?
 		bne.s 	No_Reaction	; if not, branch
 
@@ -186,16 +188,15 @@ React_Monitor:
 		addq.b	#4,ob2ndRout(a1) ; advance the monitor's routine counter
 		rts		
 
-Instant_Break: 	; break monitor instantly if using hammer
+Instant_Break:
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
-		tst.w	obVelY(a0)	; is player moving upward?
-		bmi.s	.upward	; if so, branch
-		neg.w	obVelY(a0)	; reverse player's vertical speed
-		move.w	#-$180,obVelY(a1)
-
-.upward:
+		cmp.b 	#2,(a0) ; if using hammer,	
+		beq.s 	.usinghammer	; then branch
 		rts
-; ===========================================================================
+
+.usinghammer:
+		move.b	#1,(f_hammerbounce).w ; set flag to make player bounce
+		rts		
 
 Moving_Down:
 		neg.w	obVelY(a0)	; reverse player's y-motion		
@@ -207,26 +208,28 @@ No_Reaction:
 
 React_Enemy:
 		cmp.b 	#2,(a0) ; if using hammer,
-		beq.s	.breakenemy	; then branch
+		beq.s	.donthurtsonic	; then branch
 		tst.b	(v_invinc).w	; is player invincible?
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?
 		beq.s 	.donthurtsonic	; if yes, branch	
 		cmpi.b	#id_SpinDash,obAnim(a0)	; is player Spin Dashing? 
-		beq.s 	.donthurtsonic	; if yes, branch	
-		cmpi.b	#id_HammerAttack,obAnim(a0) ; is player jumping?
-		beq.s 	.donthurtsonic	; if yes, branch	
-		cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
+		;beq.s 	.donthurtsonic	; if yes, branch	
+		;cmpi.b	#id_HammerAttack,obAnim(a0) ; is player jumping?
+		;beq.s 	.donthurtsonic	; if yes, branch	
+		;cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
 		bne.w 	React_ChkHurt	; then branch
 		
 .donthurtsonic:
 		tst.b	obColProp(a1)
-		beq.s	.breakenemy
-
+		beq.s	.breakenemy	
+		cmp.b 	#2,(a0) ; if using hammer,	
+        beq.s 	.set2ndbounceflag	; then branch
 		neg.w	obVelX(a0)	; repel player
 		neg.w	obVelY(a0)
 		asr	obVelX(a0)
 		asr	obVelY(a0)
+.skip:
 		move.b	#0,obColType(a1)
 		subq.b	#1,obColProp(a1)
 		bne.s	.flagnotclear
@@ -234,6 +237,11 @@ React_Enemy:
 
 .flagnotclear:
 		rts	
+
+.set2ndbounceflag:
+		move.b	#1,(f_hammerbounce2).w ; set flag to make player bounce
+		bra.s  .skip
+
 ; ===========================================================================
 
 .breakenemy:
@@ -257,6 +265,8 @@ React_Enemy:
 		bsr.w	AddPoints
 		_move.b	#id_ExplosionItem,0(a1) ; change object to explosion
 		move.b	#0,obRoutine(a1)
+		cmp.b 	#2,(a0) ; if using hammer,	
+        beq.s 	.setbounceflag	; then branch
 		tst.w	obVelY(a0)
 		bmi.s	.bouncedown
 		move.w	obY(a0),d0
@@ -264,6 +274,10 @@ React_Enemy:
 		bcc.s	.bounceup
 		neg.w	obVelY(a0)
 		rts	
+
+.setbounceflag:
+		move.b	#1,(f_hammerbounce).w ; set flag to make player bounce
+		rts
 ; ===========================================================================
 
 .bouncedown:
@@ -329,7 +343,6 @@ HurtSonic:
 		move.w	#-$200,obVelX(a0)
 		btst	#6,obStatus(a0)	; is player underwater?
 		beq.s	.isdry		; if not, branch
-
 		move.w	#-$200,obVelY(a0) ; slower bounce
 		move.w	#-$100,obVelX(a0)
 
@@ -451,7 +464,11 @@ React_Special:
 ; ===========================================================================
 
 .D7orE1:
+		cmp.b 	#2,(a0) ; if using hammer,
+		beq.s 	.D7orE1end ; then branch
 		addq.b	#1,obColProp(a1)
-		rts	
+
+.D7orE1end:
+		rts		
 
 ; End of function React_Special

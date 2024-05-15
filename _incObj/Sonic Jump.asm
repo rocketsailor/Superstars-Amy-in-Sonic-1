@@ -45,7 +45,7 @@ loc_1341C:
 		move.b	#$E,obHeight(a0) ; ball height
 		move.b	#7,obWidth(a0) ; ball width
 		move.b	#id_HammerAttack,obAnim(a0) ; use hammer attack animation
-		move.b	#1,($FFFFFFA4).w ; set flag for using the hammer
+		move.b	#1,(f_hammerobject).w ; set flag for using the hammer
 		bset	#2,obStatus(a0)
 		addq.w	#1,obY(a0)
 

@@ -85,10 +85,10 @@ Mon_Solid:	; Routine 2
 		beq.s	loc_A25C	; if yes, branch
 		cmpi.b	#id_SpinDash,obAnim(a1) ; is player spin dashing?
 		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_HammerAttack,obAnim(a1) ; is player jumping?
-		beq.s	loc_A25C	; if yes, branch
-		cmpi.b	#id_HammerCharge,obAnim(a1) ; is player double jumping?
-		beq.s	loc_A25C	; if yes, branch
+		;cmpi.b	#id_HammerAttack,obAnim(a1) ; is player jumping?
+		;beq.s	loc_A25C	; if yes, branch
+		;cmpi.b	#id_HammerCharge,obAnim(a1) ; is player double jumping?
+		;beq.s	loc_A25C	; if yes, branch
 
 loc_A20A:
 		tst.w	d1

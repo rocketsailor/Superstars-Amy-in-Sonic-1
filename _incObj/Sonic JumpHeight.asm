@@ -34,12 +34,11 @@ StartHammerCharge:
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?
 		beq.s 	locret_134D2
 		move.b 	#id_HammerCharge,obAnim(a0) ; set animation to hammer charge
-		clr.b	($FFFFFFA4).w ; clear hammer flag
 		rts
 
 SwitchToRolling:
 		move.b 	#id_Roll,obAnim(a0) ; set animation to rolling
-		clr.b	($FFFFFFA4).w ; clear hammer flag
+		clr.b	(f_hammerobject).w ; clear hammer flag
 		rts
 ; ===========================================================================
 

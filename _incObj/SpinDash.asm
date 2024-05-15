@@ -37,10 +37,10 @@ loc2_1AC8E:
 		move.b	(v_jpadhold2).w,d0	; read controller
 		btst	#1,d0			; check down button
 		bne.w	loc2_1AD30		; if set, branch
-		move.b	#$E,$16(a0)		; $16(a0) is height/2
-		move.b	#7,$17(a0)		; $17(a0) is width/2
+		move.b	#$E,obHeight(a0)		; $16(a0) is height/2
+		move.b	#7,obWidth(a0)		; $17(a0) is width/2
 		move.b	#id_Roll,obAnim(a0)		; set animation to roll
-		addq.w	#5,$C(a0)		; $C(a0) is Y coordinate
+		addq.w	#1,obY(a0)		; $C(a0) is Y coordinate
 		move.b	#0,f_spindash(a0)		; clear Spin Dash flag
 		moveq	#0,d0
 		move.b	$3A(a0),d0		; copy charge count
@@ -53,12 +53,12 @@ loc2_1AC8E:
 		neg.w	d0			; negate it
 		addi.w	#$2000,d0		; add $2000
 		move.w	d0,($FFFFEED0).w	; move to $EED0
-		btst	#0,$22(a0)		; is sonic facing right?
+		btst	#0,obStatus(a0)		; is sonic facing right?
 		beq.s	loc2_1ACF4		; if not, branch
 		neg.w	obInertia(a0)			; negate inertia
 
 loc2_1ACF4:
-		bset	#2,$22(a0)		; set unused (in s1) flag
+		bset	#2,obStatus(a0)		; set unused (in s1) flag
 		move.b	#0,($FFFFD1DC).w	; clear Spin Dash dust animation.
 		move.w	#$BC,d0			; spin release sound
 		jsr	(PlaySound_Special).l	; play it!
