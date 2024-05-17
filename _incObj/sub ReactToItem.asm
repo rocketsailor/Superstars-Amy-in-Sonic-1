@@ -165,10 +165,6 @@ ReactToItem:
 .monitorchk:
 		cmp.b 	#2,(a0) ; if using hammer,	
         beq.s 	Instant_Break	; then branch
-		;cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
-		;beq.s 	Instant_Break	; then branch
-		;cmpi.b	#id_HammerAttack,obAnim(a0) ; if using hammer,
-		;beq.s 	Instant_Break	; then branch
 		cmpi.b	#id_SpinDash,obAnim(a0) ; is player Spin Dashing? 
 		beq.s 	React_Monitor
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling/jumping?
@@ -214,11 +210,7 @@ React_Enemy:
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?
 		beq.s 	.donthurtsonic	; if yes, branch	
 		cmpi.b	#id_SpinDash,obAnim(a0)	; is player Spin Dashing? 
-		;beq.s 	.donthurtsonic	; if yes, branch	
-		;cmpi.b	#id_HammerAttack,obAnim(a0) ; is player jumping?
-		;beq.s 	.donthurtsonic	; if yes, branch	
-		;cmpi.b	#id_HammerCharge,obAnim(a0) ; if using hammer,
-		bne.w 	React_ChkHurt	; then branch
+		bne.w 	React_ChkHurt	; if not, branch
 		
 .donthurtsonic:
 		tst.b	obColProp(a1)

@@ -7064,6 +7064,7 @@ HammerObj_End:
 
 ; ---------------------------------------------------------------------------
 ;	Spin dash dust object (from Sonic Retro Spin Dash Guide Part 2 by Puto)
+; 	Also contains unused leftover stuff from Sonic 2
 ; ---------------------------------------------------------------------------
 SpinDash_dust:
 Sprite_1DD20:				; DATA XREF: ROM:0001600C?o
@@ -7079,8 +7080,8 @@ off_1DD2E:	dc loc_1DD36-off_1DD2E; 0 ; DATA XREF: h+6DBA?o h+6DBC?o ...
 ; ===========================================================================
 
 loc_1DD36:				; DATA XREF: h+6DBA?o
-		addq.b	#2,$24(a0)
-		move.l	#MapUnc_1DF5E,4(a0)
+		addq.b	#2,obRoutine(a0)
+		move.l	#MapUnc_1DF5E,obMap(a0)
 		or.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#$10,obActWid(a0)
@@ -7114,7 +7115,7 @@ off_1DDA4:	dc loc_1DE28-off_1DDA4; 0 ; DATA XREF: h+6E30?o h+6E32?o ...
 ; ===========================================================================
 
 loc_1DDAC:				; DATA XREF: h+6E30?o
-		move	($FFFFF646).w,obY(a0)
+		move	(v_waterpos1).w,obY(a0)
 		tst.b	obNextAni(a0)
 		bne.s	loc_1DE28
 		move	obX(a2),obX(a0)
@@ -7245,40 +7246,40 @@ loc_1DF0A:				; CODE XREF: h+6FBE?j
 locret_1DF36:				; CODE XREF: h+6F7A?j h+6F90?j
 		rts	
 ; ===========================================================================
-off_1DF38:	dc byte_1DF40-off_1DF38; 0 ; DATA XREF: h+6EB4?o h+6FC4?o ...
+off_1DF38:	dc byte_1DF40-off_1DF38; 0
 		dc byte_1DF43-off_1DF38; 1
 		dc byte_1DF4F-off_1DF38; 2
 		dc byte_1DF58-off_1DF38; 3
-byte_1DF40:	dc.b $1F,  0,$FF	; 0 ; DATA XREF: h+6FC4?o
-byte_1DF43:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,  9,$FD,  0; 0	; DATA XREF: h+6FC4?o
-byte_1DF4F:	dc.b   1, $A, $B, $C, $D, $E, $F,$10,$FF; 0 ; DATA XREF: h+6FC4?o
-byte_1DF58:	dc.b   3,$11,$12,$13,$14,$FC; 0	; DATA XREF: h+6FC4?o
+byte_1DF40:	dc.b $1F,  0,$FF	; Null
+byte_1DF43:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,  9,$FD,  0; Splash (unused)
+byte_1DF4F:	dc.b   1, $A, $B, $C, $D, $E, $F,$10,$FF; Spindust
+byte_1DF58:	dc.b   3,$11,$12,$13,$14,$FC; Skid (unused)
 ; -------------------------------------------------------------------------------
-; Unknown Sprite Mappings
+; Sprite Mappings
 ; -------------------------------------------------------------------------------
 MapUnc_1DF5E:
-	dc word_1DF8A-MapUnc_1DF5E; 0
-	dc word_1DF8C-MapUnc_1DF5E; 1
-	dc word_1DF96-MapUnc_1DF5E; 2
-	dc word_1DFA0-MapUnc_1DF5E; 3
-	dc word_1DFAA-MapUnc_1DF5E; 4
-	dc word_1DFB4-MapUnc_1DF5E; 5
-	dc word_1DFBE-MapUnc_1DF5E; 6
-	dc word_1DFC8-MapUnc_1DF5E; 7
-	dc word_1DFD2-MapUnc_1DF5E; 8
-	dc word_1DFDC-MapUnc_1DF5E; 9
-	dc word_1DFE6-MapUnc_1DF5E; 10
-	dc word_1DFF0-MapUnc_1DF5E; 11
-	dc word_1DFFA-MapUnc_1DF5E; 12
-	dc word_1E004-MapUnc_1DF5E; 13
-	dc word_1E016-MapUnc_1DF5E; 14
-	dc word_1E028-MapUnc_1DF5E; 15
-	dc word_1E03A-MapUnc_1DF5E; 16
-	dc word_1E04C-MapUnc_1DF5E; 17
-	dc word_1E056-MapUnc_1DF5E; 18
-	dc word_1E060-MapUnc_1DF5E; 19
-	dc word_1E06A-MapUnc_1DF5E; 20
-	dc word_1DF8A-MapUnc_1DF5E; 21
+	dc word_1DF8A-MapUnc_1DF5E; 00
+	dc word_1DF8C-MapUnc_1DF5E; 01
+	dc word_1DF96-MapUnc_1DF5E; 02
+	dc word_1DFA0-MapUnc_1DF5E; 03
+	dc word_1DFAA-MapUnc_1DF5E; 04
+	dc word_1DFB4-MapUnc_1DF5E; 05
+	dc word_1DFBE-MapUnc_1DF5E; 06
+	dc word_1DFC8-MapUnc_1DF5E; 07
+	dc word_1DFD2-MapUnc_1DF5E; 08
+	dc word_1DFDC-MapUnc_1DF5E; 09
+	dc word_1DFE6-MapUnc_1DF5E; 0A
+	dc word_1DFF0-MapUnc_1DF5E; 0B
+	dc word_1DFFA-MapUnc_1DF5E; 0C
+	dc word_1E004-MapUnc_1DF5E; 0D
+	dc word_1E016-MapUnc_1DF5E; 0E
+	dc word_1E028-MapUnc_1DF5E; 0F
+	dc word_1E03A-MapUnc_1DF5E; 10
+	dc word_1E04C-MapUnc_1DF5E; 11
+	dc word_1E056-MapUnc_1DF5E; 12
+	dc word_1E060-MapUnc_1DF5E; 13
+	dc word_1E06A-MapUnc_1DF5E; 14
+	dc word_1DF8A-MapUnc_1DF5E; 15
 word_1DF8A:	dc.b 0
 word_1DF8C:	dc.b 1
 	dc.b $F2, $0D, $0, 0,$F0; 0
@@ -7298,24 +7299,26 @@ word_1DFD2:	dc.b 1
 	dc.b $F2, $0D, $0, 0,$F0; 0
 word_1DFDC:	dc.b 1
 	dc.b $F2, $0D, $0, 0,$F0; 0
+; --- Spin dust frames start ---
 word_1DFE6:	dc.b 1
-	dc.b $4, $0D, $0, 0,$E0; 0
+	dc.b $1, $0D, $0, 0,$E0; 0
 word_1DFF0:	dc.b 1
-	dc.b $4, $0D, $0, 0,$E0; 0
+	dc.b $1, $0D, $0, 0,$E0; 0
 word_1DFFA:	dc.b 1
-	dc.b $4, $0D, $0, 0,$E0; 0
+	dc.b $1, $0D, $0, 0,$E0; 0
 word_1E004:	dc.b 2
 	dc.b $F4, $01, $0, 0,$E8; 0
-	dc.b $4, $0D, $0, 2,$E0; 4
+	dc.b $1, $0D, $0, 2,$E0; 4
 word_1E016:	dc.b 2
 	dc.b $F4, $05, $0, 0,$E8; 0
-	dc.b $4, $0D, $0, 4,$E0; 4
+	dc.b $1, $0D, $0, 4,$E0; 4
 word_1E028:	dc.b 2
 	dc.b $F4, $09, $0, 0,$E0; 0
-	dc.b $4, $0D, $0, 6,$E0; 4
+	dc.b $1, $0D, $0, 6,$E0; 4
 word_1E03A:	dc.b 2
 	dc.b $F4, $09, $0, 0,$E0; 0
-	dc.b $4, $0D, $0, 6,$E0; 4
+	dc.b $1, $0D, $0, 6,$E0; 4
+; --- Spin dust frames end ---
 word_1E04C:	dc.b 1
 	dc.b $F8, $05, $0, 0,$F8; 0
 word_1E056:	dc.b 1
