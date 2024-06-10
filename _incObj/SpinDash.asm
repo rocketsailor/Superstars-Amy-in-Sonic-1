@@ -89,7 +89,7 @@ loc2_1AD48:
 		move.b	(v_jpadpress2).w,d0	; read controller
 		andi.b	#$70,d0			; pressing A/B/C?
 		beq.w	loc2_1AD78		; if not, branch
-		move.w	#$2300,obAnim(a0)	; reset spin dash animation
+		move.w	#$1800,obAnim(a0)	; reset spin dash animation
 		move.w	#$BE,d0
 		move.b	#2,$FFFFD1DC.w	; Set the Spin Dash dust animation to $2.
 		jsr	(PlaySound_Special).l	; play charge sound

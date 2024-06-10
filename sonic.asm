@@ -7583,7 +7583,7 @@ loc_12EA6:
 		move.w	#0,obInertia(a0) ; stop player moving
 		move.w	#0,obVelX(a0)
 		move.w	#0,obVelY(a0)
-		move.b	#id_Warp3,obAnim(a0) ; use "warping" animation
+		;move.b	#id_Warp3,obAnim(a0) ; use "warping" animation
 
 locret_13302:
 		rts	

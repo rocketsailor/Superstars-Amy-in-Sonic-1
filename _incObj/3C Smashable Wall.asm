@@ -24,15 +24,20 @@ Smash_Main:	; Routine 0
 		move.b	#$10,obActWid(a0)
 		move.b	#4,obPriority(a0)
 		move.b	obSubtype(a0),obFrame(a0)
+		move.b  #9,obColType(a0)
 
 Smash_Solid:	; Routine 2
+		tst.b 	$26(a0)
+		bne.s 	Smash_Things
+
+Smash_Player:
 		move.w	(v_player+obVelX).w,smash_speed(a0) ; load Player's horizontal speed
 		move.w	#$1B,d1
 		move.w	#$20,d2
 		move.w	#$20,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
-		btst	#5,obStatus(a0)	; is Player pushing against the wall?
+		;btst	#5,obStatus(a0)	; is Player pushing against the wall?
 		bne.s	.chkroll	; if yes, branch
 
 .donothing:
@@ -40,6 +45,8 @@ Smash_Solid:	; Routine 2
 ; ===========================================================================
 
 .chkroll:
+		cmp.b 	#2,(a1) ; if using hammer,
+		beq.s	Smash_Things	; then branch
 		cmpi.b	#id_Roll,obAnim(a1) ; is Player rolling?
 		bne.s	.donothing	; if not, branch
 		move.w	smash_speed(a0),d0
@@ -49,6 +56,8 @@ Smash_Solid:	; Routine 2
 .chkspeed:
 		cmpi.w	#$480,d0	; is Player's speed $480 or higher?
 		bcs.s	.donothing	; if not, branch
+
+Smash_Things:
 		move.w	smash_speed(a0),obVelX(a1)
 		addq.w	#4,obX(a1)
 		lea	(Smash_FragSpd1).l,a4 ;	use fragments that move	right

@@ -1,36 +1,36 @@
-Map_8136:
-Map_8136_0: 	dc.w Map_8136_10-Map_8136
-Map_8136_2: 	dc.w Map_8136_1B-Map_8136
-Map_8136_4: 	dc.w Map_8136_2B-Map_8136
-Map_8136_6: 	dc.w Map_8136_36-Map_8136
-Map_8136_8: 	dc.w Map_8136_41-Map_8136
-Map_8136_A: 	dc.w Map_8136_4C-Map_8136
-Map_8136_C: 	dc.w Map_8136_6B-Map_8136
-Map_8136_E: 	dc.w Map_8136_99-Map_8136
-Map_8136_10: 	dc.b $2
-	dc.b $EC, $B, $0, $0, $F8
-	dc.b $C, $C, $0, $C, $F0
-Map_8136_1B: 	dc.b $3
-	dc.b $FE, $D, $0, $10, $F0
-	dc.b $EC, $B, $0, $0, $F8
-	dc.b $C, $C, $0, $C, $F0
-Map_8136_2B: 	dc.b $2
-	dc.b $EC, $9, $0, $18, $F8
-	dc.b $FC, $E, $0, $1E, $F0
-Map_8136_36: 	dc.b $2
-	dc.b $EC, $9, $0, $2A, $F8
-	dc.b $FC, $E, $0, $30, $F0
-Map_8136_41: 	dc.b $2
-	dc.b $EC, $9, $8, $2A, $F0
-	dc.b $FC, $E, $8, $30, $F0
-Map_8136_4C: 	dc.b $6
-	dc.b $5, $D, $0, $42, $F0
-	dc.b $FD, $0, $0, $41, $F8
-	dc.b $ED, $1, $0, $3C, $F8
-	dc.b $FD, $0, $0, $3E, $F0
-	dc.b $ED, $2, $8, $3F, $0
-	dc.b $FD, $0, $0, $3E, $5
-Map_8136_6B: 	dc.b $9
+Map_ba85:
+Map_ba85_0: 	dc.w Map_ba85_10-Map_ba85
+Map_ba85_2: 	dc.w Map_ba85_1B-Map_ba85
+Map_ba85_4: 	dc.w Map_ba85_2B-Map_ba85
+Map_ba85_6: 	dc.w Map_ba85_36-Map_ba85
+Map_ba85_8: 	dc.w Map_ba85_41-Map_ba85
+Map_ba85_A: 	dc.w Map_ba85_4C-Map_ba85
+Map_ba85_C: 	dc.w Map_ba85_6B-Map_ba85
+Map_ba85_E: 	dc.w Map_ba85_99-Map_ba85
+Map_ba85_10: 	dc.b $2
+	dc.b $E8, $B, $0, $0, $F8
+	dc.b $8, $C, $0, $C, $F0
+Map_ba85_1B: 	dc.b $3
+	dc.b $FA, $D, $0, $10, $F0
+	dc.b $E8, $B, $0, $0, $F8
+	dc.b $8, $C, $0, $C, $F0
+Map_ba85_2B: 	dc.b $2
+	dc.b $E8, $9, $0, $18, $F8
+	dc.b $F8, $E, $0, $1E, $F0
+Map_ba85_36: 	dc.b $2
+	dc.b $E8, $9, $0, $2A, $F8
+	dc.b $F8, $E, $0, $30, $F0
+Map_ba85_41: 	dc.b $2
+	dc.b $E8, $9, $8, $2A, $F0
+	dc.b $F8, $E, $8, $30, $F0
+Map_ba85_4C: 	dc.b $6
+	dc.b $1, $D, $0, $42, $F0
+	dc.b $F9, $0, $0, $41, $F8
+	dc.b $E9, $1, $0, $3C, $F8
+	dc.b $F9, $0, $0, $3E, $F0
+	dc.b $E9, $2, $8, $3F, $0
+	dc.b $F9, $0, $0, $3E, $5
+Map_ba85_6B: 	dc.b $9
 	dc.b $C9, $F, $0, $4A, $F4
 	dc.b $C9, $3, $0, $5A, $14
 	dc.b $D1, $A, $0, $5E, $DC
@@ -40,7 +40,7 @@ Map_8136_6B: 	dc.b $9
 	dc.b $F1, $C, $0, $71, $F4
 	dc.b $F9, $9, $0, $75, $FC
 	dc.b $9, $4, $0, $7B, $4
-Map_8136_99: 	dc.b $1A
+Map_ba85_99: 	dc.b $1A
 	dc.b $80, $F, $0, $7D, $28
 	dc.b $80, $3, $0, $8D, $48
 	dc.b $88, $B, $0, $91, $10

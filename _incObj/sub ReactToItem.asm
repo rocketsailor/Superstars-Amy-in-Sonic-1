@@ -186,11 +186,6 @@ React_Monitor:
 
 Instant_Break:
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
-		cmp.b 	#2,(a0) ; if using hammer,	
-		beq.s 	.usinghammer	; then branch
-		rts
-
-.usinghammer:
 		move.b	#1,(f_hammerbounce).w ; set flag to make player bounce
 		rts		
 
@@ -203,15 +198,29 @@ No_Reaction:
 ; ===========================================================================
 
 React_Enemy:
+		cmp.b 	#$3C,(a1)	; is object smashable wall?
+		beq.s 	.specificobject ; if so, branch
+		;cmp.b 	#$51,(a1)	; is object smashable green block?
+		;beq.s 	.specificobject ; if so, branch
+		;cmp.b 	#$85,(a1)	; is object final boss?
+		;beq.s 	.specificobject ; if so, branch
 		cmp.b 	#2,(a0) ; if using hammer,
 		beq.s	.donthurtsonic	; then branch
+		cmpi.b	#id_HammerAttack,obAnim(a0) ; is player using hammer? (failsafe)
+		beq.s 	.flagnotclear	; if yes, branch
+		cmpi.b	#id_HammerCharge,obAnim(a0) ; is player using hammer? (failsafe)
+		beq.s 	.flagnotclear	; if yes, branch
 		tst.b	(v_invinc).w	; is player invincible?
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?
 		beq.s 	.donthurtsonic	; if yes, branch	
-		cmpi.b	#id_SpinDash,obAnim(a0)	; is player Spin Dashing? 
-		bne.w 	React_ChkHurt	; if not, branch
-		
+		cmpi.b	#id_SpinDash,obAnim(a0)	; is player Spin Dashing?
+		bne.w 	React_ChkHurt ; if not, branch
+
+.specificobject:
+		move.b 	#1,$26(a1)
+		rts
+
 .donthurtsonic:
 		tst.b	obColProp(a1)
 		beq.s	.breakenemy	
@@ -237,6 +246,7 @@ React_Enemy:
 ; ===========================================================================
 
 .breakenemy:
+		move.b	#0,obColType(a1)
 		bset	#7,obStatus(a1)
 		moveq	#0,d0
 		move.w	(v_itembonus).w,d0

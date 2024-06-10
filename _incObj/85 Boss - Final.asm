@@ -165,6 +165,8 @@ loc_19F10:
 		bset	#0,obStatus(a0)
 
 loc_19F2E:
+        ;tst.b 	$26(a0)
+       	;bne.s 	HitFinalBoss
 		move.w	#$2B,d1
 		move.w	#$14,d2
 		move.w	#$14,d3
@@ -181,6 +183,8 @@ loc_19F48:
 
 loc_19F50:
 		addq.w	#7,(v_random).w
+		cmp.b	#2,(a0) ; if using hammer,
+		beq.s 	HitFinalBoss ; then branch
 		cmpi.b	#id_Roll,(v_player+obAnim).w
 		beq.s 	loc_19F50_Part2
 		cmpi.b	#id_SpinDash,(v_player+obAnim).w
@@ -188,8 +192,7 @@ loc_19F50:
 		cmpi.b	#id_HammerAttack,(v_player+obAnim).w
 		beq.s 	loc_19F50_Part2
 		cmpi.b	#id_HammerCharge,(v_player+obAnim).w
-		beq.s 	loc_19F50_Part2
-		bra.s	loc_19F48
+		bne.s	loc_19F48
 
 loc_19F50_Part2:		
 		move.w	#$300,d0
@@ -199,6 +202,9 @@ loc_19F50_Part2:
 
 loc_19F6A:
 		move.w	d0,(v_player+obVelX).w
+
+HitFinalBoss:
+		;clr.b	$26(a0)
 		tst.b	$35(a0)
 		bne.s	loc_19F88
 		subq.b	#1,obColProp(a0)

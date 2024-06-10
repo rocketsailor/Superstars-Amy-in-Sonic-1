@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Subroutine to	animate	Sonic's sprites
+; Subroutine to	animate	player's sprites
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -76,9 +76,9 @@ Sonic_Animate:
 		addq.b	#1,d0		; is animation walking/running?
 		bne.w	.rolljump	; if not, branch
 		moveq	#0,d1
-		move.b	obAngle(a0),d0	; get Sonic's angle
+		move.b	obAngle(a0),d0	; get player's angle
 		move.b	obStatus(a0),d2
-		andi.b	#1,d2		; is Sonic mirrored horizontally?
+		andi.b	#1,d2		; is player mirrored horizontally?
 		bne.s	.flip		; if yes, branch
 		not.b	d0		; reverse angle
 
@@ -91,28 +91,26 @@ Sonic_Animate:
 		andi.b	#$FC,obRender(a0)
 		eor.b	d1,d2
 		or.b	d2,obRender(a0)
-		btst	#5,obStatus(a0)	; is Sonic pushing something?
+		btst	#5,obStatus(a0)	; is player pushing something?
 		bne.w	.push		; if yes, branch
 
 		lsr.b	#4,d0		; divide angle by $10
 		andi.b	#6,d0		; angle	must be	0, 2, 4	or 6
-		move.w	obInertia(a0),d2 ; get Sonic's speed
+		move.w	obInertia(a0),d2 ; get player's speed
 		bpl.s	.nomodspeed
 		neg.w	d2		; modulus speed
 
 .nomodspeed:
 		lea	(SonAni_Run).l,a1 ; use	running	animation
-		cmpi.w	#$600,d2	; is Sonic at running speed?
+		cmpi.w	#$600,d2	; is player at running speed?
 		bcc.s	.running	; if yes, branch
 
-		lea	(SonAni_Walk).l,a1 ; use walking animation
-		move.b	d0,d1
-		lsr.b	#1,d1
-		add.b	d1,d0
+		lea	(SonAni_Walk).l,a1
+		add.b   d0,d0 
 
 .running:
 		add.b	d0,d0
-		move.b	d0,d3
+		move.b	d0,d3 
 		neg.w	d2
 		addi.w	#$800,d2
 		bpl.s	.belowmax
@@ -128,14 +126,14 @@ Sonic_Animate:
 
 .rolljump:
 		addq.b	#1,d0		; is animation rolling/jumping?
-		bne.s	.push		; if not, branch
-		move.w	obInertia(a0),d2 ; get Sonic's speed
+		bne.s 	.push
+		move.w	obInertia(a0),d2 ; get player's speed
 		bpl.s	.nomodspeed2
 		neg.w	d2
 
 .nomodspeed2:
 		lea	(SonAni_Roll2).l,a1 ; use fast animation
-		cmpi.w	#$600,d2	; is Sonic moving fast?
+		cmpi.w	#$600,d2	; is player moving fast?
 		bcc.s	.rollfast	; if yes, branch
 		lea	(SonAni_Roll).l,a1 ; use slower	animation
 
@@ -156,7 +154,7 @@ Sonic_Animate:
 ; ===========================================================================
 
 .push:
-		move.w	obInertia(a0),d2 ; get Sonic's speed
+		move.w	obInertia(a0),d2 ; get player's speed
 		bmi.s	.negspeed
 		neg.w	d2
 
