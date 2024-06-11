@@ -15,7 +15,7 @@ Sonic_SpinDash:
 		andi.b	#$70,d0			; pressing A/B/C ?
 		beq.w	locret2_1AC8C		; if not, return
 		move.b	#id_SpinDash,obAnim(a0)		; set Spin Dash animation
-		move.w	#$BE,d0			; spin sound
+		move.w	#sfx_SpindashRev,d0			; spin sound
 		jsr	(PlaySound_Special).l	; play spin sound
 		addq.l	#4,sp			; Add 4 bytes to the stack return address to skip Sonic_Jump on next rts to Obj01_MdNormal, preventing conflicts with button presses.
 		move.b	#1,f_spindash(a0)		; set Spin Dash flag
@@ -60,7 +60,7 @@ loc2_1AC8E:
 loc2_1ACF4:
 		bset	#2,obStatus(a0)		; set unused (in s1) flag
 		move.b	#0,($FFFFD1DC).w	; clear Spin Dash dust animation.
-		move.w	#$BC,d0			; spin release sound
+		move.w	#sfx_SpindashRelease,d0		; spin release sound
 		jsr	(PlaySound_Special).l	; play it!
 		bra.s	loc2_1AD78
 ; ===========================================================================
@@ -90,7 +90,7 @@ loc2_1AD48:
 		andi.b	#$70,d0			; pressing A/B/C?
 		beq.w	loc2_1AD78		; if not, branch
 		move.w	#$1800,obAnim(a0)	; reset spin dash animation
-		move.w	#$BE,d0
+		move.w	#sfx_SpindashRev,d0
 		move.b	#2,$FFFFD1DC.w	; Set the Spin Dash dust animation to $2.
 		jsr	(PlaySound_Special).l	; play charge sound
 		addi.w	#$200,$3A(a0)		; increase charge count

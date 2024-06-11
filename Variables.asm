@@ -3,7 +3,7 @@
 ;   This list has been modified to include variables for the DMA Queue.
 ;   These new lines of code were originally written by Clownacy, 
 ;   and have been slightly modified by me.
-;   In addition, a new variable is added for the spin dash.
+;   Other new variables are at the bottom of this script.
 ;  =========================================================================
 
 ; sign-extends a 32-bit integer to 64-bit
@@ -367,3 +367,6 @@ f_hammerbounce2 = ramaddr ( $FFFFFFAA ) ; flag for making player bounce after ha
 f_placeholder = ramaddr ( $FFFFFFAC ) ; placeholder flag (might use for hammer rush later)
 
 f_spindash		= $39 ; flag for spindash
+v_spindash_sfx_1 = ramaddr ( $FFFFC900 )
+v_spindash_sfx_2 = ramaddr ( $FFFFC901 )
+v_spindash_sfx_3 = ramaddr ( $FFFFC902 )
