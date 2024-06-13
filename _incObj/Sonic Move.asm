@@ -30,7 +30,13 @@ Sonic_Move:
 		tst.w	obInertia(a0)	; is Sonic moving?
 		bne.w	Sonic_ResetScr	; if yes, branch
 		bclr	#5,obStatus(a0)
+		cmpi.b 	#id_Wait2,obAnim(a0)
+		beq.s 	.notrightcont	
+		cmpi.b 	#id_Wait3,obAnim(a0)
+		beq.s 	.notrightcont
 		move.b	#id_Wait,obAnim(a0) ; use "standing" animation
+
+.notrightcont:
 		btst	#3,obStatus(a0)
 		beq.s	Sonic_Balance
 		moveq	#0,d0
