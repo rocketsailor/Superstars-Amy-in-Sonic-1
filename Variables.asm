@@ -364,7 +364,7 @@ v_init		= ramaddr ( $FFFFFFFC )	; 'init' text string (4 bytes)
 f_hammerobject = ramaddr ( $FFFFFFA4 ) ; flag for hammer object
 f_hammerbounce = ramaddr ( $FFFFFFA8 ) ; flag for making player bounce after hammer hits badnik or monitor
 f_hammerbounce2 = ramaddr ( $FFFFFFAA ) ; flag for making player bounce after hammer hits boss
-f_placeholder = ramaddr ( $FFFFFFAC ) ; placeholder flag (might use for hammer rush later)
+f_hammerrush = ramaddr ( $FFFFFFAC ) ; flag for hammer rush
 
 f_spindash		= $39 ; flag for spindash
 v_spindash_sfx_1 = ramaddr ( $FFFFC900 )

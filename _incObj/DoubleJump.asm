@@ -10,12 +10,12 @@
 DoubleJump:
         btst    #2,obStatus(a0)         ; is player jumping?
         beq.s   DoubleJumpEnd           ; if not, branch
-        btst    #7,$22(a0)        ; (EB) read if DoubleJump flag was set
+        btst    #7,obStatus(a0)        ; (EB) read if DoubleJump flag was set
         bne.s   DoubleJumpEnd                ; (EB) was it set? if not, branch
 	move.b	(v_jpadpress2).w,d0
 	andi.b	#btnABC,d0	           ; is A, B or C pressed?
         beq.w   DoubleJumpEnd                ; (EB) if not, branch
-        bset    #7,$22(a0)        ; (EB) set DoubleJump flag
+        bset    #7,obStatus(a0)        ; (EB) set DoubleJump flag
         move.w	#sfx_Jump,d0           
         jsr    (PlaySound_Special).l
         move.w  #-$580,obVelY(A0)         ; bounce up        
@@ -28,6 +28,7 @@ DoubleJumpPart2:
 	move.b	#7,obWidth(a0)
 	move.b	#id_HammerAttack,obAnim(a0) ; use hammer animation
         move.b	#1,(f_hammerobject).w ; set flag for using the hammer
+        move.b	#1,(f_hammerrush).w ; set flag for hammer rush
         bset	#2,obStatus(a0)
 
 DoubleJumpEnd:

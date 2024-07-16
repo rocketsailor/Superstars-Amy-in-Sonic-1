@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "1a1f8a8d-85a7-4f8a-93cc-bc35e9fc8e51",
+    "node": "972709ca-fe67-4171-9cf2-a37e658996bb",
     "objects": [
         {
             "name": "Special Stage",
@@ -214,6 +214,35 @@
                             },
                             "mappings": {
                                 "path": "_maps\\Eggman.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "4c107038-6529-468e-b084-c3e0a2c4124e"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "Eggmobile misc",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                },
+                                {
+                                    "path": "palette\\Green Hill Zone.bin",
+                                    "length": 3
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Boss - Weapons.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Boss Items.asm",
                                 "label": ""
                             },
                             "dplcs": {
@@ -577,6 +606,31 @@
                                 "label": ""
                             },
                             "uuid": "1d2d4106-0085-4586-83c5-eb11070b4809"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "game over text",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Game Over.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Game Over.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "e8521f4d-a38c-4646-8608-65a9949f66f3"
                         }
                     ],
                     "isDirectory": true,
@@ -638,10 +692,35 @@
                         },
                         {
                             "format": "Sonic 1.js",
-                            "name": "title screen amy",
+                            "name": "title amy",
                             "palettes": [
                                 {
                                     "path": "palette\\Title Screen.bin",
+                                    "length": 4
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Title Screen Sonic.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Title Screen Sonic.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "972709ca-fe67-4171-9cf2-a37e658996bb"
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "title amy 2",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Level Select.bin",
                                     "length": 4
                                 }
                             ],
@@ -688,7 +767,8 @@
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": true
+                    "expanded": true,
+                    "uuid": "e3bb901e-8d05-4b6d-b42c-03023ed3a7e9"
                 },
                 {
                     "name": "Ending",
@@ -795,7 +875,8 @@
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": false
+                    "expanded": false,
+                    "uuid": "bb901e8d-05ab-4d74-ac03-023ed3a7e9cd"
                 },
                 {
                     "name": "Misc",
@@ -941,10 +1022,36 @@
                             },
                             "uuid": "0704095a-5bae-4fcc-b302-a7cd40b16555",
                             "expanded": true
+                        },
+                        {
+                            "format": "Sonic 1.js",
+                            "name": "hammer hitbox",
+                            "palettes": [
+                                {
+                                    "path": "palette\\Sonic.bin",
+                                    "length": 1
+                                }
+                            ],
+                            "art": {
+                                "path": "artnem\\Monitors.bin",
+                                "compression": "Nemesis",
+                                "offset": 0
+                            },
+                            "mappings": {
+                                "path": "_maps\\Invisible Hammer Hitbox.asm",
+                                "label": ""
+                            },
+                            "dplcs": {
+                                "enabled": false,
+                                "path": "",
+                                "label": ""
+                            },
+                            "uuid": "186c88fa-2026-4cd9-af78-0cae0648625c"
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": false
+                    "expanded": false,
+                    "uuid": "901e8d05-ab6d-442c-8302-3ed3a7e9cd7c"
                 }
             ],
             "isDirectory": true,
@@ -1318,7 +1425,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
+            "expanded": true,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {

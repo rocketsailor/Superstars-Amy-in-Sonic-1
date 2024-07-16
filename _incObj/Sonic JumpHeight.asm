@@ -22,7 +22,7 @@ loc_134AE:
 		move.w	d1,obVelY(a0)	; cap jump height
 
 locret_134C2:
-        btst    #7,$22(a0)        ; is player double jumping?
+        btst    #7,obStatus(a0)        ; is player double jumping?
 		bne.s 	StartHammerCharge	; if yes, branch
 		tst.b 	obVelY(a0) ; is player at the height of their first jump?
 		beq.s 	SwitchToRolling ; if yes, branch

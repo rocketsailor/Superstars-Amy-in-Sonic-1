@@ -2236,10 +2236,10 @@ Tit_ClrPal:
 		locVRAM	$4000
 		lea	(Nem_TitleFg).l,a0 ; load title	screen patterns
 		bsr.w	NemDec
-		locVRAM	$7000
+		locVRAM	$6000
 		lea	(Nem_TitleSonic).l,a0 ;	load Sonic title screen	patterns
 		bsr.w	NemDec
-		locVRAM $9000
+		locVRAM $A000
 		lea	(Nem_TitleBanner).l,a0 ;	load title screen banner patterns
 		bsr.w	NemDec
 		locVRAM	$A200
@@ -2284,7 +2284,7 @@ Tit_LoadText:
 		move.w	#0,d0
 		bsr.w	EniDec
 
-		copyTilemap	$FF0000,$C408,$21,$15
+		copyTilemap	$FF0000,$C308,$21,$15
 
 		locVRAM	0
 		lea	(Nem_GHZ_1st).l,a0 ; load GHZ patterns
@@ -7025,7 +7025,7 @@ Map_HammerBox: include "_maps/Invisible Hammer Hitbox.asm"
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   Huge thank you to E-122-Psi for assisting me with creating this object!
-;	Also thank you DeltaWooloo for your Insta Shield porting tutorial!
+;	Also thank you DeltaW for your Insta Shield porting tutorial!
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 02 - Invisible hammer hitbox
@@ -7504,6 +7504,7 @@ MusicList2:
 ; ---------------------------------------------------------------------------
 
 Sonic_MdNormal:
+		bsr.w 	HammerRush
 		bsr.w	Sonic_SpinDash
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
@@ -7517,7 +7518,7 @@ Sonic_MdNormal:
 ; ===========================================================================
 
 Sonic_MdJump:
-		clr.b	$39(a0)	; clear spin dash flag to fix seesaw bug
+		clr.b	f_spindash(a0)	; clear spin dash flag to fix seesaw bug
 		bsr.w	Sonic_JumpHeight
 		bsr.w	Sonic_JumpDirection
 		bsr.w	Sonic_LevelBound
@@ -7547,7 +7548,7 @@ Sonic_MdRoll:
 ; ===========================================================================
 
 Sonic_MdJump2:
-		clr.b	$39(a0) ; clear spin dash flag to fix seesaw bug
+		clr.b	f_spindash(a0) ; clear spin dash flag to fix seesaw bug
 		bsr.w	Sonic_JumpHeight
 		bsr.w	Sonic_JumpDirection
 		bsr.w	Sonic_LevelBound
@@ -7588,11 +7589,12 @@ loc_12EA6:
 locret_13302:
 		rts	
 
-		include "_incObj/HammerBounceCheck.asm"
 		include	"_incObj/Sonic LevelBound.asm"
 		include	"_incObj/Sonic Roll.asm"
 		include	"_incObj/DoubleJump.asm"
 		include "_incObj/HammerChargeCheck.asm"
+		include "_incObj/HammerBounceCheck.asm"
+		include	"_incObj/HammerRush.asm"
 		include	"_incObj/Sonic Jump.asm"
 		include	"_incObj/Sonic JumpHeight.asm"
 		include	"_incObj/Sonic SlopeResist.asm"

@@ -210,6 +210,8 @@ React_Enemy:
 		beq.s 	.flagnotclear	; if yes, branch
 		cmpi.b	#id_HammerCharge,obAnim(a0) ; is player using hammer? (failsafe)
 		beq.s 	.flagnotclear	; if yes, branch
+		cmpi.b	#id_HammerRush,obAnim(a0) ; is player using hammer? (failsafe)
+		beq.s 	.flagnotclear	; if yes, branch
 		tst.b	(v_invinc).w	; is player invincible?
 		bne.s	.donthurtsonic	; if yes, branch
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?

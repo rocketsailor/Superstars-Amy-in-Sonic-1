@@ -49,8 +49,11 @@ loc_13602:
 loc_1361E:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Sonic_ResetOnFloor
+		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+		bne.s 	loc_1361E_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
+loc_1361E_cont:
+		bsr.w	Sonic_ResetOnFloor
 		move.b	d3,d0
 		addi.b	#$20,d0
 		andi.b	#$40,d0
@@ -116,8 +119,11 @@ loc_136B4:
 		bpl.s	locret_136E0
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Sonic_ResetOnFloor
+		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+		bne.s 	loc_136B4_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
+loc_136B4_cont:
+		bsr.w	Sonic_ResetOnFloor
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -195,8 +201,11 @@ loc_13772:
 		bpl.s	locret_1379E
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Sonic_ResetOnFloor
+		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+		bne.s 	loc_13772_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
+loc_13772_cont:		
+		bsr.w	Sonic_ResetOnFloor
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 

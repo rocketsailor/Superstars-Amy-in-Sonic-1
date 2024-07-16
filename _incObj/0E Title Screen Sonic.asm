@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Object 0E - Sonic on the title screen
+; Object 0E - Amy on the title screen
 ; ---------------------------------------------------------------------------
 
 TitleSonic:
@@ -16,10 +16,10 @@ TSon_Index:	dc.w TSon_Main-TSon_Index
 
 TSon_Main:	; Routine 0
 		addq.b	#2,obRoutine(a0)
-		move.w	#$F8,obX(a0)
-		move.w	#$E7,obScreenY(a0) ; position is fixed to screen
+		move.w	#$FF,obX(a0)
+		move.w	#$D1,obScreenY(a0) ; position is fixed to screen
 		move.l	#Map_TSon,obMap(a0)
-		move.w	#($7000/$20),obGfx(a0)
+		move.w	#($6000/$20),obGfx(a0)
 		move.b	#2,obPriority(a0)
 		;move.b	#29,obDelayAni(a0) ; set time delay to 0.5 seconds
 		;lea	(Ani_TSon).l,a1

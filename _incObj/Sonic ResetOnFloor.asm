@@ -1,13 +1,12 @@
 ; ---------------------------------------------------------------------------
-; Subroutine to	reset Sonic's mode when he lands on the floor
+; Subroutine to	reset player's mode when they land on the floor
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
 
 Sonic_ResetOnFloor:
-		bclr 	#7,$22(a0)	; reset double jump flag
-		clr.b	(f_hammerobject).w ; clear hammer flag
+		bclr 	#7,obStatus(a0)	; reset double jump flag
 		btst	#4,obStatus(a0)
 		beq.s	loc_137AE
 		nop	
@@ -23,8 +22,10 @@ loc_137AE:
 		bclr	#2,obStatus(a0)
 		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 		subq.w	#1,obY(a0)
+		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+		bne.w 	HammerRush ; if so, branch
+		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 
 loc_137E4:
 		move.b	#0,$3C(a0)
