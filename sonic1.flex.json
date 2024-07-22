@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 1",
-    "node": "972709ca-fe67-4171-9cf2-a37e658996bb",
+    "node": "77686c63-37c4-4aa9-948b-3085fe2f6400",
     "objects": [
         {
             "name": "Special Stage",
@@ -717,7 +717,7 @@
                         },
                         {
                             "format": "Sonic 1.js",
-                            "name": "title amy 2",
+                            "name": "level select amy",
                             "palettes": [
                                 {
                                     "path": "palette\\Level Select.bin",
@@ -767,7 +767,7 @@
                         }
                     ],
                     "isDirectory": true,
-                    "expanded": true,
+                    "expanded": false,
                     "uuid": "e3bb901e-8d05-4b6d-b42c-03023ed3a7e9"
                 },
                 {
@@ -1055,7 +1055,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "e6b9a08f-ab5f-4a59-bc1d-49b0db1faf54"
         },
         {
@@ -1425,7 +1425,7 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": true,
+            "expanded": false,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
         },
         {
@@ -3453,7 +3453,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "77686c63-37c4-4aa9-948b-3085fe2f6400"
+                    "uuid": "4aad904f-d12d-47e0-8f1b-02a43827119a"
                 },
                 {
                     "name": "Orbinaut",
@@ -3483,6 +3483,35 @@
                         "label": ""
                     },
                     "uuid": "686c6337-c46a-4914-8b30-85fe2f6400cd"
+                },
+                {
+                    "name": "Spikeball",
+                    "palettes": [
+                        {
+                            "path": "palette/Sonic.bin",
+                            "length": 1
+                        },
+                        {
+                            "path": "palette/Star Light Zone.bin",
+                            "length": 3
+                        }
+                    ],
+                    "format": "Sonic 1.js",
+                    "art": {
+                        "path": "artnem\\SLZ Little Spikeball.bin",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "_maps\\Seesaw Ball.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "77686c63-37c4-4aa9-948b-3085fe2f6400"
                 }
             ],
             "isDirectory": true,

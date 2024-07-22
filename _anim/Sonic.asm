@@ -99,7 +99,7 @@ SonAni_HammerAttack:	dc.b 2, $42, $43, $44, $45, $46, $47, $48, $49, afEnd, afEn
 		even
 SonAni_HammerCharge:	dc.b 1, $43, $45, $47, $49, afEnd
 		even
-SonAni_HammerRush:	dc.b 4, $6F, $70, $71, $72, $73, $74, $75, $76, afEnd
+SonAni_HammerRush:	dc.b 3, $6F, $70, $71, $72, $73, $74, $75, $76, afEnd
 		even
 
 id_Walk:	equ (ptr_Walk-Ani_Sonic)/2

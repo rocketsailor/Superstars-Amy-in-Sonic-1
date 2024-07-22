@@ -6,7 +6,7 @@
 
 
 Sonic_ResetOnFloor:
-		bclr 	#7,obStatus(a0)	; reset double jump flag
+		bclr 	#7,obStatus(a0)
 		btst	#4,obStatus(a0)
 		beq.s	loc_137AE
 		nop	
@@ -23,12 +23,19 @@ loc_137AE:
 		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		subq.w	#1,obY(a0)
-		tst.b	(f_hammerrush).w ; is hammer rush flag set?
-		bne.w 	HammerRush ; if so, branch
+		tst.b	(f_hammercharge).w	; is charging hammer rush flag set?
+		beq.s 	BranchtoHammerRush
 		move.b	#id_Walk,obAnim(a0) ; use running/walking animation
 
 loc_137E4:
 		move.b	#0,$3C(a0)
 		move.w	#0,(v_itembonus).w
 		rts	
+
+BranchtoHammerRush:
+		move.b	#0,$3C(a0)
+		move.w	#0,(v_itembonus).w
+		beq.w 	HammerRush
+		rts
+
 ; End of function Sonic_ResetOnFloor

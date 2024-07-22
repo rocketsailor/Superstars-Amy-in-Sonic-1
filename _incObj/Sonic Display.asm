@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Subroutine to display Sonic and set music
+; Subroutine to display player and set music
 ; ---------------------------------------------------------------------------
 
 Sonic_Display:
@@ -13,7 +13,7 @@ Sonic_Display:
 		jsr	(DisplaySprite).l
 
 .chkinvincible:
-		tst.b	(v_invinc).w	; does Sonic have invincibility?
+		tst.b	(v_invinc).w	; does player have invincibility?
 		beq.s	.chkshoes	; if not, branch
 		tst.w	invtime(a0)	; check	time remaining for invinciblity
 		beq.s	.chkshoes	; if no	time remains, branch
@@ -38,15 +38,15 @@ Sonic_Display:
 		move.b	#0,(v_invinc).w ; cancel invincibility
 
 .chkshoes:
-		tst.b	(v_shoes).w	; does Sonic have speed	shoes?
-		beq.s	.exit		; if not, branch
+		tst.b	(v_shoes).w	; does player have speed shoes?
+		beq.s	.exit
 		tst.w	shoetime(a0)	; check	time remaining
 		beq.s	.exit
 		subq.w	#1,shoetime(a0)	; subtract 1 from time
 		bne.s	.exit
-		move.w	#$600,(v_sonspeedmax).w ; restore Sonic's speed
-		move.w	#$C,(v_sonspeedacc).w ; restore Sonic's acceleration
-		move.w	#$80,(v_sonspeeddec).w ; restore Sonic's deceleration
+		move.w	#$600,(v_sonspeedmax).w ; restore player's speed
+		move.w	#$C,(v_sonspeedacc).w ; restore player's acceleration
+		move.w	#$80,(v_sonspeeddec).w ; restore player's deceleration
 		move.b	#0,(v_shoes).w	; cancel speed shoes
 		move.w	#bgm_Slowdown,d0
 		jmp	(PlaySound).l	; run music at normal speed

@@ -25,17 +25,17 @@ Smab_Main:	; Routine 0
 
 Smab_Solid:	; Routine 2
 
-sonicAniFrame = $32		; Sonic's current animation number
+sonicAniFrame = $32		; player's current animation number
 .count = $34		; number of blocks hit + previous stuff
 
 		move.w	(v_itembonus).w,$34(a0)
-		move.b	(v_player+obAnim).w,sonicAniFrame(a0) ; load Sonic's animation number
+		move.b	(v_player+obAnim).w,sonicAniFrame(a0) ; load player's animation number
 		move.w	#$1B,d1
 		move.w	#$10,d2
 		move.w	#$11,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
-		btst	#3,obStatus(a0)	; has Sonic landed on the block?
+		btst	#3,obStatus(a0)	; has player landed on the block?
 		bne.s	.smash		; if yes, branch
 
 .notspinning:
@@ -43,14 +43,14 @@ sonicAniFrame = $32		; Sonic's current animation number
 ; ===========================================================================
 
 .smash:
-		cmpi.b	#id_Roll,sonicAniFrame(a0) ; is Sonic rolling/jumping?
+		cmpi.b	#id_Roll,sonicAniFrame(a0) ; is player rolling/jumping?
 		bne.s	.notspinning	; if not, branch
 		move.w	.count(a0),(v_itembonus).w
 		bset	#2,obStatus(a1)
 		move.b	#$E,obHeight(a1)
 		move.b	#7,obWidth(a1)
-		move.b	#id_Roll,obAnim(a1) ; make Sonic roll
-		move.w	#-$300,obVelY(a1) ; rebound Sonic
+		move.b	#id_Roll,obAnim(a1) ; make player roll
+		move.w	#-$300,obVelY(a1) ; rebound player
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)

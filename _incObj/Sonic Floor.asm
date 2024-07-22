@@ -49,7 +49,7 @@ loc_13602:
 loc_1361E:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+        tst.b	(f_hammercharge).w      ; is charging hammer rush flag set?
 		bne.s 	loc_1361E_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
 loc_1361E_cont:
@@ -119,7 +119,7 @@ loc_136B4:
 		bpl.s	locret_136E0
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+        tst.b	(f_hammercharge).w      ; is charging hammer rush flag set?
 		bne.s 	loc_136B4_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
 loc_136B4_cont:
@@ -201,7 +201,7 @@ loc_13772:
 		bpl.s	locret_1379E
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		tst.b	(f_hammerrush).w ; is hammer rush flag set?
+        tst.b	(f_hammercharge).w      ; is charging hammer rush flag set?
 		bne.s 	loc_13772_cont ; if so, branch
 		move.b	#id_Walk,obAnim(a0)
 loc_13772_cont:		

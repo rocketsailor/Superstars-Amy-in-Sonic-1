@@ -28,7 +28,6 @@ DoubleJumpPart2:
 	move.b	#7,obWidth(a0)
 	move.b	#id_HammerAttack,obAnim(a0) ; use hammer animation
         move.b	#1,(f_hammerobject).w ; set flag for using the hammer
-        move.b	#1,(f_hammerrush).w ; set flag for hammer rush
         bset	#2,obStatus(a0)
 
 DoubleJumpEnd:

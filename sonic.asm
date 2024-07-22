@@ -7047,7 +7047,7 @@ HammerObj_Init:
 		move.l	#Map_HammerBox,obMap(a0)
 		move.w	#$8680,obGfx(a0)
 		move.b	#4,obRender(a0)
-        move.b 	#$18,obHeight(a0)
+        move.b 	#7,obHeight(a0)
 		addq.b 	#2,obRoutine(a0)
 
 HammerObj_Main:
@@ -7135,9 +7135,9 @@ loc_1DDCC:				; DATA XREF: h+6E30?o
 		move	obY(a2),obY(a0)
 		move.b	obStatus(a2),obStatus(a0)
 		and.b	#1,obStatus(a0)
-		tst.b	$34(a0)
-		beq.s	loc_1DE06
-		sub	#4,obY(a0)
+		;tst.b	$34(a0)
+		;beq.s	loc_1DE06
+		;sub	#4,obY(a0)
 
 loc_1DE06:				; CODE XREF: h+6E8A?j
 		tst.b	obNextAni(a0)
