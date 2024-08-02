@@ -1,8 +1,10 @@
 ; ---------------------------------------------------------------------------
-; Sonic	when he	gets hurt
+; Player when they get hurt
 ; ---------------------------------------------------------------------------
 
 Sonic_Hurt:	; Routine 4
+        clr.b   (f_hammerobject).w ; clear hammer object flag
+		clr.b   (f_hammerrush).w ; clear hammer rush flag
 		jsr	(SpeedToPos).l
 		addi.w	#$30,obVelY(a0)
 		btst	#6,obStatus(a0)
@@ -18,7 +20,7 @@ loc_1380C:
 		jmp	(DisplaySprite).l
 
 ; ---------------------------------------------------------------------------
-; Subroutine to	stop Sonic falling after he's been hurt
+; Subroutine to	stop player falling after they've been hurt
 ; ---------------------------------------------------------------------------
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
@@ -45,10 +47,11 @@ locret_13860:
 ; End of function Sonic_HurtStop
 
 ; ---------------------------------------------------------------------------
-; Sonic	when he	dies
+; Player's death
 ; ---------------------------------------------------------------------------
 
 Sonic_Death:	; Routine 6
+        clr.b   (f_hammerobject).w ; clear hammer object flag
 		bsr.w	GameOver
 		jsr	(ObjectFall).l
 		bsr.w	Sonic_RecordPosition
@@ -100,7 +103,7 @@ locret_13900:
 ; End of function GameOver
 
 ; ---------------------------------------------------------------------------
-; Sonic	when the level is restarted
+; Player when the level is restarted
 ; ---------------------------------------------------------------------------
 
 Sonic_ResetLevel:; Routine 8

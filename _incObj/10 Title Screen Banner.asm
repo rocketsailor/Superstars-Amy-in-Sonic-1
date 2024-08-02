@@ -1,6 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   Credit to E-122-Psi for the bouncing portion of the code.
+; 	"AMY" letter graphics by Devy from The Spriters Resource. 
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 10 - "Superstars Amy Rose in" banner for title screen
@@ -26,7 +27,7 @@ Banner_Main:
 		move.b	#1,obPriority(a0)
 
 Banner_Drop:
-		cmp.w	#$B0,obScreenY(a0)				; has titlecard reached bounce point yet?
+		cmp.w	#$B3,obScreenY(a0)				; has titlecard reached bounce point yet?
 		blt.s	Banner_NoBounce				; if not, branch
 		tst.b	$28(a0)					; has bounce flag already been set?
 		beq.s	Banner_NoFin				; if not, branch

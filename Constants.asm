@@ -155,7 +155,8 @@ obSolid:	equ ob2ndRout ; solid status flag
 flashtime:	equ $30	; time between flashes after getting hit
 invtime:	equ $32	; time left for invincibility
 shoetime:	equ $34	; time left for speed shoes
-rushtime:   equ $3A ; time left for hammer rush
+spindashcharge: equ $3A ; power of spindash
+rushtime:   equ spindashcharge ; time left for hammer rush
 standonobject:	equ $3D	; object player stands on
 
 ; Object variables (Sonic 2 disassembly nomenclature)

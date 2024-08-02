@@ -30,8 +30,8 @@ Sonic_Move:
 		tst.w	obInertia(a0)	; is Sonic moving?
 		bne.w	Sonic_ResetScr	; if yes, branch
 		bclr	#5,obStatus(a0)
-		cmpi.b 	#id_HammerRush,obAnim(a0)
-		beq.s 	.notrightcont
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s 	.notrightcont ; if so, branch
 		cmpi.b 	#id_Wait2,obAnim(a0)
 		beq.s 	.notrightcont	
 		cmpi.b 	#id_Wait3,obAnim(a0)
@@ -82,8 +82,8 @@ loc_12F6A:
 		bset	#0,obStatus(a0)
 
 loc_12F70:
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s  	Sonic_ResetScr ; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s  	Sonic_ResetScr ; if so, branch
 		move.b	#id_Balance,obAnim(a0) ; use "balancing" animation
 		bra.s	Sonic_ResetScr
 ; ===========================================================================
@@ -91,8 +91,8 @@ loc_12F70:
 Sonic_LookUp:
 		btst	#bitUp,(v_jpadhold2).w ; is up being pressed?
 		beq.s	Sonic_Duck	; if not, branch
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s	Sonic_Duck	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s	Sonic_Duck	; if so, branch
 		move.b	#id_LookUp,obAnim(a0) ; use "looking up" animation
 		cmpi.w	#$C8,(v_lookshift).w
 		beq.s	loc_12FC2
@@ -103,8 +103,8 @@ Sonic_LookUp:
 Sonic_Duck:
 		btst	#bitDn,(v_jpadhold2).w ; is down being pressed?
 		beq.s	Sonic_ResetScr	; if not, branch
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s	Sonic_ResetScr	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s	Sonic_ResetScr	; if so, branch
 		move.b	#id_Duck,obAnim(a0) ; use "ducking" animation
 		cmpi.w	#8,(v_lookshift).w
 		beq.s	loc_12FC2
@@ -234,8 +234,8 @@ loc_1309A:
 
 loc_130A6:
 		move.w	d0,obInertia(a0)
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s 	.skipwalkinganim	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s 	.skipwalkinganim	; if so, branch
 		move.b	#id_Walk,obAnim(a0) ; use walking animation
 
 .skipwalkinganim:
@@ -255,8 +255,8 @@ loc_130BA:
 		bne.s	locret_130E8
 		cmpi.w	#$400,d0
 		blt.s	locret_130E8
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s 	locret_130E8	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s 	locret_130E8	; if so, branch
 		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
 		bclr	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
@@ -289,8 +289,8 @@ loc_13104:
 
 loc_1310C:
 		move.w	d0,obInertia(a0)
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s 	.skipwalkinganim2	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s 	.skipwalkinganim2	; if so, branch
 		move.b	#id_Walk,obAnim(a0) ; use walking animation
 
 .skipwalkinganim2:
@@ -310,8 +310,8 @@ loc_13120:
 		bne.s	locret_1314E
 		cmpi.w	#-$400,d0
 		bgt.s	locret_1314E
-		cmpi.b 	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
-		beq.s 	locret_1314E	; if so, branch
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s 	locret_1314E	; if so, branch
 		move.b	#id_Stop,obAnim(a0) ; use "stopping" animation
 		bset	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0

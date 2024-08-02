@@ -34,7 +34,6 @@ StartHammerCharge:
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling?
 		beq.s 	locret_134D2
 		move.b 	#id_HammerCharge,obAnim(a0) ; set animation to hammer charge
-		move.b	#1,(f_hammercharge).w ; set flag for charging hammer rush
 		rts
 
 SwitchToRolling:

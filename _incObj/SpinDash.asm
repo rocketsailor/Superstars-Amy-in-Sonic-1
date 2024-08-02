@@ -12,14 +12,14 @@ Sonic_SpinDash:
 		cmpi.b	#id_Duck,obAnim(a0)		; is player ducking?
 		bne.s	locret2_1AC8C		; if not, return
 		move.b	(v_jpadpress2).w,d0	; read controller
-		andi.b	#$70,d0			; pressing A/B/C ?
+		andi.b	#btnABC,d0			; pressing A/B/C ?
 		beq.w	locret2_1AC8C		; if not, return
 		move.b	#id_SpinDash,obAnim(a0)		; set Spin Dash animation
 		move.w	#sfx_SpindashRev,d0			; spin sound
 		jsr	(PlaySound_Special).l	; play spin sound
 		addq.l	#4,sp			; Add 4 bytes to the stack return address to skip Sonic_Jump on next rts to Obj01_MdNormal, preventing conflicts with button presses.
 		move.b	#1,f_spindash(a0)		; set Spin Dash flag
-		move.w	#0,$3A(a0)		; set charge count to 0
+		move.w	#0,spindashcharge(a0)		; set charge count to 0
 		cmpi.b	#$C,$28(a0)		; ??? oxygen remaining?
 		;bcs.s	loc2_1AC84		; ??? branch if carry
 		move.b	#2,($FFFFD1DC).w	; Set the Spin Dash dust animation to $2.
@@ -43,7 +43,7 @@ loc2_1AC8E:
 		addq.w	#1,obY(a0)		; $C(a0) is Y coordinate
 		move.b	#0,f_spindash(a0)		; clear Spin Dash flag
 		moveq	#0,d0
-		move.b	$3A(a0),d0		; copy charge count
+		move.b	spindashcharge(a0),d0		; copy charge count
 		add.w	d0,d0			; double it
 		move.w	Dash_Speeds(pc,d0.w),obInertia(a0) ; get normal speed
 		move.w	obInertia(a0),d0		; get inertia
@@ -77,26 +77,26 @@ Dash_Speeds:
 ; ===========================================================================
 
 loc2_1AD30:				; If still charging the dash...
-		tst.w	$3A(a0)		; check charge count
+		tst.w	spindashcharge(a0)		; check charge count
 		beq.s	loc2_1AD48	; if zero, branch
-		move.w	$3A(a0),d0	; otherwise put it in d0
+		move.w	spindashcharge(a0),d0	; otherwise put it in d0
 		lsr.w	#5,d0		; shift right 5 (divide it by 32)
-		sub.w	d0,$3A(a0)	; subtract from charge count
+		sub.w	d0,spindashcharge(a0)	; subtract from charge count
 		bcc.s	loc2_1AD48	; ??? branch if carry clear
-		move.w	#0,$3A(a0)	; set charge count to 0
+		move.w	#0,spindashcharge(a0)	; set charge count to 0
 
 loc2_1AD48:
 		move.b	(v_jpadpress2).w,d0	; read controller
-		andi.b	#$70,d0			; pressing A/B/C?
+		andi.b	#btnABC,d0			; pressing A/B/C?
 		beq.w	loc2_1AD78		; if not, branch
 		move.w	#$1A00,obAnim(a0)	; reset spin dash animation
 		move.w	#sfx_SpindashRev,d0
 		move.b	#2,$FFFFD1DC.w	; Set the Spin Dash dust animation to $2.
 		jsr	(PlaySound_Special).l	; play charge sound
-		addi.w	#$200,$3A(a0)		; increase charge count
-		cmpi.w	#$800,$3A(a0)		; check if it's maxed
+		addi.w	#$200,spindashcharge(a0)		; increase charge count
+		cmpi.w	#$800,spindashcharge(a0)		; check if it's maxed
 		bcs.s	loc2_1AD78		; if not, then branch
-		move.w	#$800,$3A(a0)		; reset it to max
+		move.w	#$800,spindashcharge(a0)		; reset it to max
 
 loc2_1AD78:
 		addq.l	#4,sp			; Add 4 bytes to the stack return address to skip Sonic_Jump on next rts to Obj01_MdNormal, preventing conflicts with button presses.

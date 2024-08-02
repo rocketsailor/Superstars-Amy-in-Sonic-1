@@ -6,17 +6,29 @@
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 HammerRush:
-        clr.b	(f_hammercharge).w ; clear hammer rush charging flag
+        cmpi.b	#id_HammerCharge,obAnim(a0) ; if animation is not hammer charge or hammer rush,
+        blt.s   .clearflags ; then branch
         move.b	(v_jpadhold2).w,d0
         andi.b	#btnABC,d0	; is A, B or C pressed?
-        beq.s	HammerRushEnd	; if not, branch
-        move.b	#id_HammerRush,obAnim(a0) ; use hammer rush animation
+        beq.s	.walk	; if not, branch
+        cmpi.b	#id_HammerRush,obAnim(a0) ; is player already using hammer rush?
+        beq.s 	.timer	; if yes, branch
+        move.w	#$AE,(v_player+$3A).w	; set 3-second time limit for hammer rush
         move.b	#1,(f_hammerrush).w ; set flag for hammer rush
-        move.w	#$AE,(v_player+$3A).w	; time limit for the hammer rush
-        rts
+        move.b	#id_HammerRush,obAnim(a0) ; use hammer rush animation
 
-HammerRushEnd:
+.timer:
+        tst.w	rushtime(a0)	; check	time remaining
+	beq.s	.exit  ; if no time remains, branch
+	subq.w	#1,rushtime(a0)	; subtract 1 from time
+	bne.s	.exit
+
+.walk:
         move.b	#id_Walk,obAnim(a0) ; use running/walking animation
+
+.clearflags:
         clr.b   (f_hammerobject).w ; clear hammer object flag
-        clr.b	(f_hammerrush).w ; clear hammer rush flag
+        clr.b   (f_hammerrush).w ; clear hammer rush flag
+
+.exit:
         rts

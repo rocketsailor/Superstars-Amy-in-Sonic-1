@@ -1,6 +1,6 @@
-Map_0000:
-Map_0000_0: 	dc.w Map_0000_2-Map_0000
-Map_0000_2: 	dc.b $C
+Map_a55d:
+Map_a55d_0: 	dc.w Map_a55d_2-Map_a55d
+Map_a55d_2: 	dc.b $C
 	dc.b $E4, $F, $0, $0, $C1
 	dc.b $4, $F, $0, $10, $C1
 	dc.b $D4, $D, $0, $20, $D1

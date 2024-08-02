@@ -2242,10 +2242,10 @@ Tit_ClrPal:
 		locVRAM $A000
 		lea	(Nem_TitleBanner).l,a0 ;	load title screen banner patterns
 		bsr.w	NemDec
-		locVRAM	$A200
-		;lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
-		;bsr.w	NemDec
-		;lea	(vdp_data_port).l,a6
+		locVRAM	$B200
+		lea	(Nem_TitleTM).l,a0 ; load "TM" patterns
+		bsr.w	NemDec
+		lea	(vdp_data_port).l,a6
 		locVRAM	$D000,4(a6)
 		lea	(Art_Text).l,a5	; load level select font
 		move.w	#$28F,d1
@@ -2306,15 +2306,15 @@ Tit_ClrObj2:
 		move.b	#id_TitleSonic,(v_objspace+$40).w ; load big Sonic object
 		move.b	#id_TitleBanner,(v_objspace+$80).w ; load banner object
 		;move.b	#id_PSBTM,(v_objspace+$80).w ; load "PRESS START BUTTON" object
-		;clr.b	(v_objspace+$80+obRoutine).w ; The 'Mega Games 10' version of Sonic 1 added this line, to fix the 'PRESS START BUTTON' object not appearing
+		clr.b	(v_objspace+$80+obRoutine).w ; The 'Mega Games 10' version of Sonic 1 added this line, to fix the 'PRESS START BUTTON' object not appearing
 
-		;if Revision<>0
-		;	tst.b   (v_megadrive).w	; is console Japanese?
-		;	bpl.s   .isjap		; if yes, branch
-		;endif
+		if Revision<>0
+			tst.b   (v_megadrive).w	; is console Japanese?
+			bpl.s   .isjap		; if yes, branch
+		endif
 
-		;move.b	#id_PSBTM,(v_objspace+$C0).w ; load "TM" object
-		;move.b	#3,(v_objspace+$C0+obFrame).w
+		move.b	#id_PSBTM,(v_objspace+$C0).w ; load "TM" object
+		move.b	#3,(v_objspace+$C0+obFrame).w
 .isjap:
 		;move.b	#id_PSBTM,(v_objspace+$100).w ; load object which hides part of Sonic
 		;move.b	#2,(v_objspace+$100+obFrame).w
@@ -7028,7 +7028,7 @@ Map_HammerBox: include "_maps/Invisible Hammer Hitbox.asm"
 ;	Also thank you DeltaW for your Insta Shield porting tutorial!
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
-; Object 02 - Invisible hammer hitbox
+; Object 02 - Hammer
 ; ---------------------------------------------------------------------------
 
 HammerObj: ; XREF: Obj_Index
@@ -7056,8 +7056,8 @@ HammerObj_Main:
 		move.w	obY(a1),obY(a0)
 		tst.b	(f_hammerobject).w	; is hammer flag set?
 		beq.s 	HammerObj_End	; if not, branch
-		jsr    (ReactToItem).l
-		;jmp	(DisplaySprite).l
+		jsr    (ReactToItem).l ; enable collision with other objects
+		jmp	(DisplaySprite).l ; enable graphics for testing purposes
 
 HammerObj_End:
         rts
@@ -7504,8 +7504,8 @@ MusicList2:
 ; ---------------------------------------------------------------------------
 
 Sonic_MdNormal:
-		bsr.w 	HammerRush
 		bsr.w	Sonic_SpinDash
+		bsr.w 	HammerRush
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
 		bsr.w	Sonic_Move
@@ -7569,22 +7569,6 @@ loc_12EA6:
 		include	"_incObj/Sonic RollSpeed.asm"
 		include	"_incObj/Sonic JumpDirection.asm"
 		include	"_incObj/SpinDash.asm"
-
-; ===========================================================================
-; ---------------------------------------------------------------------------
-; Unused subroutine to squash player
-; ---------------------------------------------------------------------------
-		move.b	obAngle(a0),d0
-		addi.b	#$20,d0
-		andi.b	#$C0,d0
-		bne.s	locret_13302
-		bsr.w	Sonic_DontRunOnWalls
-		tst.w	d1
-		bpl.s	locret_13302
-		move.w	#0,obInertia(a0) ; stop player moving
-		move.w	#0,obVelX(a0)
-		move.w	#0,obVelY(a0)
-		;move.b	#id_Warp3,obAnim(a0) ; use "warping" animation
 
 locret_13302:
 		rts	

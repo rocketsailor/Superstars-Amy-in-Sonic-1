@@ -15,7 +15,6 @@ HammerChargeCheck:
         bne.s	ChargeCheckEnd	; if not, branch
         move.b  #id_Roll,obAnim(a0) ; set animation to roll
         clr.b	(f_hammerobject).w ; clear hammer flag
-        clr.b	(f_hammercharge).w ; clear hammer rush charging flag
 
 ChargeCheckEnd:
         rts

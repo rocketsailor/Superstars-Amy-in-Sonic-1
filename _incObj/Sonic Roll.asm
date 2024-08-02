@@ -13,6 +13,8 @@ Sonic_Roll:
 		neg.w	d0
 
 .ispositive:
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s	.noroll	; if so, branch
 		cmpi.w	#$80,d0		; is Sonic moving at $80 speed or faster?
 		bcs.s	.noroll		; if not, branch
 		move.b	(v_jpadhold2).w,d0
