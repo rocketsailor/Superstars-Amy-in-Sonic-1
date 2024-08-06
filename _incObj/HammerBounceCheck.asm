@@ -10,6 +10,8 @@
 HammerBounceCheck: 
         tst.b	(f_hammerbounce).w	; is bounce flag set?
         beq.s   HammerBounceCheck2  ; if not, branch
+        cmpi.b	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
+        beq.s 	BounceCheckEnd	; if yes, branch      
         tst.w	obVelY(a0)
 		bmi.s	BounceCheckEnd
 		neg.w	obVelY(a0)    ; badnik & monitor bounce

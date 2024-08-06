@@ -20,6 +20,8 @@ Sonic_Animate:
 		adda.w	(a1,d0.w),a1	; jump to appropriate animation	script
 		move.b	(a1),d0
 		bmi.s	.walkrunroll	; if animation is walk/run/roll/jump, branch
+        cmpi.b	#id_HammerRush,obAnim(a0) ; is player using hammer rush?
+        beq.w 	.rush	; if yes, branch
 		move.b	obStatus(a0),d1
 		andi.b	#1,d1
 		andi.b	#$FC,obRender(a0)
@@ -172,5 +174,34 @@ Sonic_Animate:
 		andi.b	#$FC,obRender(a0)
 		or.b	d1,obRender(a0)
 		bra.w	.loadframe
+
+.rush:
+		subq.b	#1,obTimeFrame(a0) ; subtract 1 from frame duration
+		bpl.w	.end		; if time remains, branch
+		move.b	d0,obTimeFrame(a0) ; load frame duration
+		moveq	#0,d1
+		move.b	obAngle(a0),d0	; get player's angle
+		move.b	obStatus(a0),d2
+		andi.b	#1,d2		; is player mirrored horizontally?
+		bne.s	.rushflip		; if yes, branch
+		not.b	d0		; reverse angle
+
+.rushflip:
+		addi.b	#$10,d0		; add $10 to angle
+		bpl.s	.rushnoinvert	; if angle is $0-$7F, branch
+		moveq	#3,d1
+
+.rushnoinvert:
+		andi.b	#$FC,obRender(a0)
+		eor.b	d1,d2
+		or.b	d2,obRender(a0)
+		lsr.b	#4,d0		; divide angle by $10
+		andi.b	#6,d0		; angle	must be	0, 2, 4	or 6
+		add.b   d0,d0
+		add.b	d0,d0
+		move.b	d0,d3
+		bsr.w	.loadframe
+		add.b	d3,obFrame(a0)	; modify frame number
+		rts	
 
 ; End of function Sonic_Animate

@@ -7057,7 +7057,7 @@ HammerObj_Main:
 		tst.b	(f_hammerobject).w	; is hammer flag set?
 		beq.s 	HammerObj_End	; if not, branch
 		jsr    (ReactToItem).l ; enable collision with other objects
-		jmp	(DisplaySprite).l ; enable graphics for testing purposes
+		;jmp	(DisplaySprite).l ; enable graphics for testing purposes
 
 HammerObj_End:
         rts
