@@ -1,3 +1,7 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   Additional lines have been added for spindash, hammer rush, and extra sfx.
+;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Constants
 ; ---------------------------------------------------------------------------
@@ -151,7 +155,7 @@ obAngle:	equ $26	; angle
 obSubtype:	equ $28	; object subtype
 obSolid:	equ ob2ndRout ; solid status flag
 
-; Object variables used by player
+; Object variables used by player (spindashcharge and rushtime added by rocketsailor)
 flashtime:	equ $30	; time between flashes after getting hit
 invtime:	equ $32	; time left for invincibility
 shoetime:	equ $34	; time left for speed shoes
@@ -216,7 +220,7 @@ bgm_Drowning:	equ ((ptr_mus92-MusicIndex)/4)+bgm__First
 bgm_Emerald:	equ ((ptr_mus93-MusicIndex)/4)+bgm__First
 bgm__Last:	equ ((ptr_musend-MusicIndex-4)/4)+bgm__First
 
-; Sound effects
+; Sound effects (spindash sfx added by rocketsailor)
 sfx__First:	equ $A0
 sfx_Jump:	equ ((ptr_sndA0-SoundIndex)/4)+sfx__First
 sfx_Lamppost:	equ ((ptr_sndA1-SoundIndex)/4)+sfx__First

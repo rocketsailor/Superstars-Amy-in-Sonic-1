@@ -1,3 +1,8 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   This was copied from the Sonic 2 disassembly.
+;   =======================================================================
+
 SoundD1_SpindashRelease_Header:
 	smpsHeaderStartSong 2
 	smpsHeaderVoice     SoundD1_SpindashRelease_Voices

@@ -1,7 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   Huge thanks to E-122-Psi for assisting me with the hammer object!
-; 	Also, thank you DeltaWooloo for the hammer hitbox code!
+; 	Also, thank you DeltaW for the hammer hitbox code!
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Subroutine to react to obColType(a0)
@@ -12,13 +12,24 @@
 ReactToItem:
 		cmp.b 	#2,(a0) ; if NOT using hammer,
 		bne.s 	.nohammer ; then branch		
-        ; (DeltaWooloo) By this point, we're focusing purely on the Piko-Piko hammer
-        move.w	obX(a0),d2                ; Get x-pos
-        move.w	obY(a0),d3                ; Get y-pos
-        subi.w	#$18,d2                    ; Subtract width of hammer
-        subi.w	#$18,d3                    ; Subtract height of hammer     
-		move.w	#$30,d4                    ; hitbox width
-        move.w	#$30,d5                    ; hitbox height
+        ; (DeltaW) By this point, we're focusing purely on the Piko-Piko hammer
+		move.w	obX(a0),d2                ; Get x-pos
+		move.w	obY(a0),d3                ; Get y-pos
+		tst.b	(f_hammerrush).w	; is hammer rush flag set?
+		beq.s 	.nothammerrush 		; if not, branch
+		subi.w	#$17,d2                    ; Subtract width of hammer
+		subi.w	#$1A,d3                    ; Subtract height of hammer     
+		move.w	#$2F,d4                    ; hitbox width
+		move.w	#$2A,d5                    ; hitbox height
+		bra.s 	.continue
+
+.nothammerrush:
+		subi.w	#$18,d2                    ; Subtract width of hammer
+		subi.w	#$18,d3                    ; Subtract height of hammer     
+		move.w	#$2F,d4                    ; hitbox width
+        move.w	#$2F,d5                    ; hitbox height
+
+.continue:
         bsr.w	.process  
 		moveq	#0,d0
 		rts	
@@ -200,10 +211,6 @@ No_Reaction:
 React_Enemy:
 		cmp.b 	#$3C,(a1)	; is object smashable wall?
 		beq.s 	.specificobject ; if so, branch
-		;cmp.b 	#$51,(a1)	; is object smashable green block?
-		;beq.s 	.specificobject ; if so, branch
-		;cmp.b 	#$85,(a1)	; is object final boss?
-		;beq.s 	.specificobject ; if so, branch
 		cmp.b 	#2,(a0) ; if using hammer,
 		beq.s	.donthurtsonic	; then branch
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is player using hammer? (failsafe)

@@ -1,3 +1,7 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   This file has various modifications by both myself and others.
+;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Subroutine to	animate	player's sprites
 ; ---------------------------------------------------------------------------
@@ -14,6 +18,9 @@ Sonic_Animate:
 		move.b	d0,obNextAni(a0) ; set to "no restart"
 		move.b	#0,obAniFrame(a0) ; reset animation
 		move.b	#0,obTimeFrame(a0) ; reset frame duration
+
+		; Mercury's Pushing While Walking Fix (from RetroKoH's S1Fixed)
+		bclr	#5,obStatus(a0)	; clear pushing flag
 
 .do:
 		add.w	d0,d0
@@ -34,6 +41,8 @@ Sonic_Animate:
 		moveq	#0,d1
 		move.b	obAniFrame(a0),d1 ; load current frame number
 		move.b	1(a1,d1.w),d0	; read sprite number from script
+
+		; Art limit extensions by MarkeyJester
 		cmp.b	#$FD,d0		; MJ: is it a flag from FD to FF?
 		bhs	.end_FF	; MJ: if so, branch to flag routines
 
@@ -108,10 +117,10 @@ Sonic_Animate:
 		bcc.s	.running	; if yes, branch
 
 		lea	(SonAni_Walk).l,a1
-		add.b   d0,d0 
+		add.b   d0,d0 	; This line replaces 3 lines that originally calculated for 6 walking frames instead of 8. Credit to Devon and to Clownacy.
 
 .running:
-		add.b	d0,d0
+		add.b	d0,d0 
 		move.b	d0,d3 
 		neg.w	d2
 		addi.w	#$800,d2
@@ -174,6 +183,9 @@ Sonic_Animate:
 		andi.b	#$FC,obRender(a0)
 		or.b	d1,obRender(a0)
 		bra.w	.loadframe
+
+; ===========================================================================
+; rocketsailor's note: The Hammer Rush is basically the same as walking/running, but without switching animations or changing speed of the animation.
 
 .rush:
 		subq.b	#1,obTimeFrame(a0) ; subtract 1 from frame duration

@@ -6472,6 +6472,8 @@ BuildSprites:
 		btst	#5,d4		; is static mappings flag on?
 		bne.s	.drawFrame	; if yes, branch
 		move.b	obFrame(a0),d1
+
+		; Art limit extensions by MarkeyJester
 		add.w	d1,d1		; MJ: changed from byte to word (we want more than 7F sprites)
 		adda.w	(a1,d1.w),a1
 		moveq	#$00,d1		; MJ: clear d1 (because of our byte to word change)
@@ -7025,7 +7027,8 @@ Map_HammerBox: include "_maps/Invisible Hammer Hitbox.asm"
 ;  =========================================================================
 ;   rocketsailor's note: 
 ;   Huge thank you to E-122-Psi for assisting me with creating this object!
-;	Also thank you DeltaW for your Insta Shield porting tutorial!
+;	Also thank you DeltaW for your Insta-Shield porting tutorial, 
+;	which this object was originally based on.
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 02 - Hammer
@@ -7414,7 +7417,7 @@ Sonic_Index:	dc.w Sonic_Main-Sonic_Index
 		dc.w Sonic_ResetLevel-Sonic_Index
 ; ===========================================================================
 
-Sonic_Main:	; Routine 0 ; Obj01_Main
+Sonic_Main:
 		addq.b	#2,obRoutine(a0)
 		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
@@ -7426,10 +7429,14 @@ Sonic_Main:	; Routine 0 ; Obj01_Main
 		move.w	#$600,(v_sonspeedmax).w ; player's top speed
 		move.w	#$C,(v_sonspeedacc).w ; player's acceleration
 		move.w	#$80,(v_sonspeeddec).w ; player's deceleration
+
+		; Spin dash dust object from Spin Dash guides on Sonic Retro.
 		move.b	#5,$FFFFD1C0.w ; load spin dash dust object
+
+		; Based off DeltaW's insta-shield object. Thank you Kilo for the new address.
 		move.b 	#2,$FFFFD580.w ; load hammer object
 
-Sonic_Control:	; Routine 2 ; Obj01_Control
+Sonic_Control:
 		tst.w	(f_debugmode).w	; is debug cheat enabled?
 		beq.s	loc_12C58	; if not, branch
 		btst	#bitB,(v_jpadpress1).w ; is button B pressed?
@@ -7439,12 +7446,12 @@ Sonic_Control:	; Routine 2 ; Obj01_Control
 		rts	
 ; ===========================================================================
 
-loc_12C58: ; Sonic_Hurt 
+loc_12C58:
 		tst.b	(f_lockctrl).w	; are controls locked?
 		bne.s	loc_12C64	; if yes, branch
 		move.w	(v_jpadhold1).w,(v_jpadhold2).w ; enable joypad control
 
-loc_12C64: ; Sonic_Death
+loc_12C64:
 		btst	#0,(f_playerctrl).w ; are controls locked?
 		bne.s	loc_12C7E	; if yes, branch
 		moveq	#0,d0
@@ -7453,7 +7460,7 @@ loc_12C64: ; Sonic_Death
 		move.w	Sonic_Modes(pc,d0.w),d1
 		jsr	Sonic_Modes(pc,d1.w)
 
-loc_12C7E: ; Sonic_ResetLevel
+loc_12C7E:
 		bsr.s	Sonic_Display
 		bsr.w	Sonic_RecordPosition
 		bsr.w	Sonic_Water

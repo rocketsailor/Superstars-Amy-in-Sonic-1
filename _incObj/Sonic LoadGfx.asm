@@ -3,7 +3,6 @@
 ; 	This script contains code written by MarkeyJester (extending art limits) 
 ; 	and Clownacy (DMA queue).
 ;  =========================================================================
-
 ; ---------------------------------------------------------------------------
 ; Sonic	graphics loading subroutine
 ; ---------------------------------------------------------------------------
@@ -35,6 +34,8 @@ Sonic_LoadGfx:
 		addi.w 	#$10,d3
 		lsl.w	#8,d1
 		move.b	(a2)+,d1
+
+		; Art limit extensions by MarkeyJester
 		andi.w	#$0FFF,d1	; MJ: clear the counter
 		lsl.l	#5,d1		; MJ: shifting long-word instead of word (more than FFFF bytes)
 		addi.l 	#Art_Sonic,d1

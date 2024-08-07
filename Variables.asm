@@ -1,9 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
-;   This list has been modified to include variables for the DMA Queue.
-;   These new lines of code were originally written by Clownacy, 
-;   and have been slightly modified by me.
-;   Other new variables are at the bottom of this script.
+;   This list has been modified to include new variables.
+;   Credit to Clownacy for the DMA queue variables.
 ;  =========================================================================
 
 ; sign-extends a 32-bit integer to 64-bit
@@ -23,6 +21,7 @@ v_ngfx_buffer	= ramaddr ( $FFFFAA00 )	; Nemesis graphics decompression buffer ($
 v_spritequeue	= ramaddr ( $FFFFAC00 )	; sprite display queue, in order of priority ($400 bytes)
 v_16x16	= ramaddr ( $FFFFB000 )	; 16x16 tile mappings
 
+; DMA Queue variables by Clownacy (slightly modified for this disassembly by rocketsailor)
 VDP_Command_Buffer	= ramaddr ( $FFFFC800 )	; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
 VDP_Command_Buffer_Slot = ramaddr ( $FFFFC800+7*$12*2 ) ; stores the address of the next open slot for a queued VDP command
 
@@ -365,11 +364,13 @@ v_init		= ramaddr ( $FFFFFFFC )	; 'init' text string (4 bytes)
 ; New stuff added by rocketsailor
 ; =================================================================================
 
+; Huge thanks to E-122-Psi for the first value used for the hammer object.
 f_hammerobject = ramaddr ( $FFFFFFA4 ) ; flag for hammer object
 f_hammerbounce = ramaddr ( $FFFFFFA6 ) ; flag for making player bounce after hammer hits badnik or monitor
 f_hammerbounce2 = ramaddr ( $FFFFFFA8 ) ; flag for making player bounce after hammer hits boss
 f_hammerrush = ramaddr ( $FFFFFFAA ) ; flag for hammer rush
 
+; The values for the variables below originate from the Spin Dash guides on Sonic Retro.
 f_spindash		= $39 ; flag for spindash
 v_spindash_sfx_1 = ramaddr ( $FFFFC900 )
 v_spindash_sfx_2 = ramaddr ( $FFFFC901 )
