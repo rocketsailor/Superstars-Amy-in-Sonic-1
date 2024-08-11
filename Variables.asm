@@ -3,6 +3,8 @@
 ;   This list has been modified to include new variables.
 ;   Credit to Clownacy for the DMA queue variables.
 ;  =========================================================================
+; 	This file is necessary for vladikcomper's Mega PCM 2 DAC driver:
+	include "s1.sounddriver.ram.asm"
 
 ; sign-extends a 32-bit integer to 64-bit
 ; all RAM addresses are run through this function to allow them to work in both 16-bit and 32-bit addressing modes

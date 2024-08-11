@@ -7,7 +7,7 @@
 
 HammerRush:
         cmpi.b	#id_HammerCharge,obAnim(a0) ; if animation is not hammer charge or hammer rush,
-        blt.s   .clearflags ; then branch
+        blt.s   .exit ; then branch
         move.b	(v_jpadhold2).w,d0
         andi.b	#btnABC,d0	; is A, B or C pressed?
         beq.s	.walk	; if not, branch
@@ -16,6 +16,8 @@ HammerRush:
         move.w	#$AE,(v_player+$3A).w	; set 3-second time limit for hammer rush
         move.b	#1,(f_hammerrush).w ; set flag for hammer rush
         move.b	#id_HammerRush,obAnim(a0) ; use hammer rush animation
+        move.w	#sfx_SpindashRelease,d0  ; load sfx
+        jsr	(PlaySound_Special).l  ; play it
 
 .timer:
         tst.w	rushtime(a0)	; check	time remaining
@@ -25,8 +27,6 @@ HammerRush:
 
 .walk:
         move.b	#id_Walk,obAnim(a0) ; use running/walking animation
-
-.clearflags:
         clr.b   (f_hammerobject).w ; clear hammer object flag
         clr.b   (f_hammerrush).w ; clear hammer rush flag
 

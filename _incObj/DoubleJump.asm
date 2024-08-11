@@ -16,8 +16,8 @@ DoubleJump:
 	andi.b	#btnABC,d0	           ; is A, B or C pressed?
         beq.w   DoubleJumpEnd                ; (EB) if not, branch
         bset    #7,obStatus(a0)        ; (EB) set DoubleJump flag
-        move.w	#sfx_Jump,d0           
-        jsr    (PlaySound_Special).l
+        move.b  #dac_sfx_DblJump,d0  ; load sfx
+        jsr     MegaPCM_PlaySample      ; play it
         move.w  #-$580,obVelY(A0)         ; bounce up        
         btst	#6,obStatus(a0) 	; is player underwater?
 	beq.s	DoubleJumpPart2 	; if not, branch

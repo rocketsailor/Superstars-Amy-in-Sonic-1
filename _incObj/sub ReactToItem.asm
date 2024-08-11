@@ -11,7 +11,7 @@
 
 ReactToItem:
 		cmp.b 	#2,(a0) ; if NOT using hammer,
-		bne.s 	.nohammer ; then branch		
+		bne.s 	.player ; then branch		
         ; (DeltaW) By this point, we're focusing purely on the Piko-Piko hammer
 		move.w	obX(a0),d2                ; Get x-pos
 		move.w	obY(a0),d3                ; Get y-pos
@@ -35,7 +35,7 @@ ReactToItem:
 		rts	
 ; ---------------------------------------------------------------------------
 ; Normal ReactToItem comes after this	
-.nohammer:	
+.player:	
 		move.w	obX(a0),d2	; load player's x-axis position
 		move.w	obY(a0),d3	; load player's y-axis position
 		subq.w	#8,d2 

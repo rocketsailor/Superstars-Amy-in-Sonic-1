@@ -3,6 +3,30 @@
 ; ---------------------------------------------------------------------------
 
 Sonic_Display:
+		tst.b 	(f_hammerrush).w
+		beq.s 	.continue
+		cmpi.b 	#fr_Bonk1,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk2,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk3,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk4,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk5,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk6,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk7,obFrame(a0)
+		beq.s 	.bonk
+		cmpi.b 	#fr_Bonk8,obFrame(a0)
+		bne.s 	.continue
+
+.bonk: 
+		move.b  #dac_sfx_Bonk,d0  ; load sfx
+        jsr     MegaPCM_PlaySample  ; play it		
+
+.continue:
 		move.w	flashtime(a0),d0
 		beq.s	.display
 		subq.w	#1,flashtime(a0)

@@ -1,6 +1,7 @@
 ;  =========================================================================
 ;   rocketsailor's note: 
-;   Additional lines have been added for spindash, hammer rush, and extra sfx.
+;   Additional lines have been added to account for the spindash,
+;   hammer rush, and extra sfx.
 ;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Constants
@@ -18,9 +19,6 @@ psg_input:		equ $C00011
 
 ; Z80 addresses
 z80_ram:		equ $A00000	; start of Z80 RAM
-z80_dac3_pitch:		equ z80_ram+zSample3_Pitch
-z80_dac_status:		equ z80_ram+zDAC_Status
-z80_dac_sample:		equ z80_ram+zDAC_Sample
 z80_ram_end:		equ $A02000	; end of non-reserved Z80 RAM
 z80_version:		equ $A10001
 z80_port_1_data:	equ $A10002
@@ -283,5 +281,17 @@ bgm_Slowdown:	equ ((ptr_flgE3-Sound_ExIndex)/4)+flg__First
 bgm_Stop:	equ ((ptr_flgE4-Sound_ExIndex)/4)+flg__First
 flg__Last:	equ ((ptr_flgend-Sound_ExIndex-4)/4)+flg__First
 
+; DAC SFX (added by rocketsailor)
+dac_sfx_DblJump: equ $84
+dac_sfx_Bonk: equ $85
+
 ; player frame IDs
 fr_BadEndWait: equ $68
+fr_Bonk1: equ $72
+fr_Bonk2: equ $76
+fr_Bonk3: equ $7A
+fr_Bonk4: equ $7E
+fr_Bonk5: equ $82
+fr_Bonk6: equ $86
+fr_Bonk7: equ $8A
+fr_Bonk8: equ $8E

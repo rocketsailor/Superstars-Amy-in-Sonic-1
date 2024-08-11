@@ -27,6 +27,7 @@ Special Thanks
 * LuigiXHero - For making your dropdash code open-source.
 * Clownacy - For your YouTube tutorials and contributions to Sonic Retro.
 * MarkeyJester - For your Motorola 68000 Beginner's Tutorial, and your contributions to Sonic Retro.
+* vladikcomper - For creating MegaPCM 2.
 * Everybody else who has contributed to the Sonic ROM hacking scene.
 * Everybody who has played my romhack, and especially those who gave me feedback.
 
