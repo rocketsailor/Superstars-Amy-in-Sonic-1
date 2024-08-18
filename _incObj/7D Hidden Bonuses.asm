@@ -57,10 +57,11 @@ Bonus_Main:	; Routine 0
 		jmp	(DeleteObject).l
 
 ; ===========================================================================
+; Bonus points bug fix by 1337Rooster (10 was originally 1)
 .points:	dc.w 0			; Bonus	points array
 		dc.w 1000
 		dc.w 100
-		dc.w 1
+		dc.w 10
 ; ===========================================================================
 
 Bonus_Display:	; Routine 2

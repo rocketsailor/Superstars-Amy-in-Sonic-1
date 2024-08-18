@@ -20,6 +20,7 @@ Sonic_JumpDirection:
 		neg.w	d1
 		cmp.w	d1,d0
 		bgt.s	loc_13278
+		; airspeed cap removal by Puto
 		add.w	d5,d0		; +++ remove this frame's acceleration change
 		cmp.w	d1,d0		; +++ compare speed with top speed
 		ble.s	loc_13278	; +++ if speed was already greater than the maximum, branch
@@ -32,6 +33,7 @@ loc_13278:
 		add.w	d5,d0
 		cmp.w	d6,d0
 		blt.s	Obj01_JumpMove
+		; airspeed cap removal by Puto
 		sub.w	d5,d0		; +++ remove this frame's acceleration change
 		cmp.w	d6,d0		; +++ compare speed with top speed
 		bge.s	Obj01_JumpMove	; +++ if speed was already greater than the maximum, branch

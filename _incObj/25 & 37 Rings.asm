@@ -1,3 +1,7 @@
+;  =========================================================================
+;   rocketsailor's note: 
+;   This script includes ring fixes by redhotsonic.
+;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 25 - rings
 ; ---------------------------------------------------------------------------
@@ -208,13 +212,22 @@ RLoss_Count:	; Routine 0
 		move.b	#3,obPriority(a1)
 		move.b	#$47,obColType(a1)
 		move.b	#8,obActWid(a1)
-		move.b	#-1,(v_ani3_time).w
 		tst.w	d4
 		bmi.s	.loc_9D62
 		move.w	d4,d0
 		bsr.w	CalcSine
 		move.w	d4,d2
 		lsr.w	#8,d2
+		; Underwater ring physics fix by RHS
+		tst.b	(f_water).w		; Does the level have water?
+		beq.s	.skiphalvingvel		; If not, branch and skip underwater checks
+		move.w	(v_waterpos1).w,d6	; Move water level to d6
+		cmp.w	$C(a0),d6		; Is the ring object underneath the water level?
+		bgt.s	.skiphalvingvel		; If not, branch and skip underwater commands
+		asr.w	d0			; Half d0. Makes the ring's x_vel bounce to the left/right slower
+		asr.w	d1			; Half d1. Makes the ring's y_vel bounce up/down slower
+
+.skiphalvingvel:
 		asl.w	d2,d0
 		asl.w	d2,d1
 		move.w	d0,d2
@@ -236,6 +249,10 @@ RLoss_Count:	; Routine 0
 		move.w	#0,(v_rings).w	; reset number of rings to zero
 		move.b	#$80,(f_ringcount).w ; update ring counter
 		move.b	#0,(v_lifecount).w
+		; Ring timer fix by RHS
+        moveq   #-1,d0                  ; Move #-1 to d0
+        move.b  d0,obDelayAni(a0)       ; Move d0 to new timer
+        move.b  d0,(v_ani3_time).w      ; Move d0 to old timer (for animated purposes)
 		move.w	#sfx_RingLoss,d0
 		jsr	(PlaySound_Special).l	; play ring loss sound
 
@@ -243,6 +260,15 @@ RLoss_Bounce:	; Routine 2
 		move.b	(v_ani3_frame).w,obFrame(a0)
 		bsr.w	SpeedToPos
 		addi.w	#$18,obVelY(a0)
+		; Underwater ring physics fix by RHS
+		tst.b	(f_water).w		; Does the level have water?
+		beq.s	.skipbounceslow		; If not, branch and skip underwater checks
+		move.w	(v_waterpos1).w,d6	; Move water level to d6
+		cmp.w	obY(a0),d6		; Is the ring object underneath the water level?
+		bgt.s	.skipbounceslow		; If not, branch and skip underwater commands
+		subi.w	#$E,obVelY(a0)		; Reduce gravity by $E ($18-$E=$A), giving the underwater effect
+
+.skipbounceslow:
 		bmi.s	.chkdel
 		move.b	(v_vbla_byte).w,d0
 		add.b	d7,d0
@@ -258,8 +284,8 @@ RLoss_Bounce:	; Routine 2
 		neg.w	obVelY(a0)
 
 .chkdel:
-		tst.b	(v_ani3_time).w
-		beq.s	RLoss_Delete
+        subq.b  #1,obDelayAni(a0)       ; Subtract 1
+        beq.w   DeleteObject            ; If 0, delete
 		move.w	(v_limitbtm2).w,d0
 		addi.w	#$E0,d0
 		cmp.w	obY(a0),d0	; has object moved below level boundary?

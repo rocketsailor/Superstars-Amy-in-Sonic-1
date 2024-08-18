@@ -97,13 +97,6 @@ Vectors:	dc.l v_systemstack&$FFFFFF	; Initial stack pointer value
 		dc.l ErrorTrap			; Unused (reserved)
 		dc.l ErrorTrap			; Unused (reserved)
 	else
-loc_E0:
-		; Relocated code from Spik_Hurt. REVXB was a nasty hex-edit.
-		move.l	obY(a0),d3
-		move.w	obVelY(a0),d0
-		ext.l	d0
-		asl.l	#8,d0
-		jmp	(loc_D5A2).l
 
 		dc.w ErrorTrap
 		dc.l ErrorTrap
@@ -363,10 +356,6 @@ GameInit:
             illegal
         endif
 .SampleTableOk:
-; REMOVE ME ONCE TESTED >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        ;moveq   #$FFFFFF8C, d0          ; request SEGA PCM sample
-        ;jsr     MegaPCM_PlaySample
-        ;bra.s   *                       ; FREEZE, BECAUSE IT'S A TEST
 
 MainGameLoop:
 		move.b	(v_gamemode).w,d0 ; load Game Mode
@@ -1299,7 +1288,6 @@ RunPLC:
 
 loc_160E:
 		andi.w	#$7FFF,d2
-		move.w	d2,(f_plc_execute).w
 		bsr.w	NemDec_BuildCodeTable
 		move.b	(a0)+,d5
 		asl.w	#8,d5
@@ -1313,6 +1301,8 @@ loc_160E:
 		move.l	d0,($FFFFF6EC).w
 		move.l	d5,($FFFFF6F0).w
 		move.l	d6,($FFFFF6F4).w
+		; FraGag's Race Condition fix
+		move.w	d2,(f_plc_execute).w
 
 Rplc_Exit:
 		rts	
@@ -7030,7 +7020,7 @@ HammerObj_Main:
 		tst.b	(f_hammerobject).w	; is hammer flag set?
 		beq.s 	HammerObj_End	; if not, branch
 		jsr    (ReactToItem).l ; enable collision with other objects
-		;jmp	(DisplaySprite).l ; enable graphics for testing purposes
+		jmp	(DisplaySprite).l ; enable graphics for testing purposes
 
 HammerObj_End:
         rts

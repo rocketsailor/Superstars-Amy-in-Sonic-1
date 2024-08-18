@@ -231,6 +231,7 @@ loc_1309A:
 		neg.w	d1
 		cmp.w	d1,d0
 		bgt.s	loc_130A6
+		; speed cap removal by Tweaker
 		add.w	d5,d0		; disable
 		cmp.w	d1,d0		; speed
 		ble.s	loc_130A6	; cap
@@ -288,6 +289,7 @@ loc_13104:
 		add.w	d5,d0
 		cmp.w	d6,d0
 		blt.s	loc_1310C
+		; speed cap removal by Tweaker
 		sub.w	d5,d0		; disable
 		cmp.w	d6,d0		; speed
 		bge.s	loc_1310C	; cap
