@@ -301,9 +301,9 @@ LZWindTunnels:
 		bcc.w	.chknext
 		move.w	obY(a1),d2
 		cmp.w	2(a2),d2
-		bcs.s	.chknext
+		bcs.w	.chknext
 		cmp.w	6(a2),d2
-		bcc.s	.chknext	; branch if Sonic is outside a range
+		bcc.w	.chknext	; branch if Sonic is outside a range
 		move.b	(v_vbla_byte).w,d0
 		andi.b	#$3F,d0		; does VInt counter fall on 0, $40, $80 or $C0?
 		bne.s	.skipsound	; if not, branch
@@ -332,6 +332,8 @@ LZWindTunnels:
 		move.w	#$400,obVelX(a1) ; move Sonic horizontally
 		move.w	#0,obVelY(a1)
 		move.b	#id_Float2,obAnim(a1)	; use floating animation
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		bset	#1,obStatus(a1)
 		btst	#0,(v_jpadhold2).w ; is up pressed?
 		beq.s	.down		; if not, branch
@@ -422,6 +424,8 @@ loc_3F84:
 loc_3F9A:
 		clr.b	obInertia+1(a1)
 		move.b	#id_WaterSlide,obAnim(a1) ; use Sonic's "sliding" animation
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		move.b	#1,(f_slidemode).w	; set water slide flag
 		move.b	(v_vbla_byte).w,d0
 		andi.b	#$1F,d0

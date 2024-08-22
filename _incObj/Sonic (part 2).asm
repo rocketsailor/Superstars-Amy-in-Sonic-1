@@ -3,7 +3,7 @@
 ; ---------------------------------------------------------------------------
 
 Sonic_Hurt:	; Routine 4
-        clr.b   (f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerobject).w ; clear hammer object flag
 		clr.b   (f_hammerrush).w ; clear hammer rush flag
 		jsr	(SpeedToPos).l
 		addi.w	#$30,obVelY(a0)
@@ -51,7 +51,8 @@ locret_13860:
 ; ---------------------------------------------------------------------------
 
 Sonic_Death:	; Routine 6
-        clr.b   (f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		bsr.w	GameOver
 		jsr	(ObjectFall).l
 		bsr.w	Sonic_RecordPosition

@@ -210,7 +210,11 @@ No_Reaction:
 
 React_Enemy:
 		cmp.b 	#$3C,(a1)	; is object smashable wall?
-		beq.s 	.specificobject ; if so, branch
+		bne.s 	.reactcont ; if not, branch
+		move.b 	#1,$26(a1)
+		rts
+
+.reactcont:
 		cmp.b 	#2,(a0) ; if using hammer,
 		beq.s	.donthurtsonic	; then branch
 		cmpi.b	#id_HammerAttack,obAnim(a0) ; is player using hammer? (failsafe)
@@ -225,10 +229,6 @@ React_Enemy:
 		beq.s 	.donthurtsonic	; if yes, branch	
 		cmpi.b	#id_SpinDash,obAnim(a0)	; is player Spin Dashing?
 		bne.w 	React_ChkHurt ; if not, branch
-
-.specificobject:
-		move.b 	#1,$26(a1)
-		rts
 
 .donthurtsonic:
 		tst.b	obColProp(a1)

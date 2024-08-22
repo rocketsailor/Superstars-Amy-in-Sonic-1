@@ -34,13 +34,13 @@ if not tools then
 end
 
 -- Delete old ROM.
-os.remove("s1built.prev.bin")
+os.remove("SARIs1built.prev.bin")
 
 -- Backup the most recent ROM.
-os.rename("s1built.bin", "s1built.prev.bin")
+os.rename("SARIs1built.bin", "SARIs1built.prev.bin")
 
 -- Assemble the ROM.
-local assemble_result = common.assemble_file("sonic.asm", "s1built.bin", tools.as, "", tools.s1p2bin, improved_dac_driver_compression and "" or " -a", false)
+local assemble_result = common.assemble_file("sonic.asm", "SARIs1built.bin", tools.as, "", tools.s1p2bin, improved_dac_driver_compression and "" or " -a", false)
 
 if assemble_result == "crash" then
 	print "\n\z
@@ -67,7 +67,7 @@ elseif assemble_result == "error" then
 end
 
 -- Correct the ROM's header with a proper checksum and end-of-ROM value.
-common.fix_header("s1built.bin")
+common.fix_header("SARIs1built.bin")
 
 if assemble_result == "warning" then
 	for line in io.lines("sonic.log") do

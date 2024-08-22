@@ -3,8 +3,23 @@
 ; ---------------------------------------------------------------------------
 
 Sonic_Display:
-		tst.b 	(f_hammerrush).w
-		beq.s 	.continue
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		beq.s 	.continue ; if not, branch
+        move.b	(v_jpadhold2).w,d0
+        andi.b	#btnABC,d0	; is A, B or C pressed?
+        beq.s	.walk	; if not, branch
+        tst.w	rushtime(a0)	; check	time remaining
+		beq.s	.chkbonk  ; if no time remains, branch
+		subq.w	#1,rushtime(a0)	; subtract 1 from time
+		bne.s	.chkbonk
+
+.walk:
+        move.b	#id_Walk,obAnim(a0) ; use running/walking animation
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
+		bra.s 	.continue
+
+.chkbonk:
 		cmpi.b 	#fr_Bonk1,obFrame(a0)
 		beq.s 	.bonk
 		cmpi.b 	#fr_Bonk2,obFrame(a0)

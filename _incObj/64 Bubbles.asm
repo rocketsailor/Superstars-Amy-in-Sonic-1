@@ -87,7 +87,8 @@ Bub_ChkWater:	; Routine 4
 		clr.w	obVelY(a1)
 		clr.w	obInertia(a1)	; stop Sonic
 		move.b	#id_GetAir,obAnim(a1) ; use bubble-collecting animation
-        clr.b   (f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		move.w	#$23,$3E(a1)
 		move.b	#0,$3C(a1)
 		bclr	#5,obStatus(a1)

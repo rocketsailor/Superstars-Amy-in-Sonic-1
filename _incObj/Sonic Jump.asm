@@ -40,12 +40,13 @@ loc_1341C:
 		jsr	(PlaySound_Special).l	; play jumping sound
 		;move.b	#$F,obHeight(a0)	; standing height
 		;move.b	#9,obWidth(a0)	; standing width
-		;btst	#2,obStatus(a0) ; is player jumping/is bit 2?
+		;btst	#2,obStatus(a0) ; is player jumping/is status #2?
 		;bne.s	loc_13490 ; if not, branch
 		move.b	#$E,obHeight(a0) ; ball height
 		move.b	#7,obWidth(a0) ; ball width
 		move.b	#id_HammerAttack,obAnim(a0) ; use hammer attack animation
 		move.b	#1,(f_hammerobject).w ; set flag for using the hammer
+        clr.b	(f_hammerrush).w ; clear hammer rush flag (failsafe)
 		bset	#2,obStatus(a0)
 		addq.w	#1,obY(a0)
 

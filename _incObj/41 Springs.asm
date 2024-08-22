@@ -80,7 +80,8 @@ Spring_BounceUp:
 		move.w	spring_pow(a0),obVelY(a1) ; move Sonic upwards
 		bset	#1,obStatus(a1)
 		bclr	#3,obStatus(a1)
-        clr.b   (f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		move.b	#id_Spring,obAnim(a1) ; use "bouncing" animation
 		move.b	#2,obRoutine(a1)
 		bclr	#3,obStatus(a0)
@@ -130,7 +131,8 @@ Spring_Flipped:
 		bchg	#0,obStatus(a1)
 		btst	#2,obStatus(a1)
 		bne.s	loc_DC56
-        clr.b   (f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerobject).w ; clear hammer object flag
+        clr.b	(f_hammerrush).w ; clear hammer rush flag
 		move.b	#id_Walk,obAnim(a1)	; use walking animation
 
 loc_DC56:
