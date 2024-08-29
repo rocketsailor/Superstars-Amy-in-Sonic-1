@@ -116,19 +116,21 @@ loc_DC0C:
 		rts	
 ; ===========================================================================
 
+; This part includes a bugfix from Sonic 2 (special thanks to RetroKoH)
 Spring_BounceLR:
 		addq.b	#2,obRoutine(a0)
 		move.w	spring_pow(a0),obVelX(a1) ; move Sonic to the left
 		addq.w	#8,obX(a1)
+		bset	#0,obStatus(a1)		; set Sonic facing to the left
 		btst	#0,obStatus(a0)	; is object flipped?
 		bne.s	Spring_Flipped	; if yes, branch
+		bclr	#0,obStatus(a1)		; set Sonic facing to the right
 		subi.w	#$10,obX(a1)
 		neg.w	obVelX(a1)	; move Sonic to	the right
 
 Spring_Flipped:
 		move.w	#$F,$3E(a1)
 		move.w	obVelX(a1),obInertia(a1)
-		bchg	#0,obStatus(a1)
 		btst	#2,obStatus(a1)
 		bne.s	loc_DC56
         clr.b	(f_hammerobject).w ; clear hammer object flag

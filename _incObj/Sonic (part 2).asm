@@ -15,6 +15,8 @@ loc_1380C:
 		bsr.w	Sonic_HurtStop
 		bsr.w	Sonic_LevelBound
 		bsr.w	Sonic_RecordPosition
+		; Mercury's Underwater Hurt Fix (from S1Fixed)
+		bsr.w 	Sonic_Water
 		bsr.w	Sonic_Animate
 		bsr.w	Sonic_LoadGfx
 		jmp	(DisplaySprite).l

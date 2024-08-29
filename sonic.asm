@@ -5857,6 +5857,17 @@ Obj44_SolidWall2:
 		ext.w	d3
 		add.w	d3,d2
 		move.w	obY(a1),d3
+		; Mercury's Ducking Size Fix (from S1Fixed)
+		cmpi.b	#id_SpinDash,obAnim(a0) ; is player spindashing?
+		beq.s	.ducking	; if so, branch
+		cmpi.b	#id_Duck,obAnim(a0) ; is player ducking?
+		bne.s	.skip	; if not, branch
+
+.ducking:
+		subi.w	#5,d2
+		addi.w	#5,d3
+		
+.skip:
 		sub.w	obY(a0),d3
 		add.w	d2,d3
 		bmi.s	loc_8B48
@@ -8231,20 +8242,16 @@ locret_178A2:
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
-
+; DeltaW's Optimized Object Movement from S1Fixed
 BossMove:
-		move.l	$30(a0),d2
-		move.l	$38(a0),d3
 		move.w	obVelX(a0),d0
 		ext.l	d0
 		asl.l	#8,d0
-		add.l	d0,d2
+		add.l	d0,$30(a0)
 		move.w	obVelY(a0),d0
 		ext.l	d0
 		asl.l	#8,d0
-		add.l	d0,d3
-		move.l	d2,$30(a0)
-		move.l	d3,$38(a0)
+		add.l	d0,$38(a0)
 		rts	
 ; End of function BossMove
 

@@ -43,8 +43,13 @@ ReactToItem:
 		move.b	obHeight(a0),d5	; load player's height
 		subq.b	#3,d5 ; Now player's collision height
 		sub.w	d5,d3
+		; Mercury's Ducking Size Fix (from S1Fixed)
 		cmpi.b	#id_Duck,obAnim(a0) ; is player ducking?
-		bne.s	.notducking	; if not, branch
+		beq.s	.ducking	; if so, branch
+		cmpi.b	#id_SpinDash,obAnim(a0) ; is player spindashing?
+		bne.s	.notducking		; if not, branch
+
+.ducking:
 		addi.w	#$C,d3
 		moveq	#$A,d5
 
@@ -371,8 +376,9 @@ HurtSonic:
 		move.w	#sfx_Death,d0	; load normal damage sound
 		cmpi.b	#id_Spikes,(a2)	; was damage caused by spikes?
 		bne.s	.sound		; if not, branch
-		cmpi.b	#id_Harpoon,(a2) ; was damage caused by LZ harpoon?
-		bne.s	.sound		; if not, branch
+		; Spike sfx bugfix by Mercury (from S1Fixed)
+		;cmpi.b	#id_Harpoon,(a2) ; was damage caused by LZ harpoon?
+		;bne.s	.sound		; if not, branch
 		move.w	#sfx_HitSpikes,d0 ; load spikes damage sound
 
 .sound:

@@ -1,7 +1,3 @@
-;  =========================================================================
-;   rocketsailor's note: 
-;   This script includes ring fixes by redhotsonic.
-;  =========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 25 - rings
 ; ---------------------------------------------------------------------------
@@ -185,13 +181,20 @@ RLoss_Count:	; Routine 0
 		moveq	#0,d5
 		move.w	(v_rings).w,d5	; check number of rings you have
 		moveq	#32,d0
+		; redhotsonic's Ring Loss Speedup (from S1Fixed)
+		lea		SpillRingData,a3		; load the address of the array in a3
+		lea     (v_player).w,a2	
+		btst    #6,obStatus(a2)		; is Sonic underwater?
+		beq.s   .abovewater				; if not, branch
+		lea		SpillRingData_Water,a3	; load the address of the array in a3
+
+.abovewater:
 		cmp.w	d0,d5		; do you have 32 or more?
 		bcs.s	.belowmax	; if not, branch
 		move.w	d0,d5		; if yes, set d5 to 32
 
 .belowmax:
 		subq.w	#1,d5
-		move.w	#$288,d4
 		bra.s	.makerings
 ; ===========================================================================
 
@@ -209,47 +212,18 @@ RLoss_Count:	; Routine 0
 		move.l	#Map_Ring,obMap(a1)
 		move.w	#$27B2,obGfx(a1)
 		move.b	#4,obRender(a1)
-		move.b	#3,obPriority(a1)
 		move.b	#$47,obColType(a1)
 		move.b	#8,obActWid(a1)
-		tst.w	d4
-		bmi.s	.loc_9D62
-		move.w	d4,d0
-		bsr.w	CalcSine
-		move.w	d4,d2
-		lsr.w	#8,d2
-		; Underwater ring physics fix by RHS
-		tst.b	(f_water).w		; Does the level have water?
-		beq.s	.skiphalvingvel		; If not, branch and skip underwater checks
-		move.w	(v_waterpos1).w,d6	; Move water level to d6
-		cmp.w	$C(a0),d6		; Is the ring object underneath the water level?
-		bgt.s	.skiphalvingvel		; If not, branch and skip underwater commands
-		asr.w	d0			; Half d0. Makes the ring's x_vel bounce to the left/right slower
-		asr.w	d1			; Half d1. Makes the ring's y_vel bounce up/down slower
-
-.skiphalvingvel:
-		asl.w	d2,d0
-		asl.w	d2,d1
-		move.w	d0,d2
-		move.w	d1,d3
-		addi.b	#$10,d4
-		bcc.s	.loc_9D62
-		subi.w	#$80,d4
-		bcc.s	.loc_9D62
-		move.w	#$288,d4
-
-.loc_9D62:
-		move.w	d2,obVelX(a1)
-		move.w	d3,obVelY(a1)
-		neg.w	d2
-		neg.w	d4
+		; redhotsonic's Ring Loss Speedup
+      	move.w  (a3)+,obVelX(a1)	; move the data contained in the array to the x velocity and increment the address in a3
+      	move.w  (a3)+,obVelY(a1)	; move the data contained in the array to the y velocity and increment the address in a3
 		dbf	d5,.loop	; repeat for number of rings (max 31)
 
 .resetcounter:
 		move.w	#0,(v_rings).w	; reset number of rings to zero
 		move.b	#$80,(f_ringcount).w ; update ring counter
 		move.b	#0,(v_lifecount).w
-		; Ring timer fix by RHS
+		; Ring timer fix by redhotsonic
         moveq   #-1,d0                  ; Move #-1 to d0
         move.b  d0,obDelayAni(a0)       ; Move d0 to new timer
         move.b  d0,(v_ani3_time).w      ; Move d0 to old timer (for animated purposes)
@@ -260,7 +234,7 @@ RLoss_Bounce:	; Routine 2
 		move.b	(v_ani3_frame).w,obFrame(a0)
 		bsr.w	SpeedToPos
 		addi.w	#$18,obVelY(a0)
-		; Underwater ring physics fix by RHS
+		; Underwater ring physics fix by redhotsonic
 		tst.b	(f_water).w		; Does the level have water?
 		beq.s	.skipbounceslow		; If not, branch and skip underwater checks
 		move.w	(v_waterpos1).w,d6	; Move water level to d6
@@ -290,20 +264,69 @@ RLoss_Bounce:	; Routine 2
 		addi.w	#$E0,d0
 		cmp.w	obY(a0),d0	; has object moved below level boundary?
 		bcs.s	RLoss_Delete	; if yes, branch
-		bra.w	DisplaySprite
+		; redhotsonic's Ring Loss Speedup
+        lea     v_spritequeue+$180,a1
+        cmpi.w  #$7E,(a1)
+        bcc.s   .return
+        addq.w  #2,(a1)
+        adda.w  (a1),a1
+        move.w  a0,(a1)
+
+.return:
+        rts
 ; ===========================================================================
 
 RLoss_Collect:	; Routine 4
 		addq.b	#2,obRoutine(a0)
 		move.b	#0,obColType(a0)
-		move.b	#1,obPriority(a0)
 		bsr.w	CollectRing
 
 RLoss_Sparkle:	; Routine 6
 		lea	(Ani_Ring).l,a1
 		bsr.w	AnimateSprite
-		bra.w	DisplaySprite
+		; redhotsonic's Ring Loss Speedup
+        lea     v_spritequeue+$180,a1
+        cmpi.w  #$7E,(a1)
+        bcc.s   .return
+        addq.w  #2,(a1)
+        adda.w  (a1),a1
+        move.w  a0,(a1)
+
+.return:
+        rts
 ; ===========================================================================
 
 RLoss_Delete:	; Routine 8
 		bra.w	DeleteObject
+
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Ring Spawn Array -- RHS Ring Loss Speedup (from S1Fixed)
+; ---------------------------------------------------------------------------
+
+SpillRingData:  dc.w    $FF3C,$FC14, $00C4,$FC14, $FDC8,$FCB0, $0238,$FCB0 ; 4
+                dc.w    $FCB0,$FDC8, $0350,$FDC8, $FC14,$FF3C, $03EC,$FF3C ; 8
+                dc.w    $FC14,$00C4, $03EC,$00C4, $FCB0,$0238, $0350,$0238 ; 12
+                dc.w    $FDC8,$0350, $0238,$0350, $FF3C,$03EC, $00C4,$03EC ; 16
+                dc.w    $FF9E,$FE0A, $0062,$FE0A, $FEE4,$FE58, $011C,$FE58 ; 20
+                dc.w    $FE58,$FEE4, $01A8,$FEE4, $FE0A,$FF9E, $01F6,$FF9E ; 24
+                dc.w    $FE0A,$0062, $01F6,$0062, $FE58,$011C, $01A8,$011C ; 28
+                dc.w    $FEE4,$01A8, $011C,$01A8, $FF9E,$0156, $0062,$0156 ; 32
+                even
+; ===========================================================================
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Ring Spawn Array - Underwater -- RHS Ring Loss Speedup (from S1Fixed)
+; ---------------------------------------------------------------------------
+
+SpillRingData_Water:
+				dc.w    $FF9C,$FE08, $0064,$FE08, $FEE4,$FE58, $011C,$FE58 ; 4
+                dc.w    $FE58,$FEE4, $01A8,$FEE4, $FE08,$FF9C, $01F8,$FF9C ; 8
+                dc.w    $FE08,$0060, $01F8,$0060, $FE58,$011C, $01A8,$011C ; 12
+                dc.w    $FEE4,$01A8, $011C,$01A8, $FF9C,$01F4, $0064,$01F4 ; 16
+                dc.w    $FFCE,$FF04, $0032,$FF04, $FF72,$FF2C, $008E,$FF2C ; 20
+                dc.w    $FF2C,$FF72, $00D4,$FF72, $FF04,$FFCE, $00FC,$FFCE ; 24
+                dc.w    $FF04,$0030, $00FC,$0030, $FF2C,$008E, $00D4,$008E ; 28
+                dc.w    $FF72,$00D4, $008E,$00D4, $FFCE,$00FA, $0032,$00FA ; 32
+                even
+; ===========================================================================

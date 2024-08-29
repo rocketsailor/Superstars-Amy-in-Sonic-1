@@ -19,7 +19,7 @@ Sonic_Animate:
 		move.b	#0,obAniFrame(a0) ; reset animation
 		move.b	#0,obTimeFrame(a0) ; reset frame duration
 
-		; Mercury's Pushing While Walking Fix (from RetroKoH's S1Fixed)
+		; Mercury's Pushing While Walking Fix (from S1Fixed)
 		bclr	#5,obStatus(a0)	; clear pushing flag
 
 .do:

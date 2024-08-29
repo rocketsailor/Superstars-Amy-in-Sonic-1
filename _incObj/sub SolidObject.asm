@@ -35,7 +35,7 @@ SolidObject:
 
 .stand:
 		move.w	d4,d2
-		bsr.w	MvSonicOnPtfm
+		jsr		(MvSonicOnPtfm).l ; previously bsr.w
 		moveq	#0,d4
 		rts	
 ; ===========================================================================
@@ -64,7 +64,7 @@ SolidObject71:
 
 .stand:
 		move.w	d4,d2
-		bsr.w	MvSonicOnPtfm
+		jsr		MvSonicOnPtfm ; previously bsr.w
 		moveq	#0,d4
 		rts	
 ; ===========================================================================
@@ -127,6 +127,17 @@ loc_FAD0:
 		ext.w	d3
 		add.w	d3,d2
 		move.w	obY(a1),d3
+		; Mercury's Ducking Size Fix (from S1Fixed)
+		cmpi.b	#id_SpinDash,obAnim(a0) ; is player spindashing?
+		beq.s	.ducking	; if so, branch
+		cmpi.b	#id_Duck,obAnim(a0) ; is player ducking?
+		bne.s	.skip	; if not, branch
+
+.ducking:
+		subi.w	#5,d2
+		addi.w	#5,d3
+		
+.skip:
 		sub.w	obY(a0),d3
 		addq.w	#4,d3
 		add.w	d2,d3

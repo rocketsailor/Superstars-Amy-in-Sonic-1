@@ -18,7 +18,7 @@ Credits
 Special Thanks
 ============
 * E-122-Psi - For assisting me with the hammer object, other misc changes, and inspiring me with your own romhacks.
-* DeltaW - For assisting me with hammer-related hitboxes, and your Insta-Shield porting tutorial.
+* DeltaW - For assisting me with hammer-related hitboxes, your Insta-Shield porting tutorial, and your contributions to S1Fixed.
 * Hitaxas - For helping me with ReacttoItem when I was a noob.
 * Kilo - For your guides and your assistance with an error.
 * Rrose80149 - For kindly fixing broken demos.

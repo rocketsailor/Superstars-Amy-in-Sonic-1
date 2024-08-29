@@ -293,6 +293,7 @@ dac_sfx_DblJump: equ $84
 dac_sfx_Bonk: equ $85
 
 ; player frame IDs
+fr_Roll: equ $3D
 fr_BadEndWait: equ $68
 fr_Bonk1: equ $72
 fr_Bonk2: equ $76

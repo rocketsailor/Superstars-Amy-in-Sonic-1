@@ -192,7 +192,8 @@ PLC_SYZ2:	dc.w ((PLC_SYZ2end-PLC_SYZ2-2)/6)-1
 		plcm	Nem_Bumper, $7000	; bumper
 		plcm	Nem_SyzSpike1, $72C0	; large	spikeball
 		plcm	Nem_SyzSpike2, $7740	; small	spikeball
-		plcm	Nem_Cater, $9FE0	; caterkiller enemy
+		; Mercury's Roller Art Fix (from ReadySonic): remove caterkiller
+		;plcm	Nem_Cater, $9FE0	; caterkiller enemy
 		plcm	Nem_LzSwitch, $A1E0	; switch
 		plcm	Nem_Spikes, $A360	; spikes
 		plcm	Nem_HSpring, $A460	; horizontal spring

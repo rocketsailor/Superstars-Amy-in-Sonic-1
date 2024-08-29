@@ -38,6 +38,7 @@ Sonic_ChkRoll:
 		move.b	#$E,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#id_Roll,obAnim(a0) ; use "rolling" animation
+		move.b	#fr_Roll,obFrame(a0)	; Mercury's S-Tunnel Flicker Fix (from S1Fixed)
 		addq.w	#1,obY(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(PlaySound_Special).l	; play rolling sound

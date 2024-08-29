@@ -29,6 +29,7 @@ Got_ChkPLC:	; Routine 0
 ; ===========================================================================
 
 Got_Main:
+		move.w	#1,(v_player+shoetime).w ; Mercury's Remove Speed Shoes At Signpost Fix (from ReadySonic)
 		movea.l	a0,a1
 		lea	(Got_Config).l,a2
 		moveq	#6,d1

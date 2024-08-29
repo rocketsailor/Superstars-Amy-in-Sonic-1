@@ -56,6 +56,16 @@ loc_131AA:
 		subq.w	#1,obY(a0)
 
 loc_131CC:
+		; Mercury's Screen Scroll While Rolling Fix (from S1Fixed)
+		cmpi.w	#$60,(v_lookshift).w
+		beq.s	.cont2
+		bcc.s	.cont1
+		addq.w	#4,(v_lookshift).w
+
+.cont1:
+		subq.w	#2,(v_lookshift).w
+
+.cont2:
 		move.b	obAngle(a0),d0
 		jsr	(CalcSine).l
 		muls.w	obInertia(a0),d0

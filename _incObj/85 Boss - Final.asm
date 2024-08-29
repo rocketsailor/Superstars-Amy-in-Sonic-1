@@ -207,6 +207,9 @@ HitFinalBoss:
 		;clr.b	$26(a0)
 		tst.b	$35(a0)
 		bne.s	loc_19F88
+		; Mercury's Hit Count Underflow Fix (from S1Fixed)
+		tst.b	obColProp(a0)	; has the boss been defeated?
+		beq.s	loc_19F9C		; if so, don't let it be hit again.
 		subq.b	#1,obColProp(a0)
 		move.b	#$64,$35(a0)
 		move.w	#sfx_HitBoss,d0
