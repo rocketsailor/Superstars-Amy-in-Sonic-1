@@ -181,8 +181,6 @@ ReactToItem:
 .monitorchk:
 		cmp.b 	#2,(a0) ; if using hammer,	
         beq.s 	Instant_Break	; then branch
-		cmpi.b	#id_SpinDash,obAnim(a0) ; is player Spin Dashing? 
-		beq.s 	React_Monitor
 		cmpi.b	#id_Roll,obAnim(a0) ; is player rolling/jumping?
 		bne.s 	No_Reaction	; if not, branch
 

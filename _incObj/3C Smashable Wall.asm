@@ -58,7 +58,11 @@ Smash_Player:
 		bcs.s	.donothing	; if not, branch
 
 Smash_Things:
+		tst.b 	(f_hammerrush).w ; is player using hammer rush?
+		bne.s	.nospeedcap	; if so, branch
 		move.w	smash_speed(a0),obVelX(a1)
+		
+.nospeedcap:
 		addq.w	#4,obX(a1)
 		lea	(Smash_FragSpd1).l,a4 ;	use fragments that move	right
 		move.w	obX(a0),d0

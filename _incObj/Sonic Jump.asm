@@ -33,6 +33,7 @@ loc_1341C:
 		add.w	d0,obVelY(a0)	; make Sonic jump
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
+		bclr	#3,obStatus(a0) ; prevent broken collision if you jump while standing on a monitor
 		addq.l	#4,sp
 		move.b	#1,$3C(a0)
 		clr.b	$38(a0)
