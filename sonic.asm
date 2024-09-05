@@ -1031,7 +1031,7 @@ ClearScreen:
 
 		lea	(v_spritetablebuffer).w,a1
 		moveq	#0,d0
-		move.w	#($280/4),d1	; This should be ($280/4)-1, leading to a slight bug (first bit of v_pal_water is cleared)
+		move.w	#($280/4)-1,d1
 
 .clearsprites:
 		move.l	d0,(a1)+
@@ -2265,7 +2265,7 @@ Tit_ClrObj2:
 
 		move.b	#id_TitleSonic,(v_objspace+$40).w ; load big Sonic object
 		move.b	#id_TitleBanner,(v_objspace+$80).w ; load banner object
-		;move.b	#id_PSBTM,(v_objspace+$80).w ; load "PRESS START BUTTON" object
+		move.b	#id_PSBTM,(v_objspace+$100).w ; load "PRESS START BUTTON" object
 		clr.b	(v_objspace+$80+obRoutine).w ; The 'Mega Games 10' version of Sonic 1 added this line, to fix the 'PRESS START BUTTON' object not appearing
 
 		if Revision<>0
@@ -7030,7 +7030,7 @@ HammerObj_Main:
 		tst.b	(f_hammerobject).w	; is hammer flag set?
 		beq.s 	HammerObj_End	; if not, branch
 		jsr    (ReactToItem).l ; enable collision with other objects
-		jmp	(DisplaySprite).l ; enable graphics for testing purposes
+		;jmp	(DisplaySprite).l ; enable graphics for testing purposes
 
 HammerObj_End:
         rts
