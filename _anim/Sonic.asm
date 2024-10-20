@@ -31,6 +31,7 @@ ptr_Float4:	dc.w SonAni_Float4-Ani_Sonic
 ptr_BadEndWait: dc.w SonAni_BadEndWait-Ani_Sonic
 ptr_SpinDash: dc.w SonAni_SpinDash-Ani_Sonic
 ptr_HammerAttack: dc.w SonAni_HammerAttack-Ani_Sonic
+ptr_PreHammerCharge: dc.w SonAni_PreHammerCharge-Ani_Sonic
 ptr_HammerCharge: dc.w SonAni_HammerCharge-Ani_Sonic
 ptr_HammerRush: dc.w SonAni_HammerRush-Ani_Sonic
 
@@ -97,6 +98,8 @@ SonAni_SpinDash: dc.b 0, $69, $6A, $69, $6B, $69, $6C, $69, $6D, $69, $6E, afEnd
 		even
 SonAni_HammerAttack:	dc.b 2, $42, $43, $44, $45, $46, $47, $48, $49, afEnd, afEnd
 		even
+SonAni_PreHammerCharge:	dc.b 2, $47, $48, $49, $42, afChange, id_HammerCharge
+		even
 SonAni_HammerCharge:	dc.b 1, $43, $45, $47, $49, afEnd
 		even
 SonAni_HammerRush:	dc.b 3, $6F, $70, $71, $72, $73, $74, $75, $76, afEnd
@@ -130,5 +133,6 @@ id_Float4:	equ (ptr_Float4-Ani_Sonic)/2
 id_BadEndWait: equ (ptr_BadEndWait-Ani_Sonic)/2
 id_SpinDash: equ (ptr_SpinDash-Ani_Sonic)/2
 id_HammerAttack: equ (ptr_HammerAttack-Ani_Sonic)/2
+id_PreHammerCharge: equ (ptr_PreHammerCharge-Ani_Sonic)/2
 id_HammerCharge: equ (ptr_HammerCharge-Ani_Sonic)/2
 id_HammerRush: equ (ptr_HammerRush-Ani_Sonic)/2

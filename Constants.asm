@@ -166,6 +166,7 @@ invtime:	equ $32	; time left for invincibility
 shoetime:	equ $34	; time left for speed shoes
 spindashcharge: equ $3A ; power of spindash
 rushtime:   equ spindashcharge ; time left for hammer rush
+hammercharge: equ rushtime ; flag to disable hammer if hammer charge is cancelled
 standonobject:	equ $3D	; object player stands on
 
 ; Object variables (Sonic 2 disassembly nomenclature)

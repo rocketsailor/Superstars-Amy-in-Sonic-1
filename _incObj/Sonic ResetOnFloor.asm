@@ -11,6 +11,7 @@
 
 Sonic_ResetOnFloor:
 		bclr 	#7,obStatus(a0)
+		bclr 	#1,hammercharge(a0)
 		btst	#4,obStatus(a0)
 		beq.s	loc_137AE
 		nop	
