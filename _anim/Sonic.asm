@@ -98,7 +98,7 @@ SonAni_SpinDash: dc.b 0, $69, $6A, $69, $6B, $69, $6C, $69, $6D, $69, $6E, afEnd
 		even
 SonAni_HammerAttack:	dc.b 2, $42, $43, $44, $45, $46, $47, $48, $49, afEnd, afEnd
 		even
-SonAni_PreHammerCharge:	dc.b 2, $47, $48, $49, $42, afChange, id_HammerCharge
+SonAni_PreHammerCharge:	dc.b 2, $45, $46, $47, $48, $49, $42, afChange, id_HammerCharge
 		even
 SonAni_HammerCharge:	dc.b 1, $43, $45, $47, $49, afEnd
 		even
