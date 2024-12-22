@@ -191,7 +191,7 @@ React_Monitor:
 		subi.w	#$10,d0
 		cmp.w	obY(a1),d0
 		bcs.s	No_Reaction
-		neg.w	obVelY(a0)	; reverse player's vertical speed
+		neg.w	obVelY(a0)	; reverse player's vertical speed		
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
 		bne.s	No_Reaction
@@ -204,7 +204,12 @@ Instant_Break:
 		rts		
 
 Moving_Down:
-		neg.w	obVelY(a0)	; reverse player's y-motion		
+		neg.w	obVelY(a0)	; reverse player's y-motion
+		btst    #1,hammercharge(a0)  ; Was the hammer charge canceled?
+        bne.s   .dontclear    ; if so, branch
+        bclr    #7,obStatus(a0)    ; clear double jump flag
+
+.dontclear:		
 		addq.b	#2,obRoutine(a1) ; advance the monitor's routine counter
 
 No_Reaction:
@@ -287,6 +292,11 @@ React_Enemy:
 		cmp.w	obY(a1),d0
 		bcc.s	.bounceup
 		neg.w	obVelY(a0)
+        btst    #1,hammercharge(a0)  ; Was the hammer charge canceled?
+        bne.s   .return    ; if so, branch
+        bclr    #7,obStatus(a0)    ; clear double jump flag
+
+.return:		
 		rts	
 
 .setbounceflag:
