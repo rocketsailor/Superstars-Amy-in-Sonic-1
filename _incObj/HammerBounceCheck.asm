@@ -25,13 +25,13 @@ BounceCheckEnd:
 HammerBounceCheck2: 
         tst.b	(f_hammerbounce2).w	; is bounce flag set?
         beq.s   BounceCheck2End  ; if not, branch
+        move.b  #id_Roll,obAnim(a0) ; set animation to roll
+        clr.b	(f_hammerobject).w ; clear hammer flag
+		bset 	#1,hammercharge(a0) ; prevent reactivation of hammer
 		neg.w	obVelX(a0)  ; boss bounce
 		neg.w	obVelY(a0)
         asr	    obVelX(a0)
 		asr	    obVelY(a0)
-        move.b  #id_Roll,obAnim(a0) ; set animation to roll
-        clr.b	(f_hammerobject).w ; clear hammer flag
-		bset 	#1,hammercharge(a0) ; prevent reactivation of hammer
         
 BounceCheck2End:     
         clr.b	(f_hammerbounce2).w ; clear bounce flag
